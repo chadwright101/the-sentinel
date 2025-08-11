@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-*: initial;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-beige: #D8C99B;
+  --color-light-brown: #D8973C;
+  --color-dark-brown: #BD632F;
+  --color-teal: #064658;
+  --color-blue: #1E96FC;
+
+  --font-abril-fatface: "Abril Fatface", Georgia, serif;
+  --font-newsreader: "Newsreader", Georgia, serif;
+  --font-inter: "Inter", Arial, sans-serif;
+
+  --text-*: initial;
+  --text-12px: 0.75rem;
+  --text-14px: 0.875rem;
+  --text-16px: 1rem;
+  --text-18px: 1.125rem;
+  --text-20px: 1.25rem;
+  --text-24px: 1.5rem;
+  --text-30px: 1.875rem;
+  --text-32px: 2rem;
+  --text-36px: 2.25rem;
+  --text-44px: 2.75rem;
+
+  --breakpoint-*: initial;
+  --breakpoint-phone: 425px;
+  --breakpoint-tablet: 800px;
+  --breakpoint-desktop: 1260px;
+}
+
+@layer components {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply text-black;
+    font-family: "Newsreader", Georgia, serif,
+  }
+
+  p,
+  input,
+  textarea,
+  span {
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  a {
+    @apply text-teal ease-in-out duration-300;
+  }
+}
+
+/* spinner styles */
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 3px solid transparent;
+  border-top-color: #064658;
+  animation: spin 1s linear infinite;
+}
+
+.spinner::after {
+  animation-delay: 0.5s;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
