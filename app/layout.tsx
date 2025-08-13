@@ -9,7 +9,7 @@ const interSansSerif = Inter({
 
 const newsreaderSerif = Newsreader({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
 });
 
 const abrilFatfaceSerif = Abril_Fatface({
@@ -18,6 +18,7 @@ const abrilFatfaceSerif = Abril_Fatface({
 });
 
 import "@/_styles/globals.css";
+import Header from "@/_components/navigation/header/header";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thesentinelnews.com.au/"),
@@ -50,6 +51,7 @@ export default function RootLayout({
       <body
         className={`${interSansSerif.className} ${newsreaderSerif.className} ${abrilFatfaceSerif.className} antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>

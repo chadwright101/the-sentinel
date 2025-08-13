@@ -53,6 +53,54 @@
   a {
     @apply text-teal ease-in-out duration-300;
   }
+
+  /* mobile menu styles */
+
+  .mobile-menu-heading {
+    font-size: 0.875rem;
+  }
+
+  .mobile-menu-subheading {
+    font-size: 0.750rem;
+  }
+
+  .mobile-menu-spacing {
+    display: grid;
+    gap: 18px;
+  }
+
+  .mobile-menu-facebook-icon>a>img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mobile-menu-facebook-icon {
+    margin-top: -2px;
+  }
+
+  @media (min-height: 700px) {
+    .mobile-menu-heading {
+      font-size: 1.125rem;
+    }
+
+    .mobile-menu-subheading {
+      font-size: 0.875rem;
+    }
+
+    .mobile-menu-spacing {
+      display: grid;
+      gap: 20px;
+    }
+
+    .mobile-menu-facebook-icon {
+      margin-top: -6px;
+    }
+
+    .mobile-menu-facebook-icon>a>img {
+      width: 40px;
+      height: 40px;
+    }
+  }
 }
 
 /* spinner styles */

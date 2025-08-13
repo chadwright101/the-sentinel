@@ -1,0 +1,60 @@
+[
+  {
+    "title": "Home",
+    "url": "/"
+  },
+  {
+    "title": "News",
+    "children": [
+      {
+        "title": "Business",
+        "url": "/news/business"
+      },
+      {
+        "title": "Rural",
+        "url": "/news/rural"
+      },
+      {
+        "title": "Schools",
+        "url": "/news/schools"
+      }
+    ]
+  },
+  {
+    "title": "Sport"
+  },
+  {
+    "title": "Entertainment",
+    "url": "/entertainment",
+    "children": [
+      {
+        "title": "What's On",
+        "url": "/entertainment/whats-on"
+      },
+      {
+        "title": "Calendar",
+        "url": "/entertainment/calendar"
+      }
+    ]
+  },
+  {
+    "title": "Lifestyle",
+    "children": [
+      {
+        "title": "Health",
+        "url": "/lifestyle/health/"
+      },
+      {
+        "title": "Food & Drinks",
+        "url": "/lifestyle/food-drinks"
+      }
+    ]
+  },
+  {
+    "title": "Real Estate",
+    "url": "/real-estate"
+  },
+  { "title": "Editions", "url": "/editions" },
+  { "title": "About", "url": "/about" },
+  { "title": "Contact Us", "url": "/contact-us" }
+]
