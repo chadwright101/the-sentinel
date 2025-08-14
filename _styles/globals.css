@@ -51,7 +51,7 @@
   }
 
   a {
-    @apply text-teal ease-in-out duration-300;
+    @apply text-teal ease-in-out duration-300 cursor-pointer;
   }
 
   /* mobile menu styles */
@@ -137,4 +137,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Dropdown menu animation */
+.dropdown-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.dropdown-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
 }

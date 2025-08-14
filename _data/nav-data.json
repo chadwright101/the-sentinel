@@ -21,11 +21,11 @@
     ]
   },
   {
-    "title": "Sport"
+    "title": "Sport",
+    "url": "/sport"
   },
   {
     "title": "Entertainment",
-    "url": "/entertainment",
     "children": [
       {
         "title": "What's On",

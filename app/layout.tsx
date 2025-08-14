@@ -18,7 +18,7 @@ const abrilFatfaceSerif = Abril_Fatface({
 });
 
 import "@/_styles/globals.css";
-import Header from "@/_components/navigation/header/header";
+import HeaderContainer from "@/_components/navigation/header/header-container";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thesentinelnews.com.au/"),
@@ -51,7 +51,7 @@ export default function RootLayout({
       <body
         className={`${interSansSerif.className} ${newsreaderSerif.className} ${abrilFatfaceSerif.className} antialiased`}
       >
-        <Header />
+        <HeaderContainer />
         {children}
       </body>
     </html>
