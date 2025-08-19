@@ -29,7 +29,7 @@
   --breakpoint-*: initial;
   --breakpoint-phone: 425px;
   --breakpoint-tablet: 800px;
-  --breakpoint-desktop: 1260px;
+  --breakpoint-desktop: 1100px;
 }
 
 @layer components {

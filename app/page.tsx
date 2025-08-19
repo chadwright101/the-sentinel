@@ -1,6 +1,6 @@
 export default function HomePage() {
   return (
-    <div className="px-5 max-w-[1920px] mx-auto desktop:px-10">
+    <div className="px-5 max-w-[1100px] mx-auto desktop:px-10">
       <h1>Heading</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod

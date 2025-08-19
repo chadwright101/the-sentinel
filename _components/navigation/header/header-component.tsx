@@ -15,13 +15,13 @@ export function HeaderComponent({
   isScrolled,
 }: NavDataProps & HeaderProps) {
   return (
-    <div className="flex relative justify-center items-center h-full w-full px-5 max-w-[1210px] mx-auto">
+    <div className="flex relative justify-center items-center h-full w-full px-5 max-w-[1100px] mx-auto">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={classNames(
           "absolute left-5 -m-3 p-3 cursor-pointer desktop:left-10 desktop:hover:scale-[105%] duration-300 ease-in-out desktop:-translate-y-3 delay-75",
           {
-            "top-1/2": isScrolled,
+            "desktop:top-[168px]": isScrolled,
             "desktop:-top-10": !isScrolled,
           }
         )}
@@ -68,7 +68,7 @@ export function HeaderComponent({
         className={classNames(
           "hidden desktop:block absolute right-10 hover:opacity-90 delay-75",
           {
-            "top-1/2 -translate-y-3": isScrolled,
+            "top-[168px] -translate-y-3": isScrolled,
             "-top-10": !isScrolled,
           }
         )}

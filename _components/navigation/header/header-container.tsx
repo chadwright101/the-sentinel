@@ -27,10 +27,10 @@ export default function HeaderContainer() {
   return (
     <header
       className={classNames(
-        "w-full mx-auto z-50 h-[100px] bg-teal desktop:fixed ease-in-out duration-300",
+        "w-full mx-auto z-50 h-[100px] bg-teal desktop:sticky desktop:h-[250px] ease-in-out duration-300",
         {
-          "desktop:h-[150px]": isScrolled,
-          "desktop:h-[250px]": !isScrolled,
+          "desktop:-top-[100px]": isScrolled,
+          "desktop:top-0": !isScrolled,
         }
       )}
     >

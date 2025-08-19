@@ -7,8 +7,8 @@ import navData from "@/_data/nav-data.json";
 
 const FooterComponent = () => {
   return (
-    <footer className="bg-teal">
-      <div className="max-w-[1210px] mx-auto px-5 py-10 desktop:grid grid-cols-[1fr_551] desktop:pt-[100px] desktop:pb-[90px] desktop:px-10">
+    <footer className="bg-teal relative z-20">
+      <div className="max-w-[1100px] mx-auto px-5 py-10 desktop:grid grid-cols-[1fr_551] desktop:pt-[100px] desktop:pb-[90px] desktop:px-10">
         <div className="flex flex-col gap-[30px] desktop:gap-10">
           <Image
             src="/logo/the-sentinel-logo.svg"
