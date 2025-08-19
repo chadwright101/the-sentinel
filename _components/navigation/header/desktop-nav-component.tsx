@@ -26,7 +26,7 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
               {url ? (
                 <Link
                   href={url}
-                  className="text-white hover:text-light-brown ease-in-out duration-300"
+                  className="text-white font-inter hover:text-light-brown ease-in-out duration-300"
                 >
                   {title}
                 </Link>
@@ -59,7 +59,7 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
                       <li key={childIndex}>
                         <Link
                           href={child.url}
-                          className="flex items-center gap-2 normal-case hover:text-dark-brown ease-in-out duration-300 place-self-start"
+                          className="flex items-center font-inter gap-2 normal-case hover:text-dark-brown ease-in-out duration-300 place-self-start"
                         >
                           <Image
                             src="/icons/chevron-teal.svg"
