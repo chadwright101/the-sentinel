@@ -15,7 +15,7 @@ export function HeaderComponent({
   isScrolled,
 }: NavDataProps & HeaderProps) {
   return (
-    <div className="flex relative justify-center items-center h-full w-full px-5 max-w-[1776px] mx-auto">
+    <div className="flex relative justify-center items-center h-full w-full px-5 max-w-[1210px] mx-auto">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={classNames(

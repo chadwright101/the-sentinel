@@ -19,6 +19,7 @@ const abrilFatfaceSerif = Abril_Fatface({
 
 import "@/_styles/globals.css";
 import HeaderContainer from "@/_components/navigation/header/header-container";
+import FooterComponent from "@/_components/navigation/footer/footer-component";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thesentinelnews.com.au/"),
@@ -53,6 +54,7 @@ export default function RootLayout({
       >
         <HeaderContainer />
         {children}
+        <FooterComponent />
       </body>
     </html>
   );
