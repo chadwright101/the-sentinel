@@ -22,9 +22,9 @@
   --text-36px: 2.25rem;
   --text-44px: 2.75rem;
 
-  --font-abril-fatface: var(--font-abril-fatface), Georgia, serif;
-  --font-newsreader: var(--font-newsreader), Georgia, serif;
-  --font-inter: var(--font-inter), Arial, sans-serif;
+  --font-abril-fatface: Georgia, serif;
+  --font-newsreader: Georgia, serif;
+  --font-inter: Arial, sans-serif;
 
   --breakpoint-*: initial;
   --breakpoint-phone: 425px;
@@ -39,14 +39,16 @@
   }
 
   * {
-    @apply text-black font-newsreader
+    @apply text-black;
+    font-family: var(--font-newsreader), Georgia, serif;
   }
 
   p,
   input,
   textarea,
   span {
-    @apply font-inter font-bold;
+    font-family: var(--font-inter), Arial, sans-serif;
+    font-weight: 700;
   }
 
   a {
