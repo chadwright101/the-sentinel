@@ -13,10 +13,10 @@ const FooterComponent = () => {
           <Image
             src="/logo/the-sentinel-logo.svg"
             alt="The Sentinel logo"
-            width={534}
+            width={450}
             height={100}
-            sizes="(max-width:1260px) 335px, 534px"
-            className="w-[335px] h-auto desktop:w-[450px] min-[1400px]:w-[534px]"
+            sizes="(max-width: 1100px) 335px, 450px"
+            className="w-[335px] h-auto desktop:w-[450px]"
           />
           <div className="flex flex-col gap-5">
             <div>
