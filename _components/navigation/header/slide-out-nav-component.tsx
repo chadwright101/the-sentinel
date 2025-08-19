@@ -5,28 +5,48 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import classNames from "classnames";
-import { HeaderDataProps, HeaderProps } from "@/_types/menu-types";
+import { NavDataProps, HeaderProps } from "@/_types/menu-types";
 
 const SlideOutNavComponent = ({
   isOpen,
   setIsOpen,
   navData,
-}: HeaderProps & HeaderDataProps) => {
+  isScrolled,
+}: HeaderProps & NavDataProps) => {
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>(
     {}
   );
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
+    setWindowWidth(window.innerWidth);
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth <= 1259) {
+      if (isOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      if (windowWidth <= 1259) {
+        document.body.style.overflow = "auto";
+      }
     };
-  }, [isOpen]);
+  }, [isOpen, windowWidth]);
 
   const toggleExpand = (id: number) => {
     setExpandedItems((prev) => {
@@ -52,9 +72,11 @@ const SlideOutNavComponent = ({
   return (
     <div
       className={classNames(
-        "fixed w-full left-0 top-[100px] transform transition-transform duration-300 ease-in-out desktop:top-[250px] desktop:w-1/4",
+        "fixed w-full left-0 top-[100px] transform transition-transform duration-300 ease-in-out desktop:w-1/4",
         {
           "-translate-x-full": !isOpen,
+          "desktop:top-[250px]": !isScrolled,
+          "desktop:top-[150px]": isScrolled,
         }
       )}
     >
@@ -67,25 +89,25 @@ const SlideOutNavComponent = ({
             return (
               <li key={index} className="space-y-5">
                 {hasChildren ? (
-                  <div className="w-full flex justify-between items-center">
+                  <div>
                     <button
                       onClick={() => toggleExpand(index)}
-                      className="mobile-menu-heading text-teal font-inter font-bold uppercase cursor-pointer p-2 -m-2 desktop:p-0 desktop:m-0 desktop:hover:text-dark-brown ease-in-out duration-300"
+                      className="mobile-menu-heading w-full flex justify-between items-center text-teal font-inter font-bold uppercase cursor-pointer px-2 -mx-2 desktop:p-0 desktop:m-0 desktop:hover:text-dark-brown ease-in-out duration-300"
                     >
                       {title}
+                      <Image
+                        src="/icons/chevron-teal.svg"
+                        alt="open submenu"
+                        width={8}
+                        height={12}
+                        className={classNames(
+                          "transform transition-transform duration-300",
+                          {
+                            "rotate-90": isExpanded,
+                          }
+                        )}
+                      />
                     </button>
-                    <Image
-                      src="/icons/chevron.svg"
-                      alt="open submenu"
-                      width={8}
-                      height={12}
-                      className={classNames(
-                        "transform transition-transform duration-300",
-                        {
-                          "rotate-90": isExpanded,
-                        }
-                      )}
-                    />
                   </div>
                 ) : (
                   <Link
@@ -115,7 +137,7 @@ const SlideOutNavComponent = ({
                             className="flex items-center gap-[10px] mobile-menu-subheading text-teal font-inter font-medium uppercase -translate-y-[0.75px] place-self-start p-2 -m-2 desktop:p-0 desktop:m-0 desktop:hover:text-dark-brown"
                           >
                             <Image
-                              src="/icons/chevron.svg"
+                              src="/icons/chevron-teal.svg"
                               alt=""
                               width={8}
                               height={16}
@@ -132,10 +154,7 @@ const SlideOutNavComponent = ({
           })}
           <li className="text-teal font-inter font-bold uppercase flex items-center gap-5 mobile-menu-facebook-icon mobile-menu-subheading">
             Follow us on:
-            <Link
-              href="https://www.facebook.com/HeatherHensleyInteriors"
-              target="_blank"
-            >
+            <Link href="#" target="_blank">
               <Image
                 src="/icons/facebook-icon-teal.svg"
                 alt="Follow us on Facebook"

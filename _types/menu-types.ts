@@ -3,7 +3,7 @@ export interface HeaderProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export interface HeaderDataProps {
+export interface NavDataProps {
   navData: {
     title: string;
     url?: string;
@@ -12,4 +12,5 @@ export interface HeaderDataProps {
       url: string;
     }[];
   }[];
+  isScrolled?: boolean;
 }

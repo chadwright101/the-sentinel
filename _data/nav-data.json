@@ -7,6 +7,10 @@
     "title": "News",
     "children": [
       {
+        "title": "Latest News",
+        "url": "/news/latest-news"
+      },
+      {
         "title": "Business",
         "url": "/news/business"
       },

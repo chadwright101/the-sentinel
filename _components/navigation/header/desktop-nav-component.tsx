@@ -6,13 +6,13 @@ import Image from "next/image";
 
 import classNames from "classnames";
 
-import { HeaderDataProps } from "@/_types/menu-types";
+import { NavDataProps } from "@/_types/menu-types";
 
-const DesktopNavComponent = ({ navData }: HeaderDataProps) => {
+const DesktopNavComponent = ({ navData }: NavDataProps) => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
   return (
-    <nav className="hidden desktop:block relative">
+    <nav className="relative">
       <ul className="flex gap-[30px] items-center">
         {navData.map(({ title, url, children }, index) => {
           const hasChildren = children && children.length > 0;
@@ -35,7 +35,7 @@ const DesktopNavComponent = ({ navData }: HeaderDataProps) => {
                   className={classNames(
                     "text-white font-medium hover:text-light-brown hover:cursor-pointer",
                     {
-                      "pb-3": hoveredItem === index,
+                      "pb-5 pr-5 -mr-5": hoveredItem === index,
                     }
                   )}
                 >
@@ -45,7 +45,7 @@ const DesktopNavComponent = ({ navData }: HeaderDataProps) => {
               {hasChildren && (
                 <div
                   className={classNames(
-                    "absolute top-full left-0 mt-2 w-max min-w-[180px] bg-white/90 shadow-lg rounded-b-md overflow-hidden transition-all duration-300 ease-in-out origin-top transform",
+                    "absolute top-full left-0 mt-4 w-max min-w-[180px] bg-white/85 shadow-lg rounded-b-md overflow-hidden transition-all duration-300 delay-75 ease-in-out origin-top transform",
                     {
                       "opacity-0 invisible max-h-0 scale-y-0":
                         hoveredItem !== index,
@@ -54,18 +54,18 @@ const DesktopNavComponent = ({ navData }: HeaderDataProps) => {
                     }
                   )}
                 >
-                  <ul className="p-3 grid gap-2">
+                  <ul className="px-3 py-4 grid gap-2.5">
                     {children!.map((child, childIndex) => (
                       <li key={childIndex}>
                         <Link
                           href={child.url}
-                          className="flex items-center gap-2 hover:text-dark-brown ease-in-out duration-300"
+                          className="flex items-center gap-2 normal-case hover:text-dark-brown ease-in-out duration-300 place-self-start"
                         >
                           <Image
-                            src="/icons/chevron.svg"
+                            src="/icons/chevron-teal.svg"
                             alt="open submenu"
-                            width={8}
-                            height={12}
+                            width={6}
+                            height={10}
                           />
                           {child.title}
                         </Link>
