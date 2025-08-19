@@ -5,16 +5,19 @@ import { Inter, Newsreader, Abril_Fatface } from "next/font/google";
 const interSansSerif = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "700", "800"],
+  variable: "--font-inter",
 });
 
 const newsreaderSerif = Newsreader({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  variable: "--font-newsreader",
 });
 
 const abrilFatfaceSerif = Abril_Fatface({
   subsets: ["latin"],
   weight: "400",
+  variable: "--font-abril-fatface",
 });
 
 import "@/_styles/globals.css";
@@ -52,6 +55,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${interSansSerif.className} ${newsreaderSerif.className} ${abrilFatfaceSerif.className} antialiased`}
+        style={
+          {
+            "--font-inter": interSansSerif.style.fontFamily,
+            "--font-newsreader": newsreaderSerif.style.fontFamily,
+            "--font-abril-fatface": abrilFatfaceSerif.style.fontFamily,
+          } as React.CSSProperties
+        }
       >
         <HeaderContainer />
         <AdSpaceComponent />

@@ -21,7 +21,7 @@ export function HeaderComponent({
         className={classNames(
           "absolute left-5 -m-3 p-3 cursor-pointer desktop:left-10 desktop:hover:scale-[105%] duration-300 ease-in-out desktop:-translate-y-3 delay-75",
           {
-            "desktop:top-[168px]": isScrolled,
+            "desktop:top-[172px]": isScrolled,
             "desktop:-top-10": !isScrolled,
           }
         )}
@@ -68,7 +68,7 @@ export function HeaderComponent({
         className={classNames(
           "hidden desktop:block absolute right-10 hover:opacity-90 delay-75",
           {
-            "top-[168px] -translate-y-3": isScrolled,
+            "top-[172px] -translate-y-3": isScrolled,
             "-top-10": !isScrolled,
           }
         )}
