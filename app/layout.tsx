@@ -54,14 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${interSansSerif.className} ${newsreaderSerif.className} ${abrilFatfaceSerif.className} antialiased`}
-        style={
-          {
-            "--font-inter": interSansSerif.style.fontFamily,
-            "--font-newsreader": newsreaderSerif.style.fontFamily,
-            "--font-abril-fatface": abrilFatfaceSerif.style.fontFamily,
-          } as React.CSSProperties
-        }
+        className={`${interSansSerif.variable} ${newsreaderSerif.variable} ${abrilFatfaceSerif.variable} antialiased`}
       >
         <HeaderContainer />
         <AdSpaceComponent />
