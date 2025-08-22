@@ -5,6 +5,7 @@
   },
   {
     "title": "News",
+    "url": "/news",
     "children": [
       {
         "title": "Latest News",
@@ -30,6 +31,7 @@
   },
   {
     "title": "Entertainment",
+    "url": "/entertainment",
     "children": [
       {
         "title": "What's On",

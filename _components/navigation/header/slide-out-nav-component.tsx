@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import classNames from "classnames";
 import { NavDataProps, HeaderProps } from "@/_types/menu-types";
@@ -17,6 +17,7 @@ const SlideOutNavComponent = ({
     {}
   );
   const [windowWidth, setWindowWidth] = useState(0);
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -48,6 +49,26 @@ const SlideOutNavComponent = ({
     };
   }, [isOpen, windowWidth]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        navRef.current &&
+        !navRef.current.contains(event.target as Node) &&
+        isOpen
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, setIsOpen]);
+
   const toggleExpand = (id: number) => {
     setExpandedItems((prev) => {
       const isCurrentlyExpanded = prev[id];
@@ -71,6 +92,7 @@ const SlideOutNavComponent = ({
 
   return (
     <div
+      ref={navRef}
       className={classNames(
         "fixed w-full left-0 top-[100px] transform transition-transform duration-300 ease-in-out desktop:w-1/4 z-10",
         {
@@ -154,7 +176,10 @@ const SlideOutNavComponent = ({
           })}
           <li className="text-teal font-inter font-bold uppercase flex items-center gap-5 mobile-menu-facebook-icon mobile-menu-subheading">
             Follow us on:
-            <Link href="#" target="_blank">
+            <Link
+              href="https://www.facebook.com/TheSentinelNews"
+              target="_blank"
+            >
               <Image
                 src="/icons/facebook-icon-teal.svg"
                 alt="Follow us on Facebook"

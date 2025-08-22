@@ -30,7 +30,10 @@ const FooterComponent = () => {
             </div>
             <div className="flex flex-col gap-[30px] place-items-start desktop:gap-5">
               <p className="font-bold text-white">Follow us on:</p>
-              <Link href="#" target="_blank">
+              <Link
+                href="https://www.facebook.com/TheSentinelNews"
+                target="_blank"
+              >
                 <Image
                   src="/icons/facebook-icon-white.svg"
                   alt="Follow us on Facebook"
@@ -92,12 +95,13 @@ const FooterComponent = () => {
           })}
         </nav>
         <div className="flex justify-between items-center mt-[30px] desktop:mt-10 desktop:col-span-2">
-          <p className="text-white text-12px font-medium desktop:text-16px">
-            © 2021 Somerset Media | ABN 74 640 850 228 |{" "}
+          <p className="text-white uppercase text-12px font-medium desktop:text-16px">
+            © {new Date().getFullYear()} The Sentinel News | ABN 74 640 850 228
+            |{" "}
             <Link
               href="#"
               target="_blank"
-              className="text-white text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
+              className="text-white uppercase font-inter text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Standards & Complaints
             </Link>{" "}
@@ -105,7 +109,7 @@ const FooterComponent = () => {
             <Link
               href="#"
               target="_blank"
-              className="text-white text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
+              className="text-white uppercase font-inter text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Terms
             </Link>{" "}
@@ -113,7 +117,7 @@ const FooterComponent = () => {
             <Link
               href="#"
               target="_blank"
-              className="text-white text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
+              className="text-white uppercase font-inter text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Privacy Policy
             </Link>

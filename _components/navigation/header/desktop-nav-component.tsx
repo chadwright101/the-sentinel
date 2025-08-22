@@ -26,14 +26,19 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
               {url ? (
                 <Link
                   href={url}
-                  className="text-white font-inter hover:text-light-brown ease-in-out duration-300"
+                  className={classNames(
+                    "text-white font-inter hover:text-light-brown ease-in-out duration-300",
+                    {
+                      "pb-5 pr-5 -mr-5": hoveredItem === index && hasChildren,
+                    }
+                  )}
                 >
                   {title}
                 </Link>
               ) : (
                 <span
                   className={classNames(
-                    "text-white font-medium hover:text-light-brown hover:cursor-pointer",
+                    "text-white font-medium hover:text-light-brown cursor-default",
                     {
                       "pb-5 pr-5 -mr-5": hoveredItem === index,
                     }
