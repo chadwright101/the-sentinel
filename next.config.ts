@@ -4,7 +4,13 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     deviceSizes: [425, 800, 1100],
-    minimumCacheTTL: 86400,
+    minimumCacheTTL: 600,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i0.wp.com",
+      },
+    ],
   },
 };
 

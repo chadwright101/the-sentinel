@@ -51,9 +51,13 @@ const SlideOutNavComponent = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      const isMenuButton = target.closest('button[aria-label="Open menu"]');
+      
       if (
         navRef.current &&
         !navRef.current.contains(event.target as Node) &&
+        !isMenuButton &&
         isOpen
       ) {
         setIsOpen(false);

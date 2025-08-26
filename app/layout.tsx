@@ -23,7 +23,7 @@ const abrilFatfaceSerif = Abril_Fatface({
 import "@/_styles/globals.css";
 import HeaderContainer from "@/_components/navigation/header/header-container";
 import FooterComponent from "@/_components/navigation/footer/footer-component";
-import AdSpaceComponent from "@/_components/ad-space/ad-space-component";
+import LayoutAdSpaceComponent from "@/_components/ad-space/layout-ad-space-component";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thesentinelnews.com.au/"),
@@ -57,7 +57,7 @@ export default function RootLayout({
         className={`${interSansSerif.variable} ${newsreaderSerif.variable} ${abrilFatfaceSerif.variable} antialiased`}
       >
         <HeaderContainer />
-        <AdSpaceComponent />
+        <LayoutAdSpaceComponent />
         {children}
         <FooterComponent />
       </body>

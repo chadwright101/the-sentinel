@@ -7,7 +7,7 @@ import useScrollPosition from "@/_lib/hooks/scroll-position";
 import classNames from "classnames";
 import Link from "next/link";
 
-const AdSpaceComponent = () => {
+const LayoutAdSpaceComponent = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollPosition = useScrollPosition();
 
@@ -25,7 +25,7 @@ const AdSpaceComponent = () => {
         href="#"
         target="_blank"
         referrerPolicy="no-referrer"
-        className="w-full max-w-[728px] m-7 flex justify-center desktop:mx-0 desktop:hover:opacity-85"
+        className="w-full max-w-[728px] mx-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85"
       >
         <Image
           src="/images/placeholders/ads/top-ad.png"
@@ -41,7 +41,7 @@ const AdSpaceComponent = () => {
         target="_blank"
         referrerPolicy="no-referrer"
         className={classNames(
-          "hidden min-[calc(1300px+52vh)]:block fixed left-24",
+          "hidden min-[calc(1300px+52vh)]:block fixed left-24 desktop:hover:opacity-85",
           {
             "top-[150px]": isScrolled,
             "top-[250px]": !isScrolled,
@@ -61,7 +61,7 @@ const AdSpaceComponent = () => {
         target="_blank"
         referrerPolicy="no-referrer"
         className={classNames(
-          "hidden min-[calc(1300px+52vh)]:block fixed right-24",
+          "hidden min-[calc(1300px+52vh)]:block fixed right-24 desktop:hover:opacity-85",
           {
             "top-[150px]": isScrolled,
             "top-[250px]": !isScrolled,
@@ -80,4 +80,4 @@ const AdSpaceComponent = () => {
   );
 };
 
-export default AdSpaceComponent;
+export default LayoutAdSpaceComponent;

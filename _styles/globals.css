@@ -54,6 +54,15 @@
     @apply text-teal ease-in-out duration-300 cursor-pointer;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply leading-[120%]
+  }
+
   /* mobile menu styles */
 
   .mobile-menu-heading {
@@ -160,4 +169,14 @@
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 300ms, transform 300ms;
+}
+
+/* Swiper pagination bullet stroke */
+.swiper-pagination-bullet {
+  border: 1px solid #000000 !important;
+}
+
+.swiper-pagination-bullet:hover {
+  opacity: 0.8 !important;
+  @apply cursor-pointer ease-in-out duration-300;
 }
