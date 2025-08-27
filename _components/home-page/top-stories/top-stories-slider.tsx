@@ -44,34 +44,36 @@ const HeroSlider = ({ cssClasses, data }: Props) => {
     >
       {data.map((slide, index) => (
         <SwiperSlide key={slide.id} className="relative">
-          <Link
-            href={`/${slide.slug}`}
-            className="desktop:hover:opacity-90 delay-75"
-          >
-            <div className="absolute bg-gradient-to-b from-45% to-80% to-black/50 w-full h-full" />
-            <div className="absolute bottom-[70px] px-5 z-10 tablet:max-w-3/4 desktop:bottom-[55px]">
-              <h2 className="text-white text-36px font-bold desktop:text-44px">
-                {slide.title.rendered}
-              </h2>
-              <div className="text-white [&_p]:text-white [&_p]:desktop:text-20px">
-                <p>
-                  {slide.excerpt.rendered
-                    .replace(/<[^>]*>/g, "")
-                    .substring(0, 105)
-                    .concat("...")}
-                </p>
+          <article className="w-full h-full">
+            <Link
+              href={`/${slide.slug}`}
+              className="desktop:hover:opacity-90 delay-75"
+            >
+              <div className="absolute bg-gradient-to-b from-45% to-80% to-black/50 w-full h-full" />
+              <div className="absolute bottom-[70px] px-5 z-10 tablet:max-w-3/4 desktop:bottom-[55px]">
+                <h2 className="text-white text-36px font-bold desktop:text-44px">
+                  {slide.title.rendered}
+                </h2>
+                <div className="text-white [&_p]:text-white [&_p]:desktop:text-20px">
+                  <p>
+                    {slide.excerpt.rendered
+                      .replace(/<[^>]*>/g, "")
+                      .substring(0, 105)
+                      .concat("...")}
+                  </p>
+                </div>
               </div>
-            </div>
-            <Image
-              src={slide.jetpack_featured_media_url}
-              alt={slide.title.rendered}
-              className="rounded-none w-full h-full object-cover"
-              width={1920}
-              height={600}
-              loading={index < 1 ? "eager" : "lazy"}
-              sizes="(max-width:1920px) 100vw, 1920px"
-            />
-          </Link>
+              <Image
+                src={slide.jetpack_featured_media_url}
+                alt={slide.title.rendered}
+                className="rounded-none w-full h-full object-cover"
+                width={1920}
+                height={600}
+                loading={index < 1 ? "eager" : "lazy"}
+                sizes="(max-width:1920px) 100vw, 1920px"
+              />
+            </Link>
+          </article>
         </SwiperSlide>
       ))}
     </Swiper>

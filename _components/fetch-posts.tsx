@@ -1,6 +1,6 @@
 // Usage examples:
 // fetchPosts() - First 10 posts, all categories
-// fetchPosts("general-news") - First 10 posts from general-news category
+// fetchPosts("sport") - First 10 posts from general-news category
 // fetchPosts("general-news", 2) - Posts 11-20 from general-news category
 // fetchPosts(undefined, 3) - Posts 21-30 from all categories
 
@@ -40,7 +40,8 @@ export async function fetchPosts(
     }
 
     const posts: PostProps[] = await response.json();
-    return posts;
+    const publishedPosts = posts.filter((post) => post.status === "publish");
+    return publishedPosts;
   } catch (error) {
     console.error("Error fetching posts:", error);
     return [];
