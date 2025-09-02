@@ -1,8 +1,8 @@
 // Usage examples:
-// fetchPosts() - First 10 posts, all categories
-// fetchPosts("sport") - First 10 posts from general-news category
-// fetchPosts("general-news", 2) - Posts 11-20 from general-news category
-// fetchPosts(undefined, 3) - Posts 21-30 from all categories
+// fetchPosts() - First 10 posts, all categories, filtered by image, title, excerpt, and content
+// fetchPosts("sport") - First 10 posts from general-news category, filtered by image, title, excerpt, and content
+// fetchPosts("general-news", 2) - Posts 11-20 from general-news category, filtered by image, title, excerpt, and content
+// fetchPosts(undefined, 3) - Posts 21-30 from all categories, filtered by image, title, excerpt, and content
 
 import { PostProps } from "../_types/post-types";
 
@@ -41,7 +41,11 @@ export async function fetchPosts(
 
     const posts: PostProps[] = await response.json();
     const publishedPosts = posts.filter((post) => post.status === "publish");
-    return publishedPosts;
+    return publishedPosts
+      .filter((post) => post.jetpack_featured_media_url)
+      .filter(
+        (post) => post.title && post.excerpt?.rendered && post.content?.rendered
+      );
   } catch (error) {
     console.error("Error fetching posts:", error);
     return [];

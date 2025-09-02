@@ -96,8 +96,7 @@ const FooterComponent = () => {
         </nav>
         <div className="flex justify-between items-center mt-[30px] desktop:mt-10 desktop:col-span-2">
           <p className="text-white uppercase text-12px font-medium desktop:text-16px">
-            © {new Date().getFullYear()} The Sentinel News | ABN 74 640 850 228
-            |{" "}
+            © {new Date().getFullYear()} The Sentinel News |{" "}
             <Link
               href="#"
               target="_blank"

@@ -20,8 +20,7 @@ const HomePageCategoryLatestComponent = ({
     const loadPosts = async () => {
       setLoading(true);
       const fetchedPosts = await fetchPosts(categorySlug);
-      const postsWithMedia = fetchedPosts.filter(post => post.jetpack_featured_media_url);
-      setPosts(postsWithMedia.slice(0, 4));
+      setPosts(fetchedPosts.slice(0, 4));
       setLoading(false);
     };
 
@@ -38,7 +37,7 @@ const HomePageCategoryLatestComponent = ({
       .join(" ");
   };
 
-  if (!loading && posts.length === 0) {
+  if (!loading && posts.length < 4) {
     return null;
   }
 
@@ -56,6 +55,7 @@ const HomePageCategoryLatestComponent = ({
           posts={posts}
           hoveredIndex={hoveredIndex}
           setHoveredIndex={setHoveredIndex}
+          categorySlug={categorySlug}
         />
       )}
     </main>
