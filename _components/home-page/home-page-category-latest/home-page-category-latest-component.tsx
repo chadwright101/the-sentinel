@@ -3,7 +3,12 @@
 import { useState, useEffect } from "react";
 import { fetchPosts } from "../../fetch-posts";
 import { PostProps } from "../../../_types/post-types";
-import HomePageCategoryLatestGrid from "./home-page-category-latest-grid";
+import HomePageLatestNewsGrid from "./home-page-latest-news-grid";
+import HomePageNewsGrid from "./home-page-news-grid";
+import HomePageSportGrid from "./home-page-sport-grid";
+import HomePageEntertainmentGrid from "./home-page-entertainment-grid";
+import HomePageLifestyleGrid from "./home-page-lifestyle-grid";
+import HomePageRealEstateGrid from "./home-page-real-estate-grid";
 
 interface HomePageCategoryLatestProps {
   categorySlug?: string;
@@ -51,12 +56,50 @@ const HomePageCategoryLatestComponent = ({
           <h3>...loading</h3>
         </div>
       ) : (
-        <HomePageCategoryLatestGrid
-          posts={posts}
-          hoveredIndex={hoveredIndex}
-          setHoveredIndex={setHoveredIndex}
-          categorySlug={categorySlug}
-        />
+        <>
+          {!categorySlug && (
+          <HomePageLatestNewsGrid
+            posts={posts}
+            hoveredIndex={hoveredIndex}
+            setHoveredIndex={setHoveredIndex}
+          />
+        )}
+        {categorySlug === "general-news" && (
+          <HomePageNewsGrid
+            posts={posts}
+            hoveredIndex={hoveredIndex}
+            setHoveredIndex={setHoveredIndex}
+          />
+        )}
+        {categorySlug === "sport" && (
+          <HomePageSportGrid
+            posts={posts}
+            hoveredIndex={hoveredIndex}
+            setHoveredIndex={setHoveredIndex}
+          />
+        )}
+        {categorySlug === "entertainment" && (
+          <HomePageEntertainmentGrid
+            posts={posts}
+            hoveredIndex={hoveredIndex}
+            setHoveredIndex={setHoveredIndex}
+          />
+        )}
+        {categorySlug === "lifestyle" && (
+          <HomePageLifestyleGrid
+            posts={posts}
+            hoveredIndex={hoveredIndex}
+            setHoveredIndex={setHoveredIndex}
+          />
+        )}
+        {categorySlug === "real-estate" && (
+          <HomePageRealEstateGrid
+            posts={posts}
+            hoveredIndex={hoveredIndex}
+            setHoveredIndex={setHoveredIndex}
+          />
+        )}
+        </>
       )}
     </main>
   );
