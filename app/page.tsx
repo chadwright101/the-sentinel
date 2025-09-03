@@ -1,5 +1,6 @@
 import HomePageCategoryLatestComponent from "@/_components/home-page/home-page-category-latest/home-page-category-latest-component";
 import TopStoriesComponent from "@/_components/home-page/top-stories/top-stories-component";
+import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscribtion-component";
 
 export default async function HomePage() {
   return (
@@ -10,7 +11,9 @@ export default async function HomePage() {
       {/* categories */}
       <HomePageCategoryLatestComponent categorySlug="general-news" />
       <HomePageCategoryLatestComponent categorySlug="sport" />
+      <NewsletterSubscriptionComponent cssClasses="desktop:hidden" />
       <HomePageCategoryLatestComponent categorySlug="entertainment" />
+      <NewsletterSubscriptionComponent cssClasses="hidden desktop:grid" />
       <HomePageCategoryLatestComponent categorySlug="lifestyle" />
       <HomePageCategoryLatestComponent categorySlug="real-estate" />
     </div>

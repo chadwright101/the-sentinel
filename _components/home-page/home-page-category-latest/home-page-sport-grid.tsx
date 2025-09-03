@@ -109,7 +109,7 @@ const HomePageSportGrid = ({
         src="/images/placeholders/ads/wide-ad.png"
         alt="#"
         url="#"
-        cssClasses="my-5 tablet:col-span-2 desktop:col-span-3"
+        cssClasses="hidden my-5 tablet:col-span-2 desktop:block desktop:col-span-3"
       />
     </div>
   );
