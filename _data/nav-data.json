@@ -9,19 +9,23 @@
     "children": [
       {
         "title": "Latest News",
-        "url": "/news/latest-news"
+        "url": "/latest-news"
       },
       {
         "title": "Business",
-        "url": "/news/business"
+        "url": "/business"
       },
       {
         "title": "Rural",
-        "url": "/news/rural"
+        "url": "/rural"
       },
       {
         "title": "Schools",
-        "url": "/news/schools"
+        "url": "/schools"
+      },
+      {
+        "title": "Council",
+        "url": "/council"
       }
     ]
   },
@@ -45,14 +49,15 @@
   },
   {
     "title": "Lifestyle",
+    "url": "/lifestyle",
     "children": [
       {
         "title": "Health",
-        "url": "/lifestyle/health/"
+        "url": "/health"
       },
       {
         "title": "Food & Drinks",
-        "url": "/lifestyle/food-drinks"
+        "url": "/food-and-drinks"
       }
     ]
   },

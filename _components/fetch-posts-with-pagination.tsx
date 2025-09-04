@@ -1,17 +1,17 @@
-// Usage examples:
-// fetchPosts() - First 9 posts, all categories, filtered by image, title, excerpt, and content
-// fetchPosts("sport") - First 9 posts from general-news category, filtered by image, title, excerpt, and content
-// fetchPosts("general-news", 2) - Posts 10-18 from general-news category, filtered by image, title, excerpt, and content
-// fetchPosts(undefined, 3) - Posts 19-27 from all categories, filtered by image, title, excerpt, and content
+import { PostProps } from "@/_types/post-types";
 
-import { PostProps } from "../_types/post-types";
+interface PostsWithPagination {
+  posts: PostProps[];
+  hasMore: boolean;
+  totalPages: number;
+}
 
-export async function fetchPosts(
+export async function fetchPostsWithPagination(
   categorySlug?: string,
   page: number = 1
-): Promise<PostProps[]> {
+): Promise<PostsWithPagination> {
   try {
-    let url = `https://sentinelnewscomau.wpcomstaging.com/wp-json/wp/v2/posts?per_page=9&page=${page}`;
+    let url = `https://sentinelnewscomau.wpcomstaging.com/wp-json/wp/v2/posts?per_page=10&page=${page}`;
 
     if (categorySlug) {
       const categoriesResponse = await fetch(
@@ -39,15 +39,22 @@ export async function fetchPosts(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const posts: PostProps[] = await response.json();
-    const publishedPosts = posts.filter((post) => post.status === "publish");
-    return publishedPosts
+    const allPosts: PostProps[] = await response.json();
+    const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "1");
+
+    const publishedPosts = allPosts
+      .filter((post) => post.status === "publish")
       .filter((post) => post.jetpack_featured_media_url)
       .filter(
         (post) => post.title && post.excerpt?.rendered && post.content?.rendered
       );
+
+    const hasMore = publishedPosts.length > 9;
+    const posts = publishedPosts.slice(0, 9);
+
+    return { posts, hasMore, totalPages };
   } catch (error) {
     console.error("Error fetching posts:", error);
-    return [];
+    return { posts: [], hasMore: false, totalPages: 1 };
   }
 }

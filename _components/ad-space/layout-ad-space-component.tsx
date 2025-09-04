@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import useScrollPosition from "@/_lib/hooks/scroll-position";
 import classNames from "classnames";
@@ -19,6 +20,8 @@ const LayoutAdSpaceComponent = () => {
     }
   }, [scrollPosition]);
 
+  const currentPath = usePathname();
+
   return (
     <div className="w-full relative flex justify-center max-w-[1920px] mx-auto">
       <Link
@@ -27,14 +30,25 @@ const LayoutAdSpaceComponent = () => {
         referrerPolicy="no-referrer"
         className="w-full max-w-[728px] mx-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85"
       >
-        <Image
-          src="/images/placeholders/ads/top-ad.png"
-          alt="Advertisement"
-          width={728}
-          height={90}
-          sizes="(max-width: 750px) 100vw, 728px"
-          className="w-full h-auto max-w-[728px]"
-        />
+        {currentPath === "/" ? (
+          <Image
+            src="/images/placeholders/ads/top-ad.png"
+            alt="Advertisement"
+            width={728}
+            height={90}
+            sizes="(max-width: 750px) 100vw, 728px"
+            className="w-full h-auto max-w-[728px]"
+          />
+        ) : (
+          <Image
+            src="/images/placeholders/ads/top-ad-large.png"
+            alt="Advertisement"
+            width={970}
+            height={250}
+            sizes="(max-width: 750px) 100vw, 970px"
+            className="w-full h-auto max-w-[970px]"
+          />
+        )}
       </Link>
       <Link
         href="#"

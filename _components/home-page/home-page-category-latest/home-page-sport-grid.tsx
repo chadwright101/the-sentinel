@@ -30,7 +30,7 @@ const HomePageSportGrid = ({
             })}
           >
             <Link
-              href={`/posts/${post.slug}`}
+              href={`/sport/${post.slug}`}
               className={classNames("grid gap-4 mb-2", {
                 "grid-cols-[1fr_1.75fr] tablet:grid-cols-1": !isFirstPost,
                 "desktop:h-full": isFirstPost,
@@ -84,6 +84,7 @@ const HomePageSportGrid = ({
               />
               <ReadMoreLink
                 post={post}
+                categorySlug="sport"
                 className={classNames({
                   hidden: !isFirstPost,
                   "inline-block tablet:hidden desktop:block": isFirstPost,

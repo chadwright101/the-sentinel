@@ -31,7 +31,7 @@ const HomePageNewsGrid = ({
             })}
           >
             <Link
-              href={`/posts/${post.slug}`}
+              href={`/news/${post.slug}`}
               className={classNames("grid gap-4 mb-2", {
                 "grid-cols-[1fr_1.75fr] tablet:grid-cols-1": !isFirstPost,
                 "desktop:h-full": isFirstPost,
@@ -85,6 +85,7 @@ const HomePageNewsGrid = ({
               />
               <ReadMoreLink
                 post={post}
+                categorySlug="news"
                 className={classNames({
                   hidden: !isFirstPost,
                   "inline-block tablet:hidden desktop:block": isFirstPost,
