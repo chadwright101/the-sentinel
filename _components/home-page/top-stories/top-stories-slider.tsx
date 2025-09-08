@@ -17,6 +17,7 @@ interface Props {
 }
 
 const HeroSlider = ({ cssClasses, data }: Props) => {
+  console.log("Top Stories Slider data:", data);
   return (
     <Swiper
       autoplay={{
@@ -46,7 +47,7 @@ const HeroSlider = ({ cssClasses, data }: Props) => {
         <SwiperSlide key={slide.id} className="relative">
           <article className="w-full h-full">
             <Link
-              href={`/${slide.slug}`}
+              href={`/latest-news/${slide.slug}`}
               className="desktop:hover:opacity-90 delay-75"
             >
               <div className="absolute bg-gradient-to-b from-45% to-80% to-black/50 w-full h-full" />

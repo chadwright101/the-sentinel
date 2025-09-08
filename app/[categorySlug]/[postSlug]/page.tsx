@@ -7,7 +7,7 @@ import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
 import {
   AdSpaceSquare,
   AdSpaceTall,
-} from "@/_components/home-page/home-page-category-latest/home-page-grid-base";
+} from "@/_components/home-page/home-page-categories/home-page-grid-base";
 
 interface PostPageProps {
   params: Promise<{

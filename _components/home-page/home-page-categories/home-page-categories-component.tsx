@@ -9,6 +9,7 @@ import HomePageSportGrid from "./home-page-sport-grid";
 import HomePageEntertainmentGrid from "./home-page-entertainment-grid";
 import HomePageLifestyleGrid from "./home-page-lifestyle-grid";
 import HomePageRealEstateGrid from "./home-page-real-estate-grid";
+import LoadingAnimation from "../../../_lib/utils/loading-animation";
 
 interface HomePageCategoryLatestProps {
   categorySlug?: string;
@@ -52,53 +53,53 @@ const HomePageCategoryLatestComponent = ({
         {categorySlug ? formatCategoryTitle(categorySlug) : "Latest News"}
       </h3>
       {loading ? (
-        <div>
-          <h3>...loading</h3>
+        <div className="min-h-[150px] flex items-center justify-center">
+          <LoadingAnimation />
         </div>
       ) : (
         <>
           {!categorySlug && (
-          <HomePageLatestNewsGrid
-            posts={posts}
-            hoveredIndex={hoveredIndex}
-            setHoveredIndex={setHoveredIndex}
-          />
-        )}
-        {categorySlug === "general-news" && (
-          <HomePageNewsGrid
-            posts={posts}
-            hoveredIndex={hoveredIndex}
-            setHoveredIndex={setHoveredIndex}
-          />
-        )}
-        {categorySlug === "sport" && (
-          <HomePageSportGrid
-            posts={posts}
-            hoveredIndex={hoveredIndex}
-            setHoveredIndex={setHoveredIndex}
-          />
-        )}
-        {categorySlug === "entertainment" && (
-          <HomePageEntertainmentGrid
-            posts={posts}
-            hoveredIndex={hoveredIndex}
-            setHoveredIndex={setHoveredIndex}
-          />
-        )}
-        {categorySlug === "lifestyle" && (
-          <HomePageLifestyleGrid
-            posts={posts}
-            hoveredIndex={hoveredIndex}
-            setHoveredIndex={setHoveredIndex}
-          />
-        )}
-        {categorySlug === "real-estate" && (
-          <HomePageRealEstateGrid
-            posts={posts}
-            hoveredIndex={hoveredIndex}
-            setHoveredIndex={setHoveredIndex}
-          />
-        )}
+            <HomePageLatestNewsGrid
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+            />
+          )}
+          {categorySlug === "general-news" && (
+            <HomePageNewsGrid
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+            />
+          )}
+          {categorySlug === "sport" && (
+            <HomePageSportGrid
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+            />
+          )}
+          {categorySlug === "entertainment" && (
+            <HomePageEntertainmentGrid
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+            />
+          )}
+          {categorySlug === "lifestyle" && (
+            <HomePageLifestyleGrid
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+            />
+          )}
+          {categorySlug === "real-estate" && (
+            <HomePageRealEstateGrid
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+            />
+          )}
         </>
       )}
     </main>

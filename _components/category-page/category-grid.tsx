@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import classNames from "classnames";
-import { truncateText } from "../home-page/home-page-category-latest/home-page-grid-base";
+import { truncateText } from "@/_components/home-page/home-page-categories/home-page-grid-base";
 
 interface Post {
   id: number;

@@ -1,6 +1,6 @@
-import HomePageCategoryLatestComponent from "@/_components/home-page/home-page-category-latest/home-page-category-latest-component";
+import HomePageCategoryLatestComponent from "@/_components/home-page/home-page-categories/home-page-categories-component";
 import TopStoriesComponent from "@/_components/home-page/top-stories/top-stories-component";
-import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscribtion-component";
+import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
 
 export default async function HomePage() {
   return (

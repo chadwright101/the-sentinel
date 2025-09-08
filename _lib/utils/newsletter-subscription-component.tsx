@@ -19,13 +19,13 @@ const NewsletterSubscriptionComponent = ({
       )}
     >
       <h3 className="grid place-items-center text-32px uppercase font-bold font-inter text-white text-center tablet:col-span-2 desktop:col-span-1 desktop:text-36px">
-        Subscribe to <span className="text-white">The Sentinal</span>
+        Subscribe to <span className="text-white font-inter">The Sentinel</span>
       </h3>
       <input
         type="email"
         name="email"
         placeholder="Email Address"
-        className="bg-white py-2.5 px-2.5 placeholder:text-black font-medium desktop:self-center"
+        className="bg-white py-2.5 px-2.5 placeholder:text-black font-medium desktop:self-center font-inter"
       />
       <ButtonType
         type="submit"
