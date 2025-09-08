@@ -2,9 +2,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { fetchPostsWithPagination } from "@/_components/fetch-posts-with-pagination";
 import { fetchPosts } from "@/_components/fetch-posts";
-import { getCategoryMapping } from "@/_utils/category-mapping";
+import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import PaginationComponent from "@/_components/pagination/pagination-component";
 import { PostProps } from "@/_types/post-types";
+import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
+import Image from "next/image";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -51,20 +53,14 @@ export default async function CategoryPage({
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-6xl mx-auto">
-        <nav className="mb-6">
-          <ol className="flex items-center space-x-2 text-14px font-inter">
-            <li>
-              <Link
-                href="/"
-                className="text-teal hover:text-dark-brown transition-colors duration-300"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="text-beige">/</li>
-            <li className="text-black font-bold">{categoryInfo.title}</li>
-          </ol>
-        </nav>
+        <div className="mb-6">
+          <BreadcrumbComponent
+            items={[
+              { label: "Home", href: "/" },
+              { label: categoryInfo.title },
+            ]}
+          />
+        </div>
 
         <header className="mb-8">
           <h1 className="text-36px font-abril-fatface text-teal mb-4">
@@ -81,10 +77,13 @@ export default async function CategoryPage({
             >
               <a href={`/${categorySlug}/${post.slug}`}>
                 <div className="aspect-video overflow-hidden">
-                  <img
+                  <Image
                     src={post.jetpack_featured_media_url}
                     alt={post.title.rendered}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    width={600}
+                    height={500}
+                    sizes="(max-width: 600px): 100vw, (max-width: 1100px): 50vw, 400px"
                   />
                 </div>
                 <div className="p-6">

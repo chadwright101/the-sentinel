@@ -17,7 +17,7 @@ const HomePageSportGrid = ({
   setHoveredIndex,
 }: GridBaseProps) => {
   return (
-    <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
+    <div className="grid grid-cols-1 gap-5 place-items-start tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
       {posts.map((post, index) => {
         const isFirstPost = index === 0;
 
@@ -110,7 +110,7 @@ const HomePageSportGrid = ({
         src="/images/placeholders/ads/wide-ad.png"
         alt="#"
         url="#"
-        cssClasses="hidden my-5 tablet:col-span-2 desktop:block desktop:col-span-3"
+        cssClasses="hidden my-5 place-self-center tablet:col-span-2 desktop:block desktop:col-span-3"
       />
     </div>
   );

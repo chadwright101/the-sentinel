@@ -15,7 +15,7 @@ const HomePageLatestNewsGrid = ({
   setHoveredIndex,
 }: GridBaseProps) => {
   return (
-    <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
+    <div className="grid grid-cols-1 gap-5 items-start tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
       {posts.map((post, index) => {
         const isFirstPost = index === 0;
 
@@ -77,7 +77,7 @@ const HomePageLatestNewsGrid = ({
         src="/images/placeholders/ads/wide-ad.png"
         alt="#"
         url="#"
-        cssClasses="my-5 tablet:col-span-2 desktop:col-span-3"
+        cssClasses="my-5 place-self-center tablet:col-span-2 desktop:col-span-3"
       />
     </div>
   );

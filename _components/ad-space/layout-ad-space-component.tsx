@@ -28,7 +28,7 @@ const LayoutAdSpaceComponent = () => {
         href="#"
         target="_blank"
         referrerPolicy="no-referrer"
-        className="w-full max-w-[728px] mx-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85"
+        className="w-full max-w-[728px] mx-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85 border-4 border-[#FF5C00]"
       >
         {currentPath === "/" ? (
           <Image
@@ -55,7 +55,7 @@ const LayoutAdSpaceComponent = () => {
         target="_blank"
         referrerPolicy="no-referrer"
         className={classNames(
-          "hidden min-[calc(1300px+52vh)]:block fixed left-24 desktop:hover:opacity-85",
+          "hidden min-[calc(1300px+52vh)]:block fixed left-24 desktop:hover:opacity-85 border-4 border-[#FF5C00]",
           {
             "top-[150px]": isScrolled,
             "top-[250px]": !isScrolled,
@@ -75,7 +75,7 @@ const LayoutAdSpaceComponent = () => {
         target="_blank"
         referrerPolicy="no-referrer"
         className={classNames(
-          "hidden min-[calc(1300px+52vh)]:block fixed right-24 desktop:hover:opacity-85",
+          "hidden min-[calc(1300px+52vh)]:block fixed right-24 desktop:hover:opacity-85 border-4 border-[#FF5C00]",
           {
             "top-[150px]": isScrolled,
             "top-[250px]": !isScrolled,

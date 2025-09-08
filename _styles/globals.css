@@ -42,14 +42,6 @@
     font-family: var(--font-newsreader);
   }
 
-  p,
-  input,
-  textarea,
-  span {
-    font-family: var(--font-inter);
-    font-weight: 700;
-  }
-
   a {
     @apply text-teal ease-in-out duration-300 cursor-pointer;
   }

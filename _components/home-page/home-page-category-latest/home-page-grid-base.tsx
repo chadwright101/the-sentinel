@@ -96,10 +96,10 @@ export const ReadMoreLink = ({
   parentCategorySlug?: string;
   className?: string;
 }) => {
-  const href = parentCategorySlug 
+  const href = parentCategorySlug
     ? `/${parentCategorySlug}/${categorySlug}/${post.slug}`
     : `/${categorySlug}/${post.slug}`;
-    
+
   return (
     <Link
       href={href}
@@ -139,7 +139,7 @@ export const AdSpaceSquare = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
       alt={alt}
       width={800}
       height={800}
-      className="object-cover h-full w-full border-4 border-[#FF5C00]"
+      className="object-cover aspect-square w-full border-4 border-[#FF5C00]"
     />
   </Link>
 );
@@ -152,7 +152,7 @@ export const AdSpaceTall = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
       alt={alt}
       width={300}
       height={600}
-      className="object-cover h-full w-full border-4 border-[#FF5C00]"
+      className="object-cover w-full aspect-[1/2] border-4 border-[#FF5C00]"
     />
   </Link>
 );
@@ -165,7 +165,7 @@ export const AdSpaceWide = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
       alt={alt}
       width={900}
       height={225}
-      className="object-cover h-full w-full border-4 border-[#FF5C00]"
+      className="object-cover aspect-[4/1] w-full border-4 border-[#FF5C00]"
     />
   </Link>
 );

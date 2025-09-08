@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { fetchSinglePost } from "@/_components/fetch-single-post";
-import { getCategoryMapping } from "@/_utils/category-mapping";
+import { getCategoryMapping } from "@/_lib/utils/category-mapping";
+import Image from "next/image";
+import PostContentWithAd from "@/_components/post-page/post-content-with-ad";
+import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
+import {
+  AdSpaceSquare,
+  AdSpaceTall,
+} from "@/_components/home-page/home-page-category-latest/home-page-grid-base";
 
 interface PostPageProps {
   params: Promise<{
@@ -12,7 +18,7 @@ interface PostPageProps {
 
 export default async function PostPage({ params }: PostPageProps) {
   const { categorySlug, postSlug } = await params;
-  
+
   const categoryInfo = getCategoryMapping(categorySlug);
   if (!categoryInfo) {
     notFound();
@@ -24,74 +30,65 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <nav className="mb-6">
-          <ol className="flex items-center space-x-2 text-14px font-inter">
-            <li>
-              <Link href="/" className="text-teal hover:text-dark-brown transition-colors duration-300">
-                Home
-              </Link>
-            </li>
-            <li className="text-beige">/</li>
-            <li>
-              <Link
-                href={`/${categorySlug}`}
-                className="text-teal hover:text-dark-brown transition-colors duration-300"
-              >
-                {categoryInfo.title}
-              </Link>
-            </li>
-            <li className="text-beige">/</li>
-            <li className="text-black font-bold truncate">
-              {post.title.rendered.replace(/<[^>]*>/g, "")}
-            </li>
-          </ol>
-        </nav>
-
-        <article className="bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="aspect-video overflow-hidden mb-6">
-            <img
-              src={post.jetpack_featured_media_url}
-              alt={post.title.rendered}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="px-6 pb-6">
-            <header className="mb-6">
-              <h1
-                className="text-36px phone:text-44px font-abril-fatface text-teal mb-4 leading-tight"
-                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+    <main className="mx-5 my-10 desktop:mx-10">
+      <article className="max-w-[1100px] mx-auto grid gap-5">
+        <BreadcrumbComponent
+          items={[
+            { label: "Home", href: "/" },
+            { label: categoryInfo.title, href: `/${categorySlug}` },
+            { label: post.title.rendered.replace(/<[^>]*>/g, "") },
+          ]}
+        />
+        <h1
+          className="text-36px font-inter font-bold"
+          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+        />
+        <div
+          dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+          className="text-14px font-newsreader"
+        />
+        <time dateTime={post.date} className="text-12px font-medium font-inter">
+          {new Date(post.date).toLocaleDateString("en-AU", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </time>
+        <div className="desktop:grid grid-cols-[1fr_250px] gap-7">
+          <div className="grid gap-5">
+            <div className="w-full h-[500px]">
+              <Image
+                src={post.jetpack_featured_media_url}
+                alt={post.title.rendered}
+                className="w-full h-full object-cover"
+                width={1100}
+                height={500}
+                sizes="(max-width: 1100px) 100vw, 1100px"
               />
-              <div className="flex items-center space-x-4 text-14px font-inter text-black">
-                <time dateTime={post.date}>
-                  {new Date(post.date).toLocaleDateString("en-AU", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
-              </div>
-              <div className="w-full h-px bg-beige mt-4"></div>
-            </header>
-
-            <div
-              className="prose prose-lg max-w-none font-inter text-black leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-            />
+            </div>
+            <PostContentWithAd content={post.content.rendered} />
           </div>
-        </article>
-
-        <div className="mt-8 text-center">
-          <Link
-            href={`/${categorySlug}`}
-            className="inline-flex items-center px-6 py-3 bg-teal text-white font-inter font-bold text-14px rounded-lg hover:bg-dark-brown transition-colors duration-300"
-          >
-            ← Back to {categoryInfo.title}
-          </Link>
+          <div className="hidden desktop:flex flex-col gap-10">
+            <AdSpaceTall
+              src="/images/placeholders/ads/tall-ad.png"
+              alt="#"
+              url="#"
+            />
+            <div className="sticky top-[180px] flex flex-col gap-10">
+              <AdSpaceSquare
+                src="/images/placeholders/ads/square-ad.png"
+                alt="#"
+                url="#"
+              />
+              <AdSpaceSquare
+                src="/images/placeholders/ads/square-ad.png"
+                alt="#"
+                url="#"
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      </article>
     </main>
   );
 }

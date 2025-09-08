@@ -29,7 +29,7 @@ const FooterComponent = () => {
               </h5>
             </div>
             <div className="flex flex-col gap-[30px] place-items-start desktop:gap-5">
-              <p className="font-bold text-white">Follow us on:</p>
+              <p className="font-bold font-inter text-white">Follow us on:</p>
               <Link
                 href="https://www.facebook.com/TheSentinelNews"
                 target="_blank"
@@ -95,7 +95,7 @@ const FooterComponent = () => {
           })}
         </nav>
         <div className="flex justify-between items-center mt-[30px] desktop:mt-10 desktop:col-span-2">
-          <p className="text-white uppercase text-12px font-medium desktop:text-16px">
+          <p className="text-white font-inter uppercase text-12px font-medium desktop:text-16px">
             © {new Date().getFullYear()} The Sentinel News |{" "}
             <Link
               href="#"
