@@ -42,7 +42,7 @@ const HomePageRealEstateGrid = ({
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
-                className={classNames({
+                cssClasses={classNames({
                   "aspect-[5/3]": isFirstPost,
                   "aspect-[1.2/1] tablet:aspect-[5/3]": !isFirstPost,
                 })}
@@ -51,7 +51,7 @@ const HomePageRealEstateGrid = ({
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
-                className={classNames({
+                cssClasses={classNames({
                   "place-self-center justify-self-start": !isFirstPost,
                   "desktop:hidden": isFirstPost,
                 })}
@@ -59,7 +59,7 @@ const HomePageRealEstateGrid = ({
               <GridExcerpt
                 post={post}
                 maxLength={150}
-                className={classNames({
+                cssClasses={classNames({
                   hidden: !isFirstPost,
                   "block tablet:hidden": isFirstPost,
                 })}
@@ -70,14 +70,14 @@ const HomePageRealEstateGrid = ({
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
-                className={classNames("hidden", {
+                cssClasses={classNames("hidden", {
                   "desktop:block": isFirstPost,
                 })}
               />
               <GridExcerpt
                 post={post}
                 maxLength={300}
-                className={classNames("hidden", {
+                cssClasses={classNames("hidden", {
                   "desktop:block": isFirstPost,
                 })}
               />

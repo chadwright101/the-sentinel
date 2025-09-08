@@ -1,12 +1,10 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { fetchPostsWithPagination } from "@/_components/fetch-posts-with-pagination";
 import { fetchPosts } from "@/_components/fetch-posts";
 import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import PaginationComponent from "@/_components/pagination/pagination-component";
-import { PostProps } from "@/_types/post-types";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
-import Image from "next/image";
+import CategoryGrid from "@/_components/category-page/category-grid";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -51,9 +49,9 @@ export default async function CategoryPage({
   }
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-6">
+    <main className="mx-5 my-10 desktop:mx-10">
+      <div className="max-w-[1100px] mx-auto grid gap-5">
+        <div>
           <BreadcrumbComponent
             items={[
               { label: "Home", href: "/" },
@@ -62,51 +60,9 @@ export default async function CategoryPage({
           />
         </div>
 
-        <header className="mb-8">
-          <h1 className="text-36px font-abril-fatface text-teal mb-4">
-            {categoryInfo.title}
-          </h1>
-          <div className="w-full h-px bg-beige"></div>
-        </header>
+        <h1 className="text-36px font-inter font-bold">{categoryInfo.title}</h1>
 
-        <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-8 mb-8">
-          {posts.map((post) => (
-            <article
-              key={post.id}
-              className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
-            >
-              <a href={`/${categorySlug}/${post.slug}`}>
-                <div className="aspect-video overflow-hidden">
-                  <Image
-                    src={post.jetpack_featured_media_url}
-                    alt={post.title.rendered}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    width={600}
-                    height={500}
-                    sizes="(max-width: 600px): 100vw, (max-width: 1100px): 50vw, 400px"
-                  />
-                </div>
-                <div className="p-6">
-                  <h2
-                    className="text-18px font-newsreader font-bold text-teal mb-3 line-clamp-2"
-                    dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                  />
-                  <div
-                    className="text-14px text-black font-inter line-clamp-3"
-                    dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-                  />
-                  <div className="mt-4 text-12px text-teal font-inter font-bold">
-                    {new Date(post.date).toLocaleDateString("en-AU", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </div>
-                </div>
-              </a>
-            </article>
-          ))}
-        </div>
+        <CategoryGrid posts={posts} categorySlug={categorySlug} />
 
         <PaginationComponent
           currentPage={currentPage}

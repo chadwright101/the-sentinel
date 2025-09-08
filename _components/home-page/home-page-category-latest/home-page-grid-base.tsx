@@ -20,12 +20,12 @@ export const GridImage = ({
   post,
   index,
   hoveredIndex,
-  className,
+  cssClasses,
 }: {
   post: PostProps;
   index: number;
   hoveredIndex: number | null;
-  className?: string;
+  cssClasses?: string;
 }) => (
   <div className="overflow-hidden">
     <Image
@@ -34,7 +34,7 @@ export const GridImage = ({
       width={800}
       height={600}
       sizes="(max-width:600px) 100vw, (max-width:1100px) 50vw, 500px"
-      className={classNames("object-cover", className, {
+      className={classNames("object-cover", cssClasses, {
         "desktop:hover:scale-[102%] ease-in-out duration-300 delay-75":
           hoveredIndex === index,
       })}
@@ -46,17 +46,17 @@ export const GridTitle = ({
   post,
   index,
   hoveredIndex,
-  className,
+  cssClasses,
 }: {
   post: PostProps;
   index: number;
   hoveredIndex: number | null;
-  className?: string;
+  cssClasses?: string;
 }) => (
   <h3
     className={classNames(
       "font-inter font-bold text-18px desktop:text-20px ease-in-out duration-300 delay-75",
-      className,
+      cssClasses,
       {
         "desktop:hover:opacity-90": hoveredIndex === index,
       }
@@ -69,16 +69,16 @@ export const GridTitle = ({
 export const GridExcerpt = ({
   post,
   maxLength,
-  className,
+  cssClasses,
 }: {
   post: PostProps;
   maxLength: number;
-  className?: string;
+  cssClasses?: string;
 }) => (
   <p
     className={classNames(
       "text-12px font-normal font-newsreader tablet:text-16px text-black",
-      className
+      cssClasses
     )}
   >
     {truncateText(post.excerpt.rendered, maxLength)}

@@ -39,7 +39,7 @@ const HomePageLatestNewsGrid = ({
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
-                className={classNames({
+                cssClasses={classNames({
                   "aspect-[5/3]": isFirstPost,
                   "aspect-[1.2/1] tablet:aspect-[5/3]": !isFirstPost,
                 })}
@@ -52,7 +52,7 @@ const HomePageLatestNewsGrid = ({
               <GridExcerpt
                 post={post}
                 maxLength={150}
-                className={classNames({
+                cssClasses={classNames({
                   hidden: !isFirstPost,
                   "block tablet:hidden": isFirstPost,
                 })}

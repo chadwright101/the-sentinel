@@ -114,13 +114,24 @@ const SlideOutNavComponent = ({
 
             return (
               <li key={index} className="space-y-5">
-                {hasChildren ? (
-                  <div>
+                <div
+                  className={classNames({
+                    "mobile-menu-heading w-full flex justify-between items-center":
+                      hasChildren,
+                  })}
+                >
+                  <Link
+                    href={url!}
+                    onClick={() => setIsOpen(false)}
+                    className="text-teal font-inter font-bold uppercase block place-self-start mobile-menu-heading p-2 -m-2 desktop:p-0 desktop:m-0 desktop:hover:text-dark-brown"
+                  >
+                    {title}
+                  </Link>
+                  {hasChildren && (
                     <button
                       onClick={() => toggleExpand(index)}
-                      className="mobile-menu-heading w-full flex justify-between items-center text-teal font-inter font-bold uppercase cursor-pointer px-2 -mx-2 desktop:p-0 desktop:m-0 desktop:hover:text-dark-brown ease-in-out duration-300"
+                      className="p-2 -m-2 desktop:hover:cursor-pointer desktop:hover:opacity-80 ease-in-out duration-300"
                     >
-                      {title}
                       <Image
                         src="/icons/chevron-teal.svg"
                         alt="open submenu"
@@ -134,16 +145,8 @@ const SlideOutNavComponent = ({
                         )}
                       />
                     </button>
-                  </div>
-                ) : (
-                  <Link
-                    href={url!}
-                    onClick={() => setIsOpen(false)}
-                    className="text-teal font-inter font-bold uppercase block place-self-start mobile-menu-heading p-2 -m-2 desktop:p-0 desktop:m-0 desktop:hover:text-dark-brown"
-                  >
-                    {title}
-                  </Link>
-                )}
+                  )}
+                </div>
                 {hasChildren && (
                   <div
                     className={classNames(

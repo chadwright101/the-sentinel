@@ -42,7 +42,7 @@ const HomePageSportGrid = ({
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
-                className={classNames({
+                cssClasses={classNames({
                   "aspect-[5/3]": isFirstPost,
                   "aspect-[1.2/1] tablet:aspect-[5/3]": !isFirstPost,
                   "desktop:h-full desktop:min-h-[600px]": isFirstPost,
@@ -52,7 +52,7 @@ const HomePageSportGrid = ({
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
-                className={classNames({
+                cssClasses={classNames({
                   "place-self-center justify-self-start": !isFirstPost,
                   "desktop:hidden": isFirstPost,
                 })}
@@ -60,7 +60,7 @@ const HomePageSportGrid = ({
               <GridExcerpt
                 post={post}
                 maxLength={150}
-                className={classNames({
+                cssClasses={classNames({
                   hidden: !isFirstPost,
                   "block tablet:hidden": isFirstPost,
                 })}
@@ -71,14 +71,14 @@ const HomePageSportGrid = ({
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
-                className={classNames("hidden", {
+                cssClasses={classNames("hidden", {
                   "desktop:block": isFirstPost,
                 })}
               />
               <GridExcerpt
                 post={post}
                 maxLength={500}
-                className={classNames("hidden", {
+                cssClasses={classNames("hidden", {
                   "desktop:block": isFirstPost,
                 })}
               />
