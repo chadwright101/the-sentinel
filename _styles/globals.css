@@ -140,6 +140,22 @@
   }
 }
 
+.zoom {
+  animation: zoom 3s infinite;
+}
+
+@keyframes zoom {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 /* Dropdown menu animation */
 .dropdown-enter {
   opacity: 0;

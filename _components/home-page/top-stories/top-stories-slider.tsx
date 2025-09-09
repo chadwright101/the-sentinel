@@ -17,7 +17,6 @@ interface Props {
 }
 
 const HeroSlider = ({ cssClasses, data }: Props) => {
-  console.log("Top Stories Slider data:", data);
   return (
     <Swiper
       autoplay={{

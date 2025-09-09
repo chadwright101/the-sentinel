@@ -45,7 +45,30 @@ export default async function CategoryPage({
   }
 
   if (posts.length === 0 && currentPage === 1) {
-    notFound();
+    return (
+      <main className="mx-5 my-10 desktop:mx-10">
+        <div className="max-w-[1100px] mx-auto grid gap-5">
+          <div>
+            <BreadcrumbComponent
+              items={[
+                { label: "Home", href: "/" },
+                { label: categoryInfo.title },
+              ]}
+            />
+          </div>
+          <h1 className="text-36px font-inter font-bold">
+            {categoryInfo.title}
+          </h1>
+          <div className="text-center py-32">
+            <h2 className="text-36px font-inter mb-2 zoom">Coming Soon</h2>
+            <p className="font-inter">
+              Check back again soon for the latest{" "}
+              {categoryInfo.title.toLowerCase()} news.
+            </p>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   return (
