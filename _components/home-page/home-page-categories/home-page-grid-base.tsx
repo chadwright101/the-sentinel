@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import classNames from "classnames";
 import { PostProps } from "../../../_types/post-types";
-import { AdProps, AdData } from "../../../_types/ad-types";
+import { AdData } from "../../../_types/ad-types";
 
 export interface GridBaseProps {
   posts: PostProps[];
@@ -114,58 +114,3 @@ export const ReadMoreLink = ({
     </Link>
   );
 };
-
-export const AdSpace = ({ className }: { className?: string }) => (
-  <p
-    className={classNames(
-      "w-[250px] flex justify-center items-center bg-beige h-full",
-      className
-    )}
-  >
-    Ad space
-  </p>
-);
-
-/* ratio 1:1 */
-export const AdSpaceSquare = ({ src, alt, url, cssClasses }: AdProps) => (
-  <Link href={url} target="_blank" aria-label={alt} className={cssClasses}>
-    <Image
-      src={src}
-      alt={alt}
-      width={500}
-      height={500}
-      className="object-cover aspect-square w-full border-4 border-[#FF5C00]"
-    />
-  </Link>
-);
-
-/* ratio 1:2 */
-export const AdSpaceTall = ({ src, alt, url, cssClasses }: AdProps) => (
-  <Link href={url} target="_blank" aria-label={alt} className={cssClasses}>
-    <Image
-      src={src}
-      alt={alt}
-      width={300}
-      height={600}
-      className="object-cover w-full aspect-[1/2] border-4 border-[#FF5C00]"
-    />
-  </Link>
-);
-
-/* ratio 4:1 */
-export const AdSpaceBillboard = ({
-  src,
-  alt,
-  url,
-  cssClasses,
-}: AdProps) => (
-  <Link href={url} target="_blank" aria-label={alt} className={cssClasses}>
-    <Image
-      src={src}
-      alt={alt}
-      width={900}
-      height={150}
-      className="object-cover aspect-[4/1] w-full border-4 border-[#FF5C00]"
-    />
-  </Link>
-);

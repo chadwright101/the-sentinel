@@ -6,9 +6,9 @@ import {
   GridTitle,
   GridExcerpt,
   ReadMoreLink,
-  AdSpaceSquare,
-  AdSpaceBillboard,
 } from "./home-page-grid-base";
+import AdSpaceSquare from "../../ad-spaces/ad-space-square";
+import AdSpaceBillboard from "../../ad-spaces/ad-space-billboard";
 
 const HomePageSportGrid = ({
   posts,
@@ -96,14 +96,20 @@ const HomePageSportGrid = ({
       })}
       {/* Square Primary */}
       <AdSpaceSquare
-        src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+        src={
+          adData?.image_square_primary ||
+          "/images/placeholders/ads/square-ad.png"
+        }
         alt={adData?.company_name_square_primary || "Advertisement"}
         url={adData?.link_square_primary || "#"}
         cssClasses="hidden desktop:block row-start-1 col-start-3"
       />
       {/* Square Secondary */}
       <AdSpaceSquare
-        src={adData?.image_square_secondary || "/images/placeholders/ads/square-ad.png"}
+        src={
+          adData?.image_square_secondary ||
+          "/images/placeholders/ads/square-ad.png"
+        }
         alt={adData?.company_name_square_secondary || "Advertisement"}
         url={adData?.link_square_secondary || "#"}
         cssClasses="hidden desktop:block row-start-2 col-start-3"

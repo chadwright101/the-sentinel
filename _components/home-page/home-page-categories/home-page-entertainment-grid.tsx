@@ -6,8 +6,8 @@ import {
   GridTitle,
   GridExcerpt,
   ReadMoreLink,
-  AdSpaceSquare,
 } from "./home-page-grid-base";
+import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
 
 const HomePageEntertainmentGrid = ({
   posts,
@@ -98,7 +98,10 @@ const HomePageEntertainmentGrid = ({
 
       {/* Square Primary */}
       <AdSpaceSquare
-        src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+        src={
+          adData?.image_square_primary ||
+          "/images/placeholders/ads/square-ad.png"
+        }
         alt={adData?.company_name_square_primary || "Advertisement"}
         url={adData?.link_square_primary || "#"}
         cssClasses="my-5 w-full place-self-center max-w-[500px] tablet:col-span-2 desktop:hidden"

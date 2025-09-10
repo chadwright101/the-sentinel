@@ -23,7 +23,7 @@ const abrilFatfaceSerif = Abril_Fatface({
 import "@/_styles/globals.css";
 import HeaderContainer from "@/_components/navigation/header/header-container";
 import FooterComponent from "@/_components/navigation/footer/footer-component";
-import LayoutAdSpaceComponent from "@/_components/ad-space/layout-ad-space-component";
+import LayoutAdSpaceComponent from "@/_components/ad-spaces/layout-ad-space-component";
 import { fetchAdData } from "@/_components/fetch-ad-data";
 
 export const metadata: Metadata = {

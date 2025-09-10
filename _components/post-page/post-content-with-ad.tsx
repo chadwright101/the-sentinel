@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import {
-  AdSpaceBillboard,
-  AdSpaceSquare,
-} from "@/_components/home-page/home-page-categories/home-page-grid-base";
+import { useEffect, useRef } from "react";
 import { AdData } from "@/_types/ad-types";
+import AdSpaceBillboard from "../ad-spaces/ad-space-billboard";
+import AdSpaceSquare from "../ad-spaces/ad-space-square";
 
 interface PostContentWithAdProps {
   content: string;

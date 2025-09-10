@@ -6,9 +6,9 @@ import {
   GridTitle,
   GridExcerpt,
   ReadMoreLink,
-  AdSpaceTall,
-  AdSpaceSquare,
 } from "./home-page-grid-base";
+import AdSpaceTower from "../../ad-spaces/ad-space-tower";
+import AdSpaceSquare from "../../ad-spaces/ad-space-square";
 
 const HomePageNewsGrid = ({
   posts,
@@ -95,7 +95,7 @@ const HomePageNewsGrid = ({
           </article>
         );
       })}
-      <AdSpaceTall
+      <AdSpaceTower
         src={adData?.image_tower || "/images/placeholders/ads/tall-ad.png"}
         alt={adData?.company_name_tower || "Advertisement"}
         url={adData?.link_tower || "#"}
@@ -103,7 +103,10 @@ const HomePageNewsGrid = ({
       />
       {/* Square Primary */}
       <AdSpaceSquare
-        src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+        src={
+          adData?.image_square_primary ||
+          "/images/placeholders/ads/square-ad.png"
+        }
         alt={adData?.company_name_square_primary || "Advertisement"}
         url={adData?.link_square_primary || "#"}
         cssClasses="my-5 w-full max-w-[500px] justify-self-center tablet:col-span-2 desktop:hidden"

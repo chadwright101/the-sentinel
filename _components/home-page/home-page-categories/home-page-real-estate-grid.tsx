@@ -6,8 +6,8 @@ import {
   GridTitle,
   GridExcerpt,
   ReadMoreLink,
-  AdSpaceBillboard,
 } from "./home-page-grid-base";
+import AdSpaceBillboard from "../../ad-spaces/ad-space-billboard";
 
 const HomePageRealEstateGrid = ({
   posts,

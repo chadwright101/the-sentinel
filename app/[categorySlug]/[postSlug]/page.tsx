@@ -4,11 +4,9 @@ import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import Image from "next/image";
 import PostContentWithAd from "@/_components/post-page/post-content-with-ad";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
-import {
-  AdSpaceSquare,
-  AdSpaceTall,
-} from "@/_components/home-page/home-page-categories/home-page-grid-base";
 import { fetchAdData } from "@/_components/fetch-ad-data";
+import AdSpaceTower from "@/_components/ad-spaces/ad-space-tower";
+import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
 
 interface PostPageProps {
   params: Promise<{
@@ -27,7 +25,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const [post, adData] = await Promise.all([
     fetchSinglePost(postSlug),
-    fetchAdData()
+    fetchAdData(),
   ]);
 
   if (!post) {
@@ -71,22 +69,33 @@ export default async function PostPage({ params }: PostPageProps) {
                 sizes="(max-width: 1100px) 100vw, 1100px"
               />
             </div>
-            <PostContentWithAd content={post.content.rendered} adData={adData} />
+            <PostContentWithAd
+              content={post.content.rendered}
+              adData={adData}
+            />
           </div>
           <div className="hidden desktop:flex flex-col gap-10">
-            <AdSpaceTall
-              src={adData?.image_tower || "/images/placeholders/ads/tall-ad.png"}
+            <AdSpaceTower
+              src={
+                adData?.image_tower || "/images/placeholders/ads/tall-ad.png"
+              }
               alt={adData?.company_name_tower || "Advertisement"}
               url={adData?.link_tower || "#"}
             />
             <div className="sticky top-[180px] flex flex-col gap-10">
               <AdSpaceSquare
-                src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+                src={
+                  adData?.image_square_primary ||
+                  "/images/placeholders/ads/square-ad.png"
+                }
                 alt={adData?.company_name_square_primary || "Advertisement"}
                 url={adData?.link_square_primary || "#"}
               />
               <AdSpaceSquare
-                src={adData?.image_square_secondary || "/images/placeholders/ads/square-ad.png"}
+                src={
+                  adData?.image_square_secondary ||
+                  "/images/placeholders/ads/square-ad.png"
+                }
                 alt={adData?.company_name_square_secondary || "Advertisement"}
                 url={adData?.link_square_secondary || "#"}
               />

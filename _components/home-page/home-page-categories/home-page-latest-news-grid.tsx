@@ -5,9 +5,9 @@ import {
   GridImage,
   GridTitle,
   GridExcerpt,
-  AdSpaceSquare,
-  AdSpaceBillboard,
 } from "./home-page-grid-base";
+import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
+import AdSpaceBillboard from "@/_components/ad-spaces/ad-space-billboard";
 
 const HomePageLatestNewsGrid = ({
   posts,
@@ -64,14 +64,20 @@ const HomePageLatestNewsGrid = ({
       })}
       {/* Square Primary */}
       <AdSpaceSquare
-        src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+        src={
+          adData?.image_square_primary ||
+          "/images/placeholders/ads/square-ad.png"
+        }
         alt={adData?.company_name_square_primary || "Advertisement"}
         url={adData?.link_square_primary || "#"}
         cssClasses="hidden desktop:block col-start-3 row-start-1"
       />
       {/* Square Secondary */}
       <AdSpaceSquare
-        src={adData?.image_square_secondary || "/images/placeholders/ads/square-ad.png"}
+        src={
+          adData?.image_square_secondary ||
+          "/images/placeholders/ads/square-ad.png"
+        }
         alt={adData?.company_name_square_secondary || "Advertisement"}
         url={adData?.link_square_secondary || "#"}
         cssClasses="hidden desktop:block"

@@ -6,9 +6,8 @@ import {
   GridTitle,
   GridExcerpt,
   ReadMoreLink,
-  AdSpace,
-  AdSpaceSquare,
 } from "./home-page-grid-base";
+import AdSpaceSquare from "../../ad-spaces/ad-space-square";
 
 const HomePageLifestyleGrid = ({
   posts,
@@ -97,7 +96,10 @@ const HomePageLifestyleGrid = ({
       })}
       {/* Square Primary */}
       <AdSpaceSquare
-        src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+        src={
+          adData?.image_square_primary ||
+          "/images/placeholders/ads/square-ad.png"
+        }
         alt={adData?.company_name_square_primary || "Advertisement"}
         url={adData?.link_square_primary || "#"}
         cssClasses="hidden desktop:block row-span-2"
