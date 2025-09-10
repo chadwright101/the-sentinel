@@ -98,7 +98,7 @@ const HomePageLifestyleGrid = ({
         src="/images/placeholders/ads/square-ad.png"
         alt="#"
         url="#"
-        cssClasses="hidden desktop:block row-span-2 place-self-center"
+        cssClasses="hidden desktop:block row-span-2"
       />
     </div>
   );

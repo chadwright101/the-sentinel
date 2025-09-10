@@ -98,7 +98,7 @@ const HomePageEntertainmentGrid = ({
         src="/images/placeholders/ads/square-ad.png"
         alt="#"
         url="#"
-        cssClasses="my-5 w-full max-w-[500px] justify-self-center tablet:col-span-2 desktop:hidden"
+        cssClasses="my-5 w-full place-self-center max-w-[500px] tablet:col-span-2 desktop:hidden"
       />
     </div>
   );

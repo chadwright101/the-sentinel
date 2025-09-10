@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 import useScrollPosition from "@/_lib/hooks/scroll-position";
 import classNames from "classnames";
@@ -20,36 +19,26 @@ const LayoutAdSpaceComponent = () => {
     }
   }, [scrollPosition]);
 
-  const currentPath = usePathname();
-
   return (
     <div className="w-full relative flex justify-center max-w-[1920px] mx-auto">
+      {/* banner - ratio 6/1 */}
       <Link
         href="#"
         target="_blank"
         referrerPolicy="no-referrer"
-        className="w-full max-w-[728px] mx-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85 border-4 border-[#FF5C00]"
+        className="w-full max-w-[900px] px-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85"
       >
-        {currentPath === "/" ? (
-          <Image
-            src="/images/placeholders/ads/top-ad.png"
-            alt="Advertisement"
-            width={728}
-            height={90}
-            sizes="(max-width: 750px) 100vw, 728px"
-            className="w-full h-auto max-w-[728px]"
-          />
-        ) : (
-          <Image
-            src="/images/placeholders/ads/top-ad-large.png"
-            alt="Advertisement"
-            width={970}
-            height={250}
-            sizes="(max-width: 750px) 100vw, 970px"
-            className="w-full h-auto max-w-[970px]"
-          />
-        )}
+        <Image
+          src="/images/placeholders/ads/top-ad-large.png"
+          alt="Advertisement"
+          width={900}
+          height={150}
+          sizes="(max-width: 750px) 100vw, 900px"
+          className="aspect-[6/1] object-cover max-w-[900px] border-4 border-[#FF5C00]"
+        />
       </Link>
+
+      {/* tower left - ratio 1/4 */}
       <Link
         href="#"
         target="_blank"
@@ -66,10 +55,12 @@ const LayoutAdSpaceComponent = () => {
           src="/images/placeholders/ads/side-ad.png"
           alt="Advertisement"
           width={300}
-          height={1050}
-          className="h-[calc(100vh-150px)] w-auto"
+          height={1200}
+          className="h-[calc(100vh-150px)] aspect-[1/4] object-cover w-auto"
         />
       </Link>
+
+      {/* tower right - ratio 1/4 */}
       <Link
         href="#"
         target="_blank"
@@ -86,8 +77,8 @@ const LayoutAdSpaceComponent = () => {
           src="/images/placeholders/ads/side-ad.png"
           alt="Advertisement"
           width={300}
-          height={1050}
-          className="h-[calc(100vh-150px)] w-auto"
+          height={1200}
+          className="h-[calc(100vh-150px)] aspect-[1/4] object-cover w-auto"
         />
       </Link>
     </div>

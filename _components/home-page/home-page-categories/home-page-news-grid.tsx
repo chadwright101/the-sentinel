@@ -98,7 +98,7 @@ const HomePageNewsGrid = ({
         src="/images/placeholders/ads/tall-ad.png"
         alt="#"
         url="#"
-        cssClasses="hidden desktop:block row-span-2 place-self-center"
+        cssClasses="hidden desktop:block row-span-2"
       />
       <AdSpaceSquare
         src="/images/placeholders/ads/square-ad.png"

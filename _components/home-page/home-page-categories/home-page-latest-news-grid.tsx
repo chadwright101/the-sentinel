@@ -6,7 +6,7 @@ import {
   GridTitle,
   GridExcerpt,
   AdSpaceSquare,
-  AdSpaceWide,
+  AdSpaceBillboard,
 } from "./home-page-grid-base";
 
 const HomePageLatestNewsGrid = ({
@@ -65,15 +65,15 @@ const HomePageLatestNewsGrid = ({
         src="/images/placeholders/ads/square-ad.png"
         alt="#"
         url="#"
-        cssClasses="hidden desktop:block col-start-3 row-start-1 justify-self-center"
+        cssClasses="hidden desktop:block col-start-3 row-start-1"
       />
       <AdSpaceSquare
         src="/images/placeholders/ads/square-ad.png"
         alt="#"
         url="#"
-        cssClasses="hidden desktop:block justify-self-center"
+        cssClasses="hidden desktop:block"
       />
-      <AdSpaceWide
+      <AdSpaceBillboard
         src="/images/placeholders/ads/wide-ad.png"
         alt="#"
         url="#"

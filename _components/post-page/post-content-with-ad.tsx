@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import {
-  AdSpaceWide,
+  AdSpaceBillboard,
   AdSpaceSquare,
 } from "@/_components/home-page/home-page-categories/home-page-grid-base";
 
@@ -72,7 +72,7 @@ export default function PostContentWithAd({ content }: PostContentWithAdProps) {
   [&_figure:has(figure)]:gap-5"
       />
       <div ref={wideAdRef} className="my-2">
-        <AdSpaceWide
+        <AdSpaceBillboard
           src="/images/placeholders/ads/wide-ad.png"
           alt="Advertisement"
           url="#"
@@ -80,13 +80,13 @@ export default function PostContentWithAd({ content }: PostContentWithAdProps) {
       </div>
       <div
         ref={squareAdRef}
-        className="flex w-full justify-center my-2 desktop:hidden"
+        className="flex w-full justify-center my-7 desktop:hidden"
       >
         <AdSpaceSquare
           src="/images/placeholders/ads/square-ad.png"
           alt="Advertisement"
           url="#"
-          cssClasses="max-w-[400px]"
+          cssClasses="w-full"
         />
       </div>
     </div>

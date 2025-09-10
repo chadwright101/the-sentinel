@@ -6,9 +6,8 @@ import {
   GridTitle,
   GridExcerpt,
   ReadMoreLink,
-  AdSpace,
   AdSpaceSquare,
-  AdSpaceWide,
+  AdSpaceBillboard,
 } from "./home-page-grid-base";
 
 const HomePageSportGrid = ({
@@ -17,7 +16,7 @@ const HomePageSportGrid = ({
   setHoveredIndex,
 }: GridBaseProps) => {
   return (
-    <div className="grid grid-cols-1 gap-5 place-items-start tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
+    <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
       {posts.map((post, index) => {
         const isFirstPost = index === 0;
 
@@ -98,15 +97,15 @@ const HomePageSportGrid = ({
         src="/images/placeholders/ads/square-ad.png"
         alt="#"
         url="#"
-        cssClasses="hidden desktop:block justify-self-center row-start-1 col-start-3"
+        cssClasses="hidden desktop:block row-start-1 col-start-3"
       />
       <AdSpaceSquare
         src="/images/placeholders/ads/square-ad.png"
         alt="#"
         url="#"
-        cssClasses="hidden desktop:block justify-self-center row-start-2 col-start-3"
+        cssClasses="hidden desktop:block row-start-2 col-start-3"
       />
-      <AdSpaceWide
+      <AdSpaceBillboard
         src="/images/placeholders/ads/wide-ad.png"
         alt="#"
         url="#"

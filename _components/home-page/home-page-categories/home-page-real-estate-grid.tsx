@@ -6,7 +6,7 @@ import {
   GridTitle,
   GridExcerpt,
   ReadMoreLink,
-  AdSpaceWide,
+  AdSpaceBillboard,
 } from "./home-page-grid-base";
 
 const HomePageRealEstateGrid = ({
@@ -93,7 +93,7 @@ const HomePageRealEstateGrid = ({
           </article>
         );
       })}
-      <AdSpaceWide
+      <AdSpaceBillboard
         src="/images/placeholders/ads/wide-ad.png"
         alt="#"
         url="#"

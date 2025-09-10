@@ -27,7 +27,7 @@ export const GridImage = ({
   hoveredIndex: number | null;
   cssClasses?: string;
 }) => (
-  <div className="overflow-hidden">
+  <div className="overflow-hidden place-self-start">
     <Image
       src={post.jetpack_featured_media_url}
       alt={post.title.rendered}
@@ -137,8 +137,8 @@ export const AdSpaceSquare = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
     <Image
       src={src}
       alt={alt}
-      width={800}
-      height={800}
+      width={500}
+      height={500}
       className="object-cover aspect-square w-full border-4 border-[#FF5C00]"
     />
   </Link>
@@ -158,13 +158,18 @@ export const AdSpaceTall = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
 );
 
 /* ratio 4:1 */
-export const AdSpaceWide = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
+export const AdSpaceBillboard = ({
+  src,
+  alt,
+  url,
+  cssClasses,
+}: AdSpaceProps) => (
   <Link href={url} target="_blank" aria-label={alt} className={cssClasses}>
     <Image
       src={src}
       alt={alt}
       width={900}
-      height={225}
+      height={150}
       className="object-cover aspect-[4/1] w-full border-4 border-[#FF5C00]"
     />
   </Link>
