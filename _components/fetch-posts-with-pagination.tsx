@@ -6,16 +6,23 @@ interface PostsWithPagination {
   totalPages: number;
 }
 
+const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL;
+
 export async function fetchPostsWithPagination(
   categorySlug?: string,
   page: number = 1
 ): Promise<PostsWithPagination> {
   try {
-    let url = `https://sentinelnewscomau.wpcomstaging.com/wp-json/wp/v2/posts?per_page=10&page=${page}`;
+    if (!baseUrl) {
+      throw new Error(
+        "NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL environment variable is not set"
+      );
+    }
+    let url = `${baseUrl}posts?per_page=10&page=${page}`;
 
     if (categorySlug) {
       const categoriesResponse = await fetch(
-        `https://sentinelnewscomau.wpcomstaging.com/wp-json/wp/v2/categories?slug=${categorySlug}`,
+        `${baseUrl}categories?slug=${categorySlug}`,
         { next: { revalidate: 300 } }
       );
 
