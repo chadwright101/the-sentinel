@@ -13,6 +13,7 @@ const HomePageLatestNewsGrid = ({
   posts,
   hoveredIndex,
   setHoveredIndex,
+  adData,
 }: GridBaseProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 items-start tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
@@ -61,22 +62,24 @@ const HomePageLatestNewsGrid = ({
           </article>
         );
       })}
+      {/* Square Primary */}
       <AdSpaceSquare
-        src="/images/placeholders/ads/square-ad.png"
-        alt="#"
-        url="#"
+        src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+        alt={adData?.company_name_square_primary || "Advertisement"}
+        url={adData?.link_square_primary || "#"}
         cssClasses="hidden desktop:block col-start-3 row-start-1"
       />
+      {/* Square Secondary */}
       <AdSpaceSquare
-        src="/images/placeholders/ads/square-ad.png"
-        alt="#"
-        url="#"
+        src={adData?.image_square_secondary || "/images/placeholders/ads/square-ad.png"}
+        alt={adData?.company_name_square_secondary || "Advertisement"}
+        url={adData?.link_square_secondary || "#"}
         cssClasses="hidden desktop:block"
       />
       <AdSpaceBillboard
-        src="/images/placeholders/ads/wide-ad.png"
-        alt="#"
-        url="#"
+        src={adData?.image_billboard || "/images/placeholders/ads/wide-ad.png"}
+        alt={adData?.company_name_billboard || "Advertisement"}
+        url={adData?.link_billboard || "#"}
         cssClasses="my-5 place-self-center tablet:col-span-2 desktop:col-span-3"
       />
     </div>

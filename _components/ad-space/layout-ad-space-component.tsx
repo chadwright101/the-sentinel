@@ -6,8 +6,13 @@ import { useEffect, useState } from "react";
 import useScrollPosition from "@/_lib/hooks/scroll-position";
 import classNames from "classnames";
 import Link from "next/link";
+import { AdData } from "@/_types/ad-types";
 
-const LayoutAdSpaceComponent = () => {
+interface LayoutAdSpaceProps {
+  adData: AdData | null;
+}
+
+const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollPosition = useScrollPosition();
 
@@ -23,14 +28,16 @@ const LayoutAdSpaceComponent = () => {
     <div className="w-full relative flex justify-center max-w-[1920px] mx-auto">
       {/* banner - ratio 6/1 */}
       <Link
-        href="#"
+        href={adData?.link_banner || "#"}
         target="_blank"
         referrerPolicy="no-referrer"
         className="w-full max-w-[900px] px-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85"
       >
         <Image
-          src="/images/placeholders/ads/top-ad-large.png"
-          alt="Advertisement"
+          src={
+            adData?.image_banner || "/images/placeholders/ads/top-ad-large.png"
+          }
+          alt={adData?.company_name_banner || "Advertisement"}
           width={900}
           height={150}
           sizes="(max-width: 750px) 100vw, 900px"
@@ -40,7 +47,7 @@ const LayoutAdSpaceComponent = () => {
 
       {/* tower left - ratio 1/4 */}
       <Link
-        href="#"
+        href={adData?.link_tower_left || "#"}
         target="_blank"
         referrerPolicy="no-referrer"
         className={classNames(
@@ -52,8 +59,10 @@ const LayoutAdSpaceComponent = () => {
         )}
       >
         <Image
-          src="/images/placeholders/ads/side-ad.png"
-          alt="Advertisement"
+          src={
+            adData?.image_tower_left || "/images/placeholders/ads/side-ad.png"
+          }
+          alt={adData?.company_name_tower_left || "Advertisement"}
           width={300}
           height={1200}
           className="h-[calc(100vh-150px)] aspect-[1/4] object-cover w-auto"
@@ -62,7 +71,7 @@ const LayoutAdSpaceComponent = () => {
 
       {/* tower right - ratio 1/4 */}
       <Link
-        href="#"
+        href={adData?.link_tower_right || "#"}
         target="_blank"
         referrerPolicy="no-referrer"
         className={classNames(
@@ -74,8 +83,10 @@ const LayoutAdSpaceComponent = () => {
         )}
       >
         <Image
-          src="/images/placeholders/ads/side-ad.png"
-          alt="Advertisement"
+          src={
+            adData?.image_tower_right || "/images/placeholders/ads/side-ad.png"
+          }
+          alt={adData?.company_name_tower_right || "Advertisement"}
           width={300}
           height={1200}
           className="h-[calc(100vh-150px)] aspect-[1/4] object-cover w-auto"

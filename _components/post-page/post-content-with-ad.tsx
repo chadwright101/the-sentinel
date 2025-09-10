@@ -5,12 +5,17 @@ import {
   AdSpaceBillboard,
   AdSpaceSquare,
 } from "@/_components/home-page/home-page-categories/home-page-grid-base";
+import { AdData } from "@/_types/ad-types";
 
 interface PostContentWithAdProps {
   content: string;
+  adData: AdData | null;
 }
 
-export default function PostContentWithAd({ content }: PostContentWithAdProps) {
+export default function PostContentWithAd({
+  content,
+  adData,
+}: PostContentWithAdProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const wideAdRef = useRef<HTMLDivElement>(null);
   const squareAdRef = useRef<HTMLDivElement>(null);
@@ -73,9 +78,11 @@ export default function PostContentWithAd({ content }: PostContentWithAdProps) {
       />
       <div ref={wideAdRef} className="my-2">
         <AdSpaceBillboard
-          src="/images/placeholders/ads/wide-ad.png"
-          alt="Advertisement"
-          url="#"
+          src={
+            adData?.image_billboard || "/images/placeholders/ads/wide-ad.png"
+          }
+          alt={adData?.company_name_billboard || "Advertisement"}
+          url={adData?.link_billboard || "#"}
         />
       </div>
       <div
@@ -83,9 +90,12 @@ export default function PostContentWithAd({ content }: PostContentWithAdProps) {
         className="flex w-full justify-center my-7 desktop:hidden"
       >
         <AdSpaceSquare
-          src="/images/placeholders/ads/square-ad.png"
-          alt="Advertisement"
-          url="#"
+          src={
+            adData?.image_square_primary ||
+            "/images/placeholders/ads/square-ad.png"
+          }
+          alt={adData?.company_name_square_primary || "Advertisement"}
+          url={adData?.link_square_primary || "#"}
           cssClasses="w-full"
         />
       </div>

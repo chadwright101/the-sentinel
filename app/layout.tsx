@@ -24,6 +24,7 @@ import "@/_styles/globals.css";
 import HeaderContainer from "@/_components/navigation/header/header-container";
 import FooterComponent from "@/_components/navigation/footer/footer-component";
 import LayoutAdSpaceComponent from "@/_components/ad-space/layout-ad-space-component";
+import { fetchAdData } from "@/_components/fetch-ad-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thesentinelnews.com.au/"),
@@ -46,18 +47,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const adData = await fetchAdData();
+
   return (
     <html lang="en">
       <body
         className={`${interSansSerif.variable} ${newsreaderSerif.variable} ${abrilFatfaceSerif.variable} antialiased`}
       >
         <HeaderContainer />
-        <LayoutAdSpaceComponent />
+        <LayoutAdSpaceComponent adData={adData} />
         {children}
         <FooterComponent />
       </body>

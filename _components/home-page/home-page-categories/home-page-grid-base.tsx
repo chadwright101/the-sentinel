@@ -2,11 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import classNames from "classnames";
 import { PostProps } from "../../../_types/post-types";
+import { AdProps, AdData } from "../../../_types/ad-types";
 
 export interface GridBaseProps {
   posts: PostProps[];
   hoveredIndex: number | null;
   setHoveredIndex: (index: number | null) => void;
+  adData: AdData | null;
 }
 
 export const truncateText = (text: string, maxLength: number) => {
@@ -124,15 +126,8 @@ export const AdSpace = ({ className }: { className?: string }) => (
   </p>
 );
 
-interface AdSpaceProps {
-  src: string;
-  alt: string;
-  url: string;
-  cssClasses?: string;
-}
-
 /* ratio 1:1 */
-export const AdSpaceSquare = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
+export const AdSpaceSquare = ({ src, alt, url, cssClasses }: AdProps) => (
   <Link href={url} target="_blank" aria-label={alt} className={cssClasses}>
     <Image
       src={src}
@@ -145,7 +140,7 @@ export const AdSpaceSquare = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
 );
 
 /* ratio 1:2 */
-export const AdSpaceTall = ({ src, alt, url, cssClasses }: AdSpaceProps) => (
+export const AdSpaceTall = ({ src, alt, url, cssClasses }: AdProps) => (
   <Link href={url} target="_blank" aria-label={alt} className={cssClasses}>
     <Image
       src={src}
@@ -163,7 +158,7 @@ export const AdSpaceBillboard = ({
   alt,
   url,
   cssClasses,
-}: AdSpaceProps) => (
+}: AdProps) => (
   <Link href={url} target="_blank" aria-label={alt} className={cssClasses}>
     <Image
       src={src}

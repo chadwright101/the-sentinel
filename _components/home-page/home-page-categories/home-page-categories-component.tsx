@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { fetchPosts } from "../../fetch-posts";
+import { fetchAdData } from "../../fetch-ad-data";
 import { PostProps } from "../../../_types/post-types";
+import { AdData } from "../../../_types/ad-types";
 import HomePageLatestNewsGrid from "./home-page-latest-news-grid";
 import HomePageNewsGrid from "./home-page-news-grid";
 import HomePageSportGrid from "./home-page-sport-grid";
@@ -19,18 +21,23 @@ const HomePageCategoryLatestComponent = ({
   categorySlug,
 }: HomePageCategoryLatestProps) => {
   const [posts, setPosts] = useState<PostProps[]>([]);
+  const [adData, setAdData] = useState<AdData | null>(null);
   const [loading, setLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const loadPosts = async () => {
+    const loadData = async () => {
       setLoading(true);
-      const fetchedPosts = await fetchPosts(categorySlug);
+      const [fetchedPosts, fetchedAdData] = await Promise.all([
+        fetchPosts(categorySlug),
+        fetchAdData()
+      ]);
       setPosts(fetchedPosts.slice(0, 4));
+      setAdData(fetchedAdData);
       setLoading(false);
     };
 
-    loadPosts();
+    loadData();
   }, [categorySlug]);
 
   const formatCategoryTitle = (slug: string) => {
@@ -63,6 +70,7 @@ const HomePageCategoryLatestComponent = ({
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              adData={adData}
             />
           )}
           {categorySlug === "general-news" && (
@@ -70,6 +78,7 @@ const HomePageCategoryLatestComponent = ({
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              adData={adData}
             />
           )}
           {categorySlug === "sport" && (
@@ -77,6 +86,7 @@ const HomePageCategoryLatestComponent = ({
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              adData={adData}
             />
           )}
           {categorySlug === "entertainment" && (
@@ -84,6 +94,7 @@ const HomePageCategoryLatestComponent = ({
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              adData={adData}
             />
           )}
           {categorySlug === "lifestyle" && (
@@ -91,6 +102,7 @@ const HomePageCategoryLatestComponent = ({
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              adData={adData}
             />
           )}
           {categorySlug === "real-estate" && (
@@ -98,6 +110,7 @@ const HomePageCategoryLatestComponent = ({
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              adData={adData}
             />
           )}
         </>

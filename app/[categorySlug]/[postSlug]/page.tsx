@@ -8,6 +8,7 @@ import {
   AdSpaceSquare,
   AdSpaceTall,
 } from "@/_components/home-page/home-page-categories/home-page-grid-base";
+import { fetchAdData } from "@/_components/fetch-ad-data";
 
 interface PostPageProps {
   params: Promise<{
@@ -24,7 +25,11 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  const post = await fetchSinglePost(postSlug);
+  const [post, adData] = await Promise.all([
+    fetchSinglePost(postSlug),
+    fetchAdData()
+  ]);
+
   if (!post) {
     notFound();
   }
@@ -66,24 +71,24 @@ export default async function PostPage({ params }: PostPageProps) {
                 sizes="(max-width: 1100px) 100vw, 1100px"
               />
             </div>
-            <PostContentWithAd content={post.content.rendered} />
+            <PostContentWithAd content={post.content.rendered} adData={adData} />
           </div>
           <div className="hidden desktop:flex flex-col gap-10">
             <AdSpaceTall
-              src="/images/placeholders/ads/tall-ad.png"
-              alt="#"
-              url="#"
+              src={adData?.image_tower || "/images/placeholders/ads/tall-ad.png"}
+              alt={adData?.company_name_tower || "Advertisement"}
+              url={adData?.link_tower || "#"}
             />
             <div className="sticky top-[180px] flex flex-col gap-10">
               <AdSpaceSquare
-                src="/images/placeholders/ads/square-ad.png"
-                alt="#"
-                url="#"
+                src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+                alt={adData?.company_name_square_primary || "Advertisement"}
+                url={adData?.link_square_primary || "#"}
               />
               <AdSpaceSquare
-                src="/images/placeholders/ads/square-ad.png"
-                alt="#"
-                url="#"
+                src={adData?.image_square_secondary || "/images/placeholders/ads/square-ad.png"}
+                alt={adData?.company_name_square_secondary || "Advertisement"}
+                url={adData?.link_square_secondary || "#"}
               />
             </div>
           </div>

@@ -14,6 +14,7 @@ const HomePageNewsGrid = ({
   posts,
   hoveredIndex,
   setHoveredIndex,
+  adData,
 }: GridBaseProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
@@ -95,15 +96,16 @@ const HomePageNewsGrid = ({
         );
       })}
       <AdSpaceTall
-        src="/images/placeholders/ads/tall-ad.png"
-        alt="#"
-        url="#"
+        src={adData?.image_tower || "/images/placeholders/ads/tall-ad.png"}
+        alt={adData?.company_name_tower || "Advertisement"}
+        url={adData?.link_tower || "#"}
         cssClasses="hidden desktop:block row-span-2"
       />
+      {/* Square Primary */}
       <AdSpaceSquare
-        src="/images/placeholders/ads/square-ad.png"
-        alt="#"
-        url="#"
+        src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+        alt={adData?.company_name_square_primary || "Advertisement"}
+        url={adData?.link_square_primary || "#"}
         cssClasses="my-5 w-full max-w-[500px] justify-self-center tablet:col-span-2 desktop:hidden"
       />
     </div>

@@ -39,7 +39,7 @@ export async function fetchPosts(
     }
 
     const response = await fetch(url, {
-      cache: "no-store",
+      next: { revalidate: 300 },
     });
 
     if (!response.ok) {

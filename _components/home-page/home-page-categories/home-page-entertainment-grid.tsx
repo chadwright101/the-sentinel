@@ -13,6 +13,7 @@ const HomePageEntertainmentGrid = ({
   posts,
   hoveredIndex,
   setHoveredIndex,
+  adData,
 }: GridBaseProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
@@ -94,10 +95,12 @@ const HomePageEntertainmentGrid = ({
           </article>
         );
       })}
+
+      {/* Square Primary */}
       <AdSpaceSquare
-        src="/images/placeholders/ads/square-ad.png"
-        alt="#"
-        url="#"
+        src={adData?.image_square_primary || "/images/placeholders/ads/square-ad.png"}
+        alt={adData?.company_name_square_primary || "Advertisement"}
+        url={adData?.link_square_primary || "#"}
         cssClasses="my-5 w-full place-self-center max-w-[500px] tablet:col-span-2 desktop:hidden"
       />
     </div>
