@@ -2,17 +2,15 @@ import Link from "next/link";
 import classNames from "classnames";
 
 interface AdFallbackProps {
-  aspectRatio: "6/1" | "1/4" | "1/1" | "1/2" | "4/1";
   cssClasses?: string;
 }
 
-const AdFallback = ({ aspectRatio, cssClasses }: AdFallbackProps) => {
+const AdFallback = ({ cssClasses }: AdFallbackProps) => {
   return (
     <Link
       href="/contact"
       className={classNames(
         "from-light-brown bg-linear-to-bl to-beige desktop:hover:opacity-85 ease-in-out duration-300",
-        `aspect-[${aspectRatio}]`,
         cssClasses
       )}
     >

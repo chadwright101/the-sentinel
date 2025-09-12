@@ -7,15 +7,17 @@ import AdFallback from "./ad-fallback";
 const AdSpaceSquare = ({ src, alt, url, cssClasses }: AdProps) => {
   if (!src) {
     return (
-      <AdFallback
-        aspectRatio="1/1"
-        cssClasses={classNames("w-full", cssClasses)}
-      />
+      <AdFallback cssClasses={classNames("w-full aspect-square", cssClasses)} />
     );
   }
 
   return (
-    <Link href={url} target="_blank" aria-label={alt} className={cssClasses}>
+    <Link
+      href={url}
+      target="_blank"
+      aria-label={alt}
+      className={classNames("desktop:hover:opacity-85", cssClasses)}
+    >
       <Image
         src={src}
         alt={alt}

@@ -46,7 +46,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
         </Link>
       ) : (
         <div className="w-full max-w-[900px] mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px]">
-          <AdFallback aspectRatio="6/1" cssClasses="max-w-[900px] w-full" />
+          <AdFallback cssClasses="max-w-[900px] w-full aspect-[6/1]" />
         </div>
       )}
 
@@ -74,9 +74,8 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
         </Link>
       ) : (
         <AdFallback
-          aspectRatio="1/4"
           cssClasses={classNames(
-            "hidden min-[calc(1300px+52vh)]:block h-screen fixed left-24",
+            "hidden min-[calc(1300px+52vh)]:block h-[calc(100vh-152px)] fixed left-24 aspect-[1/4]",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
@@ -104,14 +103,13 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
             alt={adData.company_name_tower_right || "Advertisement"}
             width={300}
             height={1200}
-            className="h-[calc(100vh-150px)] aspect-[1/4] object-cover w-auto"
+            className="h-[calc(100vh-152px)] aspect-[1/4] object-cover w-auto"
           />
         </Link>
       ) : (
         <AdFallback
-          aspectRatio="1/4"
           cssClasses={classNames(
-            "hidden min-[calc(1300px+52vh)]:block h-[calc(100vh-150px)] fixed right-24",
+            "hidden min-[calc(1300px+52vh)]:block h-[calc(100vh-152px)] fixed right-24 aspect-[1/4]",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
