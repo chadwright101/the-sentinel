@@ -39,11 +39,11 @@
     "children": [
       {
         "title": "What's On",
-        "url": "/entertainment/whats-on"
+        "url": "/whats-on"
       },
       {
         "title": "Calendar",
-        "url": "/entertainment/calendar"
+        "url": "/calendar"
       }
     ]
   },

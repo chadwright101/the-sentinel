@@ -42,7 +42,7 @@ export default async function PostPage({ params }: PostPageProps) {
             { label: post.title.rendered.replace(/<[^>]*>/g, "") },
           ]}
         />
-        <h1
+        <h2
           className="text-36px font-inter font-bold"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         />
