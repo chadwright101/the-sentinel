@@ -5,13 +5,11 @@ import { AdProps } from "../../_types/ad-types";
 import AdFallback from "./ad-fallback";
 
 const AdSpaceBillboard = ({ src, alt, url, cssClasses }: AdProps) => {
-  const isPlaceholder = src.includes("/placeholders/") || !src;
-
-  if (isPlaceholder) {
+  if (!src) {
     return (
       <AdFallback
         aspectRatio="4/1"
-        className={classNames("w-full", cssClasses)}
+        cssClasses={classNames("w-full", cssClasses)}
       />
     );
   }
@@ -23,7 +21,7 @@ const AdSpaceBillboard = ({ src, alt, url, cssClasses }: AdProps) => {
         alt={alt}
         width={900}
         height={150}
-        className="object-cover aspect-[4/1] w-full border-4 border-[#FF5C00]"
+        className="object-cover aspect-[4/1] w-full"
       />
     </Link>
   );

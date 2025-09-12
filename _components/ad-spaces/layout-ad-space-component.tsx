@@ -33,7 +33,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           href={adData.link_banner || "#"}
           target="_blank"
           referrerPolicy="no-referrer"
-          className="w-full max-w-[900px] px-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85"
+          className="w-full mx-5 max-w-[900px] min-[940px]:mx-0 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85"
         >
           <Image
             src={adData.image_banner}
@@ -41,12 +41,12 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
             width={900}
             height={150}
             sizes="(max-width: 750px) 100vw, 900px"
-            className="aspect-[6/1] object-cover max-w-[900px] border-4 border-[#FF5C00]"
+            className="aspect-[6/1] object-cover h-full w-full"
           />
         </Link>
       ) : (
-        <div className="w-full max-w-[900px] px-7 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px]">
-          <AdFallback aspectRatio="6/1" className="max-w-[900px] w-full" />
+        <div className="w-full max-w-[900px] mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px]">
+          <AdFallback aspectRatio="6/1" cssClasses="max-w-[900px] w-full" />
         </div>
       )}
 
@@ -57,7 +57,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           target="_blank"
           referrerPolicy="no-referrer"
           className={classNames(
-            "hidden min-[calc(1300px+52vh)]:block fixed left-24 desktop:hover:opacity-85 border-4 border-[#FF5C00]",
+            "hidden min-[calc(1300px+52vh)]:block fixed left-24 desktop:hover:opacity-85",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
@@ -69,25 +69,20 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
             alt={adData.company_name_tower_left || "Advertisement"}
             width={300}
             height={1200}
-            className="h-[calc(100vh-150px)] aspect-[1/4] object-cover w-auto"
+            className="h-[calc(100vh-152px)] aspect-[1/4] object-cover w-auto"
           />
         </Link>
       ) : (
-        <div
-          className={classNames(
-            "hidden min-[calc(1300px+52vh)]:block fixed left-24",
+        <AdFallback
+          aspectRatio="1/4"
+          cssClasses={classNames(
+            "hidden min-[calc(1300px+52vh)]:block h-screen fixed left-24",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
             }
           )}
-        >
-          <AdFallback
-            aspectRatio="1/4"
-            className="h-[calc(100vh-150px)] w-auto"
-            width={300}
-          />
-        </div>
+        />
       )}
 
       {/* tower right - ratio 1/4 */}
@@ -97,7 +92,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           target="_blank"
           referrerPolicy="no-referrer"
           className={classNames(
-            "hidden min-[calc(1300px+52vh)]:block fixed right-24 desktop:hover:opacity-85 border-4 border-[#FF5C00]",
+            "hidden min-[calc(1300px+52vh)]:block fixed right-24 desktop:hover:opacity-85",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
@@ -113,21 +108,16 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           />
         </Link>
       ) : (
-        <div
-          className={classNames(
-            "hidden min-[calc(1300px+52vh)]:block fixed right-24",
+        <AdFallback
+          aspectRatio="1/4"
+          cssClasses={classNames(
+            "hidden min-[calc(1300px+52vh)]:block h-[calc(100vh-150px)] fixed right-24",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
             }
           )}
-        >
-          <AdFallback
-            aspectRatio="1/4"
-            className="h-[calc(100vh-150px)] w-auto"
-            width={300}
-          />
-        </div>
+        />
       )}
     </div>
   );
