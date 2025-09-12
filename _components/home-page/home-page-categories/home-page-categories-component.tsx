@@ -41,7 +41,7 @@ const HomePageCategoryLatestComponent = ({
   }, [categorySlug]);
 
   const formatCategoryTitle = (slug: string) => {
-    if (slug === "general-news") {
+    if (slug === "news") {
       return "News";
     }
     return slug
@@ -73,7 +73,7 @@ const HomePageCategoryLatestComponent = ({
               adData={adData}
             />
           )}
-          {categorySlug === "general-news" && (
+          {categorySlug === "news" && (
             <HomePageNewsGrid
               posts={posts}
               hoveredIndex={hoveredIndex}

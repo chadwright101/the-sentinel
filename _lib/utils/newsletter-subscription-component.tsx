@@ -51,7 +51,7 @@ const NewsletterSubscriptionComponent = ({
         }
       }}
       className={classNames(
-        "grid gap-5 mt-5 w-full bg-teal px-5 py-7 tablet:grid-cols-[1.5fr_1fr] desktop:grid-cols-[1fr_1.25fr_1fr] desktop:gap-10 desktop:mt-[50px]",
+        "grid gap-5 mt-5 w-full bg-teal px-5 py-7 tablet:grid-cols-[1.5fr_1fr] desktop:grid-cols-[1fr_1.25fr_1fr] desktop:gap-10 desktop:mt-[50px] desktop:py-[100px] desktop:px-10",
         cssClasses
       )}
     >

@@ -9,7 +9,7 @@ export default async function HomePage() {
       {/* latest news */}
       <HomePageCategoryLatestComponent />
       {/* categories */}
-      <HomePageCategoryLatestComponent categorySlug="general-news" />
+      <HomePageCategoryLatestComponent categorySlug="news" />
       <HomePageCategoryLatestComponent categorySlug="sport" />
       <NewsletterSubscriptionComponent cssClasses="desktop:hidden" />
       <HomePageCategoryLatestComponent categorySlug="entertainment" />

@@ -7,6 +7,9 @@ import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
 import { fetchAdData } from "@/_components/fetch-ad-data";
 import AdSpaceTower from "@/_components/ad-spaces/ad-space-tower";
 import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
+import { fetchPosts } from "@/_components/fetch-posts";
+import RelatedPostsComponent from "@/_components/post-page/related-posts-component";
+import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
 
 interface PostPageProps {
   params: Promise<{
@@ -23,9 +26,10 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  const [post, adData] = await Promise.all([
+  const [post, adData, posts] = await Promise.all([
     fetchSinglePost(postSlug),
     fetchAdData(),
+    fetchPosts(categorySlug),
   ]);
 
   if (!post) {
@@ -102,6 +106,12 @@ export default async function PostPage({ params }: PostPageProps) {
             </div>
           </div>
         </div>
+        <RelatedPostsComponent
+          posts={posts}
+          categorySlug={categorySlug}
+          cssClasses="mt-5 desktop:mt-10"
+        />
+        <NewsletterSubscriptionComponent />
       </article>
     </main>
   );

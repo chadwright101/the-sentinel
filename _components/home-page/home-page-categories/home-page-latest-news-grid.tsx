@@ -26,7 +26,7 @@ const HomePageLatestNewsGrid = ({
             })}
           >
             <Link
-              href={`/news/latest-news/${post.slug}`}
+              href={`/latest-news/${post.slug}`}
               className={classNames("grid gap-4 mb-2", {
                 "grid-cols-[1fr_1.75fr] tablet:grid-cols-1": !isFirstPost,
                 "desktop:h-full": isFirstPost,

@@ -1,7 +1,7 @@
 // Usage examples:
 // fetchPosts() - First 9 posts, all categories, filtered by image, title, excerpt, and content
-// fetchPosts("sport") - First 9 posts from general-news category, filtered by image, title, excerpt, and content
-// fetchPosts("general-news", 2) - Posts 10-18 from general-news category, filtered by image, title, excerpt, and content
+// fetchPosts("sport") - First 9 posts from news category, filtered by image, title, excerpt, and content
+// fetchPosts("news", 2) - Posts 10-18 from news category, filtered by image, title, excerpt, and content
 // fetchPosts(undefined, 3) - Posts 19-27 from all categories, filtered by image, title, excerpt, and content
 
 import { PostProps } from "../_types/post-types";
