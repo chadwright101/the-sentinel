@@ -12,6 +12,7 @@ import HomePageEntertainmentGrid from "./home-page-entertainment-grid";
 import HomePageLifestyleGrid from "./home-page-lifestyle-grid";
 import HomePageRealEstateGrid from "./home-page-real-estate-grid";
 import LoadingAnimation from "@/_lib/utils/loading-animation";
+import Link from "next/link";
 
 interface HomePageCategoryLatestProps {
   categorySlug?: string;
@@ -56,8 +57,14 @@ const HomePageCategoryLatestComponent = ({
 
   return (
     <main className="pt-5 space-y-5 desktop:pt-[50px]">
-      <h3 className="text-24px font-bold desktop:text-36px">
-        {categorySlug ? formatCategoryTitle(categorySlug) : "Latest News"}
+      <h3>
+        <Link
+          href={`/${categorySlug}`}
+          aria-label={`View our latest ${categorySlug} articles`}
+          className="font-inter p-2 -m-2 text-24px text-black font-bold desktop:text-36px desktop:hover:text-teal desktop:p-0 desktop:m-0"
+        >
+          {categorySlug ? formatCategoryTitle(categorySlug) : "Latest News"}
+        </Link>
       </h3>
       {loading ? (
         <div className="min-h-[150px] flex items-center justify-center">
