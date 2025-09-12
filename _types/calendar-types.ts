@@ -5,6 +5,7 @@ export interface EventData {
     event_date: string;
     event_start_time: string;
     event_end_time: string;
+    published_article?: string;
   };
 }
 

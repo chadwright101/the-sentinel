@@ -2,6 +2,12 @@ import AdSpaceBillboard from "@/_components/ad-spaces/ad-space-billboard";
 import { EventData } from "@/_types/calendar-types";
 import classNames from "classnames";
 import { fetchAdData } from "@/_components/fetch-ad-data";
+import Link from "next/link";
+import {
+  extractSlugFromWordPressUrl,
+  getCategorySlugFromPost,
+} from "@/_lib/utils/get-category-from-post-slug";
+import Image from "next/image";
 
 async function fetchEvents(): Promise<EventData[]> {
   const response = await fetch(
@@ -55,6 +61,46 @@ function toIsoDateTime(dateString: string, timeString: string): string {
   return `${toIsoDate(dateString)}T${timeString}`;
 }
 
+async function EventName({ event }: { event: EventData }) {
+  if (!event.acf.published_article) {
+    return (
+      <h3 className="text-[17px] font-inter font-semibold">
+        {event.acf.event_name}
+      </h3>
+    );
+  }
+
+  const postSlug = extractSlugFromWordPressUrl(event.acf.published_article);
+  if (!postSlug) {
+    return (
+      <h3 className="text-[17px] font-inter font-semibold">
+        {event.acf.event_name}
+      </h3>
+    );
+  }
+
+  const categorySlug = await getCategorySlugFromPost(postSlug);
+  if (!categorySlug) {
+    return (
+      <h3 className="text-[17px] font-inter font-semibold">
+        {event.acf.event_name}
+      </h3>
+    );
+  }
+
+  return (
+    <h3 className="text-[17px] font-inter font-semibold">
+      <Link
+        href={`/${categorySlug}/${postSlug}`}
+        className="font-inter text-teal flex gap-2 items-center desktop:hover:opacity-80"
+      >
+        {event.acf.event_name}
+        <Image src="/icons/external-link.svg" alt="" width={20} height={20} />
+      </Link>
+    </h3>
+  );
+}
+
 export default async function CalendarPage() {
   const events = await fetchEvents();
   const adData = await fetchAdData();
@@ -81,9 +127,7 @@ export default async function CalendarPage() {
                 )}
               >
                 <div className="space-y-2">
-                  <h3 className="text-[17px] font-inter font-semibold">
-                    {event.acf.event_name}
-                  </h3>
+                  <EventName event={event} />
                   <p className="text-[17px] font-inter">
                     {event.acf.event_venue}
                   </p>
