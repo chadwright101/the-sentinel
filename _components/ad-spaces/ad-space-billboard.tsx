@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import classNames from "classnames";
-import { AdProps } from "../../_types/ad-types";
+import { AdProps } from "@/_types/ad-types";
 import AdFallback from "./ad-fallback";
 
 const AdSpaceBillboard = ({ src, alt, url, cssClasses }: AdProps) => {

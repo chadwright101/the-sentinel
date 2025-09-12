@@ -1,12 +1,10 @@
 import Link from "next/link";
 import classNames from "classnames";
-import {
-  GridBaseProps,
-  GridImage,
-  GridTitle,
-  GridExcerpt,
-  ReadMoreLink,
-} from "./home-page-grid-base";
+import PostGridProps from "@/_types/post-grid-props";
+import PostGridImage from "@/_lib/utils/posts/post-grid-image";
+import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
+import GridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
+import ReadMoreLink from "../../ui/buttons/read-more-link";
 import AdSpaceSquare from "../../ad-spaces/ad-space-square";
 
 const HomePageLifestyleGrid = ({
@@ -14,7 +12,7 @@ const HomePageLifestyleGrid = ({
   hoveredIndex,
   setHoveredIndex,
   adData,
-}: GridBaseProps) => {
+}: PostGridProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
       {posts.map((post, index) => {
@@ -38,7 +36,7 @@ const HomePageLifestyleGrid = ({
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <GridImage
+              <PostGridImage
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
@@ -48,7 +46,7 @@ const HomePageLifestyleGrid = ({
                   "desktop:aspect-[3/3.25]": isFirstPost,
                 })}
               />
-              <GridTitle
+              <PostGridTitle
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
@@ -67,7 +65,7 @@ const HomePageLifestyleGrid = ({
               />
             </Link>
             <div className="flex flex-col gap-4">
-              <GridTitle
+              <PostGridTitle
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}

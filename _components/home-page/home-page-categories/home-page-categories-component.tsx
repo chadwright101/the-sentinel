@@ -3,15 +3,15 @@
 import { useState, useEffect } from "react";
 import { fetchPosts } from "../../fetch-posts";
 import { fetchAdData } from "../../fetch-ad-data";
-import { PostProps } from "../../../_types/post-types";
-import { AdData } from "../../../_types/ad-types";
+import { PostProps } from "@/_types/post-types";
+import { AdData } from "@/_types/ad-types";
 import HomePageLatestNewsGrid from "./home-page-latest-news-grid";
 import HomePageNewsGrid from "./home-page-news-grid";
 import HomePageSportGrid from "./home-page-sport-grid";
 import HomePageEntertainmentGrid from "./home-page-entertainment-grid";
 import HomePageLifestyleGrid from "./home-page-lifestyle-grid";
 import HomePageRealEstateGrid from "./home-page-real-estate-grid";
-import LoadingAnimation from "../../../_lib/utils/loading-animation";
+import LoadingAnimation from "@/_lib/utils/loading-animation";
 
 interface HomePageCategoryLatestProps {
   categorySlug?: string;
@@ -30,7 +30,7 @@ const HomePageCategoryLatestComponent = ({
       setLoading(true);
       const [fetchedPosts, fetchedAdData] = await Promise.all([
         fetchPosts(categorySlug),
-        fetchAdData()
+        fetchAdData(),
       ]);
       setPosts(fetchedPosts.slice(0, 4));
       setAdData(fetchedAdData);

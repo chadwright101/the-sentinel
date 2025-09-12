@@ -1,12 +1,10 @@
 import Link from "next/link";
 import classNames from "classnames";
-import {
-  GridBaseProps,
-  GridImage,
-  GridTitle,
-  GridExcerpt,
-  ReadMoreLink,
-} from "./home-page-grid-base";
+import PostGridProps from "@/_types/post-grid-props";
+import PostGridImage from "@/_lib/utils/posts/post-grid-image";
+import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
+import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
+import ReadMoreLink from "../../ui/buttons/read-more-link";
 import AdSpaceBillboard from "../../ad-spaces/ad-space-billboard";
 
 const HomePageRealEstateGrid = ({
@@ -14,7 +12,7 @@ const HomePageRealEstateGrid = ({
   hoveredIndex,
   setHoveredIndex,
   adData,
-}: GridBaseProps) => {
+}: PostGridProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
       {posts.map((post, index) => {
@@ -39,7 +37,7 @@ const HomePageRealEstateGrid = ({
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <GridImage
+              <PostGridImage
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
@@ -48,7 +46,7 @@ const HomePageRealEstateGrid = ({
                   "aspect-[1.2/1] tablet:aspect-[5/3]": !isFirstPost,
                 })}
               />
-              <GridTitle
+              <PostGridTitle
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
@@ -57,7 +55,7 @@ const HomePageRealEstateGrid = ({
                   "desktop:hidden": isFirstPost,
                 })}
               />
-              <GridExcerpt
+              <PostGridExcerpt
                 post={post}
                 maxLength={150}
                 cssClasses={classNames({
@@ -67,7 +65,7 @@ const HomePageRealEstateGrid = ({
               />
             </Link>
             <div className="flex flex-col gap-4">
-              <GridTitle
+              <PostGridTitle
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
@@ -75,7 +73,7 @@ const HomePageRealEstateGrid = ({
                   "desktop:block": isFirstPost,
                 })}
               />
-              <GridExcerpt
+              <PostGridExcerpt
                 post={post}
                 maxLength={300}
                 cssClasses={classNames("hidden", {

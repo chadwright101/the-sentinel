@@ -1,12 +1,10 @@
 import Link from "next/link";
 import classNames from "classnames";
-import {
-  GridBaseProps,
-  GridImage,
-  GridTitle,
-  GridExcerpt,
-  ReadMoreLink,
-} from "./home-page-grid-base";
+import PostGridProps from "@/_types/post-grid-props";
+import PostGridImage from "@/_lib/utils/posts/post-grid-image";
+import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
+import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
+import ReadMoreLink from "../../ui/buttons/read-more-link";
 import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
 
 const HomePageEntertainmentGrid = ({
@@ -14,7 +12,7 @@ const HomePageEntertainmentGrid = ({
   hoveredIndex,
   setHoveredIndex,
   adData,
-}: GridBaseProps) => {
+}: PostGridProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
       {posts.map((post, index) => {
@@ -39,7 +37,7 @@ const HomePageEntertainmentGrid = ({
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <GridImage
+              <PostGridImage
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
@@ -49,7 +47,7 @@ const HomePageEntertainmentGrid = ({
                   "desktop:h-full desktop:min-h-[600px]": isFirstPost,
                 })}
               />
-              <GridTitle
+              <PostGridTitle
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
@@ -58,7 +56,7 @@ const HomePageEntertainmentGrid = ({
                   "desktop:hidden": isFirstPost,
                 })}
               />
-              <GridExcerpt
+              <PostGridExcerpt
                 post={post}
                 maxLength={150}
                 cssClasses={classNames({
@@ -68,7 +66,7 @@ const HomePageEntertainmentGrid = ({
               />
             </Link>
             <div className="flex flex-col gap-4">
-              <GridTitle
+              <PostGridTitle
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
@@ -76,7 +74,7 @@ const HomePageEntertainmentGrid = ({
                   "desktop:block": isFirstPost,
                 })}
               />
-              <GridExcerpt
+              <PostGridExcerpt
                 post={post}
                 maxLength={500}
                 cssClasses={classNames("hidden", {
