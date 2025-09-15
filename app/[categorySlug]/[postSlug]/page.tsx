@@ -68,11 +68,11 @@ export default async function PostPage({ params }: PostPageProps) {
         </time>
         <div className="desktop:grid grid-cols-[1fr_250px] gap-7">
           <div className="grid gap-5">
-            <div className="w-full h-[500px]">
+            <div className="w-full">
               <Image
                 src={post.jetpack_featured_media_url}
                 alt={post.title.rendered}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover aspect-[4/3] tablet:aspect-video"
                 width={1100}
                 height={500}
                 sizes="(max-width: 1100px) 100vw, 1100px"

@@ -33,6 +33,7 @@ const FooterComponent = () => {
               <Link
                 href="https://www.facebook.com/TheSentinelNews"
                 target="_blank"
+                className="desktop:hover:opacity-80"
               >
                 <Image
                   src="/icons/facebook-icon-white.svg"

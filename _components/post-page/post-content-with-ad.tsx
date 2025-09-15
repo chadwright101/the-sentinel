@@ -48,13 +48,13 @@ export default function PostContentWithAd({
           );
         }
 
-        if (paragraphs.length >= 6) {
-          const sixthParagraph = paragraphs[5];
+        if (paragraphs.length >= 8) {
+          const eighthParagraph = paragraphs[7];
           const squareAdElement = squareAdRef.current;
 
-          sixthParagraph.parentNode?.insertBefore(
+          eighthParagraph.parentNode?.insertBefore(
             squareAdElement,
-            sixthParagraph.nextSibling
+            eighthParagraph.nextSibling
           );
         }
       }

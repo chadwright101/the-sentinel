@@ -51,7 +51,7 @@ const NewsletterSubscriptionComponent = ({
         }
       }}
       className={classNames(
-        "grid gap-5 mt-5 w-full bg-teal px-5 py-7 tablet:grid-cols-[1.5fr_1fr] desktop:grid-cols-[1fr_1.25fr_1fr] desktop:gap-10 desktop:mt-[50px] desktop:py-[100px] desktop:px-10",
+        "grid gap-5 mt-5 w-full bg-teal px-5 py-7 tablet:grid-cols-[1.25fr_1fr] desktop:grid-cols-3 desktop:gap-10 desktop:mt-[50px] desktop:py-[100px] desktop:px-10",
         cssClasses
       )}
     >
@@ -64,13 +64,37 @@ const NewsletterSubscriptionComponent = ({
         </p>
       ) : (
         <>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            className="bg-white py-2.5 px-2.5 placeholder:text-black font-medium desktop:self-center font-inter"
-          />
-
+          <div className="grid gap-4 w-full min-[600px]:grid-cols-2 desktop:grid-cols-1">
+            <div className="grid">
+              <label htmlFor="email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                autoComplete="email"
+                className="bg-white py-2.5 px-2.5 placeholder:text-black font-medium desktop:self-center font-inter"
+                required
+              />
+            </div>
+            <div className="grid">
+              <label htmlFor="given-name" className="sr-only">
+                First name
+              </label>
+              <input
+                id="given-name"
+                type="text"
+                name="given-name"
+                placeholder="Name"
+                autoComplete="given-name"
+                autoCapitalize="words"
+                className="bg-white py-2.5 px-2.5 placeholder:text-black font-medium desktop:self-center font-inter"
+                required
+              />
+            </div>
+          </div>
           <ButtonType
             type="submit"
             cssClasses="w-full min-[600px]:w-auto min-[600px]:place-self-center"
