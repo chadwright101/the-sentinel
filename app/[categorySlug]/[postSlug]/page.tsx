@@ -10,6 +10,7 @@ import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
 import { fetchPosts } from "@/_components/fetch-posts";
 import RelatedPostsComponent from "@/_components/post-page/related-posts-component";
 import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
+import LatestArticles from "@/_components/post-page/latest-articles";
 
 interface PostPageProps {
   params: Promise<{
@@ -26,11 +27,15 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  const [post, adData, posts] = await Promise.all([
-    fetchSinglePost(postSlug),
-    fetchAdData(),
-    fetchPosts(categorySlug),
-  ]);
+  const [post, adData, posts, sportPosts, entertainmentPosts, lifestylePosts] =
+    await Promise.all([
+      fetchSinglePost(postSlug),
+      fetchAdData(),
+      fetchPosts(categorySlug),
+      fetchPosts("sport", { perPage: 2 }),
+      fetchPosts("entertainment", { perPage: 2 }),
+      fetchPosts("lifestyle", { perPage: 2 }),
+    ]);
 
   if (!post) {
     notFound();
@@ -113,6 +118,14 @@ export default async function PostPage({ params }: PostPageProps) {
           cssClasses="mt-5 desktop:mt-10"
         />
         <NewsletterSubscriptionComponent />
+        <div className="flex flex-col gap-10 mt-5 tablet:mt-10 desktop:gap-[50px] desktop:mt-[50px] desktop:flex-row">
+          <LatestArticles categorySlug="sport" posts={sportPosts} />
+          <LatestArticles
+            categorySlug="entertainment"
+            posts={entertainmentPosts}
+          />
+          <LatestArticles categorySlug="lifestyle" posts={lifestylePosts} />
+        </div>
       </article>
     </main>
   );
