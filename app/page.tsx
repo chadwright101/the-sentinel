@@ -1,4 +1,4 @@
-import HomePageCategoryLatestComponent from "@/_components/home-page/home-page-categories/home-page-categories-component";
+import HomePageCategoryComponent from "@/_components/home-page/home-page-categories/home-page-categories-component";
 import TopStoriesComponent from "@/_components/home-page/top-stories/top-stories-component";
 import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
 
@@ -7,15 +7,15 @@ export default async function HomePage() {
     <div className="px-5 max-w-[1100px] mx-auto desktop:px-10">
       <TopStoriesComponent />
       {/* latest news */}
-      <HomePageCategoryLatestComponent />
+      <HomePageCategoryComponent />
       {/* categories */}
-      <HomePageCategoryLatestComponent categorySlug="news" />
-      <HomePageCategoryLatestComponent categorySlug="sport" />
+      <HomePageCategoryComponent categorySlug="news" />
+      <HomePageCategoryComponent categorySlug="sport" />
       <NewsletterSubscriptionComponent cssClasses="desktop:hidden" />
-      <HomePageCategoryLatestComponent categorySlug="entertainment" />
+      <HomePageCategoryComponent categorySlug="entertainment" />
       <NewsletterSubscriptionComponent cssClasses="hidden desktop:grid" />
-      <HomePageCategoryLatestComponent categorySlug="lifestyle" />
-      <HomePageCategoryLatestComponent categorySlug="real-estate" />
+      <HomePageCategoryComponent categorySlug="lifestyle" />
+      <HomePageCategoryComponent categorySlug="real-estate" />
     </div>
   );
 }

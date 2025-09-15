@@ -8,7 +8,7 @@ import ReadMoreLink from "../../ui/buttons/read-more-link";
 import AdSpaceTower from "../../ad-spaces/ad-space-tower";
 import AdSpaceSquare from "../../ad-spaces/ad-space-square";
 
-const HomePageNewsGrid = ({
+const HomePageGeneralNewsGrid = ({
   posts,
   hoveredIndex,
   setHoveredIndex,
@@ -113,4 +113,4 @@ const HomePageNewsGrid = ({
   );
 };
 
-export default HomePageNewsGrid;
+export default HomePageGeneralNewsGrid;

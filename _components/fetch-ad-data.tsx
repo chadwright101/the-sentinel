@@ -1,4 +1,4 @@
-import { AdResponse, AdData } from "../_types/ad-types";
+import { AdResponse, AdData } from "@/_types/ad-types";
 
 const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL;
 
@@ -12,7 +12,7 @@ export async function fetchAdData(): Promise<AdData | null> {
 
     const url = `${baseUrl}ad-space`;
     const response = await fetch(url, {
-      next: { revalidate: 300 }
+      next: { revalidate: 300 },
     });
 
     if (!response.ok) {
@@ -20,11 +20,11 @@ export async function fetchAdData(): Promise<AdData | null> {
     }
 
     const adResponse: AdResponse[] = await response.json();
-    
+
     if (adResponse.length > 0 && adResponse[0].acf) {
       return adResponse[0].acf;
     }
-    
+
     return null;
   } catch (error) {
     console.error("Error fetching ad data:", error);

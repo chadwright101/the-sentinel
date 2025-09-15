@@ -21,20 +21,38 @@ export async function fetchPostsWithPagination(
     let url = `${baseUrl}posts?per_page=10&page=${page}`;
 
     if (categorySlug) {
-      const categoriesResponse = await fetch(
-        `${baseUrl}categories?slug=${categorySlug}`,
-        { next: { revalidate: 300 } }
-      );
-
-      if (categoriesResponse.ok) {
-        const categories = await categoriesResponse.json();
-        if (categories.length > 0) {
-          url += `&categories=${categories[0].id}`;
-        } else {
-          console.log(`No categories found for slug: ${categorySlug}`);
+      const categoryIds: number[] = [];
+      
+      if (categorySlug === "news") {
+        const newsAndUncategorizedResponse = await fetch(
+          `${baseUrl}categories?slug=${categorySlug},uncategorized`,
+          { next: { revalidate: 300 } }
+        );
+        
+        if (newsAndUncategorizedResponse.ok) {
+          const categories = await newsAndUncategorizedResponse.json();
+          categoryIds.push(...categories.map((cat: any) => cat.id));
         }
       } else {
-        console.error(`Categories API error: ${categoriesResponse.status}`);
+        const categoriesResponse = await fetch(
+          `${baseUrl}categories?slug=${categorySlug}`,
+          { next: { revalidate: 300 } }
+        );
+
+        if (categoriesResponse.ok) {
+          const categories = await categoriesResponse.json();
+          if (categories.length > 0) {
+            categoryIds.push(categories[0].id);
+          } else {
+            console.log(`No categories found for slug: ${categorySlug}`);
+          }
+        } else {
+          console.error(`Categories API error: ${categoriesResponse.status}`);
+        }
+      }
+      
+      if (categoryIds.length > 0) {
+        url += `&categories=${categoryIds.join(',')}`;
       }
     }
 

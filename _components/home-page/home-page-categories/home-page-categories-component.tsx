@@ -6,7 +6,7 @@ import { fetchAdData } from "../../fetch-ad-data";
 import { PostProps } from "@/_types/post-types";
 import { AdData } from "@/_types/ad-types";
 import HomePageLatestNewsGrid from "./home-page-latest-news-grid";
-import HomePageNewsGrid from "./home-page-news-grid";
+import HomePageGeneralNewsGrid from "./home-page-general-news-grid";
 import HomePageSportGrid from "./home-page-sport-grid";
 import HomePageEntertainmentGrid from "./home-page-entertainment-grid";
 import HomePageLifestyleGrid from "./home-page-lifestyle-grid";
@@ -18,7 +18,7 @@ interface HomePageCategoryLatestProps {
   categorySlug?: string;
 }
 
-const HomePageCategoryLatestComponent = ({
+const HomePageCategoryComponent = ({
   categorySlug,
 }: HomePageCategoryLatestProps) => {
   const [posts, setPosts] = useState<PostProps[]>([]);
@@ -42,9 +42,6 @@ const HomePageCategoryLatestComponent = ({
   }, [categorySlug]);
 
   const formatCategoryTitle = (slug: string) => {
-    if (slug === "news") {
-      return "News";
-    }
     return slug
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -59,7 +56,7 @@ const HomePageCategoryLatestComponent = ({
     <main className="pt-5 space-y-5 desktop:pt-[50px]">
       <h3>
         <Link
-          href={`/${categorySlug}`}
+          href={categorySlug ? `/${categorySlug}` : "/latest-news"}
           aria-label={`View our latest ${categorySlug} articles`}
           className="font-inter p-2 -m-2 text-24px text-black font-bold desktop:text-36px desktop:hover:text-teal desktop:p-0 desktop:m-0"
         >
@@ -81,7 +78,7 @@ const HomePageCategoryLatestComponent = ({
             />
           )}
           {categorySlug === "news" && (
-            <HomePageNewsGrid
+            <HomePageGeneralNewsGrid
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
@@ -126,4 +123,4 @@ const HomePageCategoryLatestComponent = ({
   );
 };
 
-export default HomePageCategoryLatestComponent;
+export default HomePageCategoryComponent;

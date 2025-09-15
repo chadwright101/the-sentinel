@@ -108,6 +108,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
         <RelatedPostsComponent
           posts={posts}
+          currentPostSlug={postSlug}
           categorySlug={categorySlug}
           cssClasses="mt-5 desktop:mt-10"
         />

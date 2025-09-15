@@ -13,12 +13,14 @@ interface RelatedPostProps {
   posts: PostProps[];
   categorySlug: string;
   cssClasses?: string;
+  currentPostSlug: string;
 }
 
 const RelatedPostsComponent = ({
   posts,
   categorySlug,
   cssClasses,
+  currentPostSlug,
 }: RelatedPostProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   return (
@@ -31,7 +33,7 @@ const RelatedPostsComponent = ({
       <h3 className="text-24px font-bold font-newsreader mb-2 tablet:col-span-3 desktop:text-36px">
         Related News
       </h3>
-      {posts.slice(0, 3).map((post, index) => {
+      {posts.filter(post => post.slug !== currentPostSlug).slice(0, 3).map((post, index) => {
         return (
           <article key={post.id}>
             <Link

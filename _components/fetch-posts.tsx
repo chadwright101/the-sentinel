@@ -1,16 +1,31 @@
 // Usage examples:
-// fetchPosts() - First 9 posts, all categories, filtered by image, title, excerpt, and content
-// fetchPosts("sport") - First 9 posts from news category, filtered by image, title, excerpt, and content
-// fetchPosts("news", 2) - Posts 10-18 from news category, filtered by image, title, excerpt, and content
-// fetchPosts(undefined, 3) - Posts 19-27 from all categories, filtered by image, title, excerpt, and content
+// fetchPosts() - first 9 posts (all categories)
+// fetchPosts("sport") - first 9 posts in "sport"
+// fetchPosts("news", 2) - page 2 in "news" (9 per page)
+// fetchPosts(undefined, 3) - page 3 across all categories (9 per page)
+// fetchPosts("news", { perPage: 100 }) - up to 100 posts from "news" (single call)
+// fetchPosts("news", { page: 2, perPage: 12 }) - page 2 with 12 per page
 
-import { PostProps } from "../_types/post-types";
+import { PostProps } from "@/_types/post-types";
 
 const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL;
 
+type FetchPostsOptions = {
+  page?: number;
+  perPage?: number;
+};
+
+export function fetchPosts(
+  categorySlug?: string,
+  page?: number
+): Promise<PostProps[]>;
+export function fetchPosts(
+  categorySlug?: string,
+  options?: FetchPostsOptions
+): Promise<PostProps[]>;
 export async function fetchPosts(
   categorySlug?: string,
-  page: number = 1
+  pageOrOptions: number | FetchPostsOptions = 1
 ): Promise<PostProps[]> {
   try {
     if (!baseUrl) {
@@ -18,23 +33,50 @@ export async function fetchPosts(
         "NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL environment variable is not set"
       );
     }
-    let url = `${baseUrl}posts?per_page=9&page=${page}`;
+
+    const options: FetchPostsOptions =
+      typeof pageOrOptions === "number"
+        ? { page: pageOrOptions }
+        : pageOrOptions ?? {};
+
+    const page = options.page ?? 1;
+    const perPage = Math.max(1, Math.min(100, options.perPage ?? 9));
+
+    let url = `${baseUrl}posts?per_page=${perPage}&page=${page}`;
 
     if (categorySlug) {
-      const categoriesResponse = await fetch(
-        `${baseUrl}categories?slug=${categorySlug}`,
-        { next: { revalidate: 300 } }
-      );
-
-      if (categoriesResponse.ok) {
-        const categories = await categoriesResponse.json();
-        if (categories.length > 0) {
-          url += `&categories=${categories[0].id}`;
-        } else {
-          console.log(`No categories found for slug: ${categorySlug}`);
+      const categoryIds: number[] = [];
+      
+      if (categorySlug === "news") {
+        const newsAndUncategorizedResponse = await fetch(
+          `${baseUrl}categories?slug=${categorySlug},uncategorized`,
+          { next: { revalidate: 300 } }
+        );
+        
+        if (newsAndUncategorizedResponse.ok) {
+          const categories = await newsAndUncategorizedResponse.json();
+          categoryIds.push(...categories.map((cat: any) => cat.id));
         }
       } else {
-        console.error(`Categories API error: ${categoriesResponse.status}`);
+        const categoriesResponse = await fetch(
+          `${baseUrl}categories?slug=${categorySlug}`,
+          { next: { revalidate: 300 } }
+        );
+
+        if (categoriesResponse.ok) {
+          const categories = await categoriesResponse.json();
+          if (categories.length > 0) {
+            categoryIds.push(categories[0].id);
+          } else {
+            console.log(`No categories found for slug: ${categorySlug}`);
+          }
+        } else {
+          console.error(`Categories API error: ${categoriesResponse.status}`);
+        }
+      }
+      
+      if (categoryIds.length > 0) {
+        url += `&categories=${categoryIds.join(',')}`;
       }
     }
 

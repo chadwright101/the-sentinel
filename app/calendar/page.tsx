@@ -1,4 +1,3 @@
-import AdSpaceBillboard from "@/_components/ad-spaces/ad-space-billboard";
 import { EventData } from "@/_types/calendar-types";
 import classNames from "classnames";
 import { fetchAdData } from "@/_components/fetch-ad-data";
