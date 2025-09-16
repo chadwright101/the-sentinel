@@ -36,7 +36,7 @@ export default function CategoryGrid({
               href={`/${categorySlug}/${post.slug}`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="grid gap-4 mb-2"
+              className="grid gap-5 mb-2"
             >
               <PostGridImage
                 post={post as any}
@@ -44,7 +44,7 @@ export default function CategoryGrid({
                 hoveredIndex={hoveredIndex}
                 cssClasses="aspect-video"
               />
-              <div className="grid gap-4">
+              <div className="grid gap-5">
                 <PostGridDate date={post.date} />
                 <PostGridTitle
                   post={post as any}

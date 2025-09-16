@@ -35,10 +35,10 @@ const LatestArticles = ({ categorySlug, posts }: LatestArticlesProps) => {
       </h4>
       <div className="flex flex-col tablet:flex-row desktop:flex-col gap-10">
         {latestPosts.map((post, index) => (
-          <article key={index} className="grid gap-3">
+          <article key={index} className="grid gap-2">
             <Link
               href={`/${categorySlug}/${post.slug}`}
-              className="grid grid-cols-[1fr_2fr] gap-4 mb-2 tablet:grid-cols-1"
+              className="grid grid-cols-[1fr_2fr] gap-5 mb-2 tablet:grid-cols-1"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >

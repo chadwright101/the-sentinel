@@ -163,7 +163,7 @@ const SlideOutNavComponent = ({
                           <Link
                             href={child.url}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-[10px] mobile-menu-subheading text-teal font-inter font-medium uppercase -translate-y-[0.75px] place-self-start p-2 -m-2 desktop:p-0 desktop:m-0 desktop:hover:text-dark-brown"
+                            className="flex items-center gap-10 mobile-menu-subheading text-teal font-inter font-medium uppercase -translate-y-[0.75px] place-self-start p-2 -m-2 desktop:p-0 desktop:m-0 desktop:hover:text-dark-brown"
                           >
                             <Image
                               src="/icons/chevron-teal.svg"

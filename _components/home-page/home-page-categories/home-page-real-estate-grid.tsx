@@ -14,7 +14,7 @@ const HomePageRealEstateGrid = ({
   adData,
 }: PostGridProps) => {
   return (
-    <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
+    <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:gap-10 desktop:grid-cols-3">
       {posts.map((post, index) => {
         const isFirstPost = index === 0;
 
@@ -22,14 +22,14 @@ const HomePageRealEstateGrid = ({
           <article
             key={post.id}
             className={classNames("desktop:grid", {
-              "desktop:row-span-2 desktop:gap-[50px]": isFirstPost,
+              "desktop:row-span-2 desktop:gap-10": isFirstPost,
               "desktop:order-last": !isFirstPost,
               "grid-cols-3 desktop:col-span-3": isFirstPost,
             })}
           >
             <Link
               href={`/real-estate/${post.slug}`}
-              className={classNames("grid gap-4 mb-2", {
+              className={classNames("grid gap-5 mb-2", {
                 "grid-cols-[1fr_1.75fr] tablet:grid-cols-1": !isFirstPost,
                 "desktop:h-full": isFirstPost,
                 "col-span-2": isFirstPost,
@@ -64,7 +64,7 @@ const HomePageRealEstateGrid = ({
                 })}
               />
             </Link>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-5">
               <PostGridTitle
                 post={post}
                 index={index}

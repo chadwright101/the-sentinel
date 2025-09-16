@@ -39,11 +39,11 @@ export function HeaderComponent({
           })}
         />
       </button>
-      <div className="flex flex-col items-center gap-6 justify-center desktop:justify-stretch">
+      <div className="flex flex-col items-center gap-7 justify-center desktop:justify-stretch">
         <Link
           href="/"
           className={classNames(
-            "flex gap-1 justify-center items-center desktop:hover:opacity-90 ease-in-out duration-300 delay-[50ms]",
+            "flex gap-2 justify-center items-center desktop:hover:opacity-90 ease-in-out duration-300 delay-[50ms]",
             {
               "desktop:-translate-y-[250px] desktop:h-[150px]": isScrolled,
             }

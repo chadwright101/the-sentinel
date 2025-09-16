@@ -14,7 +14,7 @@ const HomePageLatestNewsGrid = ({
   adData,
 }: PostGridProps) => {
   return (
-    <div className="grid grid-cols-1 gap-5 items-start tablet:grid-cols-2 desktop:gap-[50px] desktop:grid-cols-3">
+    <div className="grid grid-cols-1 gap-5 items-start tablet:grid-cols-2 desktop:gap-10 desktop:grid-cols-3">
       {posts.map((post, index) => {
         const isFirstPost = index === 0;
 
@@ -27,7 +27,7 @@ const HomePageLatestNewsGrid = ({
           >
             <Link
               href={`/latest-news/${post.slug}`}
-              className={classNames("grid gap-4 mb-2", {
+              className={classNames("grid gap-5 mb-2", {
                 "grid-cols-[1fr_1.75fr] tablet:grid-cols-1": !isFirstPost,
                 "desktop:h-full": isFirstPost,
               })}

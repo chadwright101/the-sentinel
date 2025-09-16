@@ -33,7 +33,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           href={adData.link_banner || "#"}
           target="_blank"
           referrerPolicy="no-referrer"
-          className="w-full mx-5 max-w-[900px] min-[940px]:mx-0 mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px] desktop:hover:opacity-85"
+          className="w-full mx-5 max-w-[900px] min-[940px]:mx-0 mt-7 flex justify-center desktop:mx-0 desktop:mt-10 desktop:hover:opacity-85"
         >
           <Image
             src={adData.image_banner}
@@ -45,7 +45,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           />
         </Link>
       ) : (
-        <div className="w-full max-w-[900px] mt-7 flex justify-center desktop:mx-0 desktop:mt-[50px]">
+        <div className="w-full max-w-[900px] mt-7 flex justify-center desktop:mx-0 desktop:mt-10">
           <AdFallback cssClasses="max-w-[900px] w-full aspect-[6/1]" />
         </div>
       )}

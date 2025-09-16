@@ -7,9 +7,9 @@ import navData from "@/_data/nav-data.json";
 
 const FooterComponent = () => {
   return (
-    <footer className="bg-teal relative z-20 mt-10 desktop:mt-[100px]">
-      <div className="max-w-[1100px] mx-auto px-5 py-10 desktop:grid grid-cols-[1fr_551] desktop:pt-[100px] desktop:pb-[90px] desktop:px-10">
-        <div className="flex flex-col gap-[30px] desktop:gap-10">
+    <footer className="bg-teal relative z-20 mt-10 desktop:mt-10">
+      <div className="max-w-[1100px] mx-auto px-5 py-10 desktop:grid grid-cols-[1fr_551] desktop:pt-10 desktop:pb-10 desktop:px-10">
+        <div className="flex flex-col gap-10 desktop:gap-10">
           <Image
             src="/logo/the-sentinel-logo.svg"
             alt="The Sentinel logo"
@@ -28,7 +28,7 @@ const FooterComponent = () => {
                 Toogoolawah Esk, Lowood, Fernvale
               </h5>
             </div>
-            <div className="flex flex-col gap-[30px] place-items-start desktop:gap-5">
+            <div className="flex flex-col gap-10 place-items-start desktop:gap-5">
               <p className="font-bold font-inter text-white">Follow us on:</p>
               <Link
                 href="https://www.facebook.com/TheSentinelNews"
@@ -55,28 +55,28 @@ const FooterComponent = () => {
             );
 
             return (
-              <div key={columnIndex} className="flex flex-col gap-[30px]">
+              <div key={columnIndex} className="flex flex-col gap-10">
                 {columnItems.map((item, index) => (
-                  <div key={index} className="flex flex-col gap-[30px]">
+                  <div key={index} className="flex flex-col gap-10">
                     {item.url ? (
                       <Link
                         href={item.url}
-                        className="text-white font-inter font-medium p-1 -m-1 uppercase desktop:hover:text-light-brown desktop:p-0 desktop:m-0"
+                        className="text-white font-inter font-medium p-2 -m-2 uppercase desktop:hover:text-light-brown desktop:p-0 desktop:m-0"
                       >
                         {item.title}
                       </Link>
                     ) : (
-                      <span className="text-white font-bold p-1 -m-1 uppercase desktop:p-0 desktop:m-0">
+                      <span className="text-white font-bold p-2 -m-2 uppercase desktop:p-0 desktop:m-0">
                         {item.title}:
                       </span>
                     )}
                     {item.children && (
-                      <div className="flex flex-col gap-[30px]">
+                      <div className="flex flex-col gap-10">
                         {item.children.map((child, childIndex) => (
                           <Link
                             key={childIndex}
                             href={child.url}
-                            className="text-white flex gap-2 items-center font-inter font-medium p-1 -m-1 uppercase desktop:hover:text-light-brown desktop:p-0 desktop:m-0"
+                            className="text-white flex gap-2 items-center font-inter font-medium p-2 -m-2 uppercase desktop:hover:text-light-brown desktop:p-0 desktop:m-0"
                           >
                             <Image
                               src="/icons/chevron-white.svg"
@@ -95,13 +95,13 @@ const FooterComponent = () => {
             );
           })}
         </nav>
-        <div className="flex justify-between items-center mt-[30px] desktop:mt-10 desktop:col-span-2">
+        <div className="flex justify-between items-center mt-10 desktop:mt-10 desktop:col-span-2">
           <p className="text-white font-inter uppercase text-12px font-medium desktop:text-16px">
             © {new Date().getFullYear()} The Sentinel News |{" "}
             <Link
               href="#"
               target="_blank"
-              className="text-white uppercase font-inter text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
+              className="text-white uppercase font-inter text-12px font-medium p-2 -m-2 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Standards & Complaints
             </Link>{" "}
@@ -109,7 +109,7 @@ const FooterComponent = () => {
             <Link
               href="#"
               target="_blank"
-              className="text-white uppercase font-inter text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
+              className="text-white uppercase font-inter text-12px font-medium p-2 -m-2 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Terms
             </Link>{" "}
@@ -117,7 +117,7 @@ const FooterComponent = () => {
             <Link
               href="#"
               target="_blank"
-              className="text-white uppercase font-inter text-12px font-medium p-1 -m-1 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
+              className="text-white uppercase font-inter text-12px font-medium p-2 -m-2 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Privacy Policy
             </Link>

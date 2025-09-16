@@ -13,7 +13,7 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
 
   return (
     <nav className="relative">
-      <ul className="flex gap-[30px] items-center">
+      <ul className="flex gap-10 items-center">
         {navData.map(({ title, url, children }, index) => {
           const hasChildren = children && children.length > 0;
           return (
@@ -59,7 +59,7 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
                     }
                   )}
                 >
-                  <ul className="px-3 py-4 grid gap-2.5">
+                  <ul className="px-3 py-4 grid gap-2">
                     {children!.map((child, childIndex) => (
                       <li key={childIndex}>
                         <Link

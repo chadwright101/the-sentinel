@@ -20,19 +20,19 @@ export default function PaginationComponent({
     const pages = [];
     const startPage = Math.max(1, currentPage - 1);
     let endPage = currentPage + 1;
-    
+
     // If we have more posts, we know there's at least one more page
     if (hasMorePosts) {
       endPage = Math.max(endPage, currentPage + 1);
     }
-    
+
     // Always show at least 3 pages when possible
     const minEndPage = Math.max(startPage + 2, endPage);
-    
+
     for (let i = startPage; i <= minEndPage; i++) {
       pages.push(i);
     }
-    
+
     return pages;
   };
 
@@ -44,7 +44,7 @@ export default function PaginationComponent({
 
   return (
     <nav
-      className="flex justify-center items-center space-x-2 mt-12"
+      className="flex justify-center items-center space-x-2 mt-10"
       aria-label="Pagination Navigation"
     >
       {!isFirstPage && (

@@ -118,7 +118,7 @@ export default async function PostPage({ params }: PostPageProps) {
           cssClasses="mt-5 desktop:mt-10"
         />
         <NewsletterSubscriptionComponent />
-        <div className="flex flex-col gap-10 mt-5 tablet:mt-10 desktop:gap-[50px] desktop:mt-[50px] desktop:flex-row">
+        <div className="flex flex-col gap-10 mt-5 tablet:mt-10 desktop:gap-10 desktop:mt-10 desktop:flex-row">
           <LatestArticles categorySlug="sport" posts={sportPosts} />
           <LatestArticles
             categorySlug="entertainment"

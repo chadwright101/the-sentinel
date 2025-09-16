@@ -19,7 +19,7 @@ const AdFallback = ({ cssClasses }: AdFallbackProps) => {
           <p className="font-inter font-bold text-black text-14px tablet:text-16px desktop:text-24px leading-tight">
             Advertise here!
           </p>
-          <p className="font-inter font-bold text-black text-12px tablet:text-14px desktop:text-16px mt-1">
+          <p className="font-inter font-bold text-black text-12px tablet:text-14px desktop:text-16px mt-2">
             Contact us today
           </p>
         </div>
