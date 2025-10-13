@@ -22,13 +22,16 @@ export async function fetchPostsWithPagination(
 
     if (categorySlug) {
       const categoryIds: number[] = [];
-      
-      if (categorySlug === "news") {
+
+      if (categorySlug === "latest-news") {
+        // latest-news shows all posts, no category filtering
+        // Skip adding any categories to the URL
+      } else if (categorySlug === "news") {
         const newsAndUncategorizedResponse = await fetch(
           `${baseUrl}categories?slug=${categorySlug},uncategorized`,
           { next: { revalidate: 300 } }
         );
-        
+
         if (newsAndUncategorizedResponse.ok) {
           const categories = await newsAndUncategorizedResponse.json();
           categoryIds.push(...categories.map((cat: any) => cat.id));
@@ -50,7 +53,7 @@ export async function fetchPostsWithPagination(
           console.error(`Categories API error: ${categoriesResponse.status}`);
         }
       }
-      
+
       if (categoryIds.length > 0) {
         url += `&categories=${categoryIds.join(',')}`;
       }

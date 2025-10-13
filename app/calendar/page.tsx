@@ -1,13 +1,11 @@
 import { EventData } from "@/_types/calendar-types";
 import classNames from "classnames";
-import { fetchAdData } from "@/_components/fetch-ad-data";
 import Link from "next/link";
 import {
   extractSlugFromWordPressUrl,
   getCategorySlugFromPost,
 } from "@/_lib/utils/get-category-from-post-slug";
 import Image from "next/image";
-import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
 
 async function fetchEvents(): Promise<EventData[]> {
   const response = await fetch(
@@ -41,10 +39,6 @@ function formatDate(dateString: string): string {
   });
 }
 
-/**
- * Convert a DD/MM/YYYY string to an ISO date string (YYYY-MM-DD)
- * Suitable for the `dateTime` attribute on <time>.
- */
 function toIsoDate(dateString: string): string {
   const [day, month, year] = dateString.split("/");
   const yyyy = year.padStart(4, "0");
@@ -53,10 +47,6 @@ function toIsoDate(dateString: string): string {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-/**
- * Combine date and time (HH:MM) into an ISO-like datetime string (YYYY-MM-DDTHH:MM).
- * Note: includes no timezone offset; if you have offsets, prefer including them.
- */
 function toIsoDateTime(dateString: string, timeString: string): string {
   return `${toIsoDate(dateString)}T${timeString}`;
 }
@@ -103,11 +93,12 @@ async function EventName({ event }: { event: EventData }) {
 
 export default async function CalendarPage() {
   const events = await fetchEvents();
-  const adData = await fetchAdData();
+  /* const adData = await fetchAdData(); */
 
   return (
     <main className="mx-5 my-10 desktop:mx-10">
-      <div className="max-w-[1100px] min-h-[500px] mx-auto space-y-10 desktop:grid grid-cols-[1fr_250px] gap-x-10">
+      {/* <div className="max-w-[1100px] min-h-[500px] mx-auto space-y-10 desktop:grid grid-cols-[1fr_250px] gap-x-10"> */}
+      <div className="max-w-[1100px] min-h-[500px] mx-auto space-y-10">
         <div className="space-y-10">
           <h2 className="text-36px font-inter font-bold mb-10">Calendar</h2>
           {events.length === 0 ? (
@@ -169,7 +160,7 @@ export default async function CalendarPage() {
             </ul>
           )}
         </div>
-        <div className="hidden desktop:flex flex-col gap-10">
+        {/* <div className="hidden desktop:flex flex-col gap-10">
           <AdSpaceSquare
             src={
               adData?.image_square_primary ||
@@ -186,7 +177,7 @@ export default async function CalendarPage() {
             alt={adData?.company_name_square_secondary || "Advertisement"}
             url={adData?.link_square_secondary || "#"}
           />
-        </div>
+        </div> */}
       </div>
     </main>
   );

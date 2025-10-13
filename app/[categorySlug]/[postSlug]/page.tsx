@@ -5,8 +5,6 @@ import Image from "next/image";
 import PostContentWithAd from "@/_components/post-page/post-content-with-ad";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
 import { fetchAdData } from "@/_components/fetch-ad-data";
-import AdSpaceTower from "@/_components/ad-spaces/ad-space-tower";
-import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
 import { fetchPosts } from "@/_components/fetch-posts";
 import RelatedPostsComponent from "@/_components/post-page/related-posts-component";
 import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
@@ -66,7 +64,8 @@ export default async function PostPage({ params }: PostPageProps) {
             day: "numeric",
           })}
         </time>
-        <div className="desktop:grid grid-cols-[1fr_250px] gap-7">
+        {/*  <div className="desktop:grid grid-cols-[1fr_250px] gap-7"> */}
+        <div className="desktop:grid gap-7">
           <div className="grid gap-5">
             <div className="w-full">
               <Image
@@ -84,14 +83,14 @@ export default async function PostPage({ params }: PostPageProps) {
             />
           </div>
           <div className="hidden desktop:flex flex-col gap-10">
-            <AdSpaceTower
+            {/* <AdSpaceTower
               src={
                 adData?.image_tower || "/images/placeholders/ads/tall-ad.png"
               }
               alt={adData?.company_name_tower || "Advertisement"}
               url={adData?.link_tower || "#"}
-            />
-            <div className="sticky top-[180px] flex flex-col gap-10">
+            /> */}
+            {/*  <div className="sticky top-[180px] flex flex-col gap-10">
               <AdSpaceSquare
                 src={
                   adData?.image_square_primary ||
@@ -108,7 +107,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 alt={adData?.company_name_square_secondary || "Advertisement"}
                 url={adData?.link_square_secondary || "#"}
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <RelatedPostsComponent

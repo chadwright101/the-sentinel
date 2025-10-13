@@ -5,14 +5,15 @@ import { fetchPosts } from "../../fetch-posts";
 import { fetchAdData } from "../../fetch-ad-data";
 import { PostProps } from "@/_types/post-types";
 import { AdData } from "@/_types/ad-types";
-import HomePageLatestNewsGrid from "./home-page-latest-news-grid";
-import HomePageGeneralNewsGrid from "./home-page-general-news-grid";
-import HomePageSportGrid from "./home-page-sport-grid";
-import HomePageEntertainmentGrid from "./home-page-entertainment-grid";
-import HomePageLifestyleGrid from "./home-page-lifestyle-grid";
-import HomePageRealEstateGrid from "./home-page-real-estate-grid";
+import HomePageLatestNewsGrid from "./with-ads/home-page-latest-news-grid";
+import HomePageGeneralNewsGrid from "./with-ads/home-page-general-news-grid";
+import HomePageSportGrid from "./with-ads/home-page-sport-grid";
+import HomePageEntertainmentGrid from "./with-ads/home-page-entertainment-grid";
+import HomePageLifestyleGrid from "./with-ads/home-page-lifestyle-grid";
+import HomePageRealEstateGrid from "./with-ads/home-page-real-estate-grid";
 import LoadingAnimation from "@/_lib/utils/loading-animation";
 import Link from "next/link";
+import HomePageNewsGridNoAds from "./home-page-news-grid-no-ads";
 
 interface HomePageCategoryLatestProps {
   categorySlug?: string;
@@ -33,7 +34,7 @@ const HomePageCategoryComponent = ({
         fetchPosts(categorySlug),
         fetchAdData(),
       ]);
-      setPosts(fetchedPosts.slice(0, 4));
+      setPosts(fetchedPosts.slice(0, 3));
       setAdData(fetchedAdData);
       setLoading(false);
     };
@@ -48,7 +49,7 @@ const HomePageCategoryComponent = ({
       .join(" ");
   };
 
-  if (!loading && posts.length < 4) {
+  if (!loading && posts.length < 3) {
     return null;
   }
 
@@ -70,6 +71,54 @@ const HomePageCategoryComponent = ({
       ) : (
         <>
           {!categorySlug && (
+            <HomePageNewsGridNoAds
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+              adData={adData}
+            />
+          )}
+          {categorySlug === "news" && (
+            <HomePageNewsGridNoAds
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+              adData={adData}
+            />
+          )}
+          {categorySlug === "sport" && (
+            <HomePageNewsGridNoAds
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+              adData={adData}
+            />
+          )}
+          {categorySlug === "entertainment" && (
+            <HomePageNewsGridNoAds
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+              adData={adData}
+            />
+          )}
+          {categorySlug === "lifestyle" && (
+            <HomePageNewsGridNoAds
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+              adData={adData}
+            />
+          )}
+          {categorySlug === "real-estate" && (
+            <HomePageNewsGridNoAds
+              posts={posts}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+              adData={adData}
+            />
+          )}
+          {/* {!categorySlug && (
             <HomePageLatestNewsGrid
               posts={posts}
               hoveredIndex={hoveredIndex}
@@ -116,7 +165,7 @@ const HomePageCategoryComponent = ({
               setHoveredIndex={setHoveredIndex}
               adData={adData}
             />
-          )}
+          )} */}
         </>
       )}
     </main>

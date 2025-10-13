@@ -3,11 +3,12 @@ import classNames from "classnames";
 import PostGridProps from "@/_types/post-grid-props";
 import PostGridImage from "@/_lib/utils/posts/post-grid-image";
 import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
-import GridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
-import ReadMoreLink from "../../ui/buttons/read-more-link";
-import AdSpaceSquare from "../../ad-spaces/ad-space-square";
+import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
+import ReadMoreLink from "../../../ui/buttons/read-more-link";
+import AdSpaceTower from "../../../ad-spaces/ad-space-tower";
+import AdSpaceSquare from "../../../ad-spaces/ad-space-square";
 
-const HomePageLifestyleGrid = ({
+const HomePageGeneralNewsGrid = ({
   posts,
   hoveredIndex,
   setHoveredIndex,
@@ -28,7 +29,7 @@ const HomePageLifestyleGrid = ({
             })}
           >
             <Link
-              href={`/lifestyle/${post.slug}`}
+              href={`/news/${post.slug}`}
               className={classNames("grid gap-5 mb-2", {
                 "grid-cols-[1fr_1.75fr] tablet:grid-cols-1": !isFirstPost,
                 "desktop:h-full": isFirstPost,
@@ -43,7 +44,7 @@ const HomePageLifestyleGrid = ({
                 cssClasses={classNames({
                   "aspect-[5/3]": isFirstPost,
                   "aspect-[1.2/1] tablet:aspect-[5/3]": !isFirstPost,
-                  "desktop:aspect-[3/3.25]": isFirstPost,
+                  "desktop:h-full desktop:min-h-[600px]": isFirstPost,
                 })}
               />
               <PostGridTitle
@@ -55,7 +56,7 @@ const HomePageLifestyleGrid = ({
                   "desktop:hidden": isFirstPost,
                 })}
               />
-              <GridExcerpt
+              <PostGridExcerpt
                 post={post}
                 maxLength={150}
                 cssClasses={classNames({
@@ -73,16 +74,16 @@ const HomePageLifestyleGrid = ({
                   "desktop:block": isFirstPost,
                 })}
               />
-              <GridExcerpt
+              <PostGridExcerpt
                 post={post}
-                maxLength={300}
+                maxLength={500}
                 cssClasses={classNames("hidden", {
                   "desktop:block": isFirstPost,
                 })}
               />
               <ReadMoreLink
                 post={post}
-                categorySlug="lifestyle"
+                categorySlug="news"
                 className={classNames({
                   hidden: !isFirstPost,
                   "inline-block tablet:hidden desktop:block": isFirstPost,
@@ -92,6 +93,12 @@ const HomePageLifestyleGrid = ({
           </article>
         );
       })}
+      <AdSpaceTower
+        src={adData?.image_tower || "/images/placeholders/ads/tall-ad.png"}
+        alt={adData?.company_name_tower || "Advertisement"}
+        url={adData?.link_tower || "#"}
+        cssClasses="hidden desktop:block row-span-2"
+      />
       {/* Square Primary */}
       <AdSpaceSquare
         src={
@@ -100,10 +107,10 @@ const HomePageLifestyleGrid = ({
         }
         alt={adData?.company_name_square_primary || "Advertisement"}
         url={adData?.link_square_primary || "#"}
-        cssClasses="hidden desktop:block row-span-2"
+        cssClasses="my-5 w-full max-w-[500px] justify-self-center tablet:col-span-2 desktop:hidden"
       />
     </div>
   );
 };
 
-export default HomePageLifestyleGrid;
+export default HomePageGeneralNewsGrid;

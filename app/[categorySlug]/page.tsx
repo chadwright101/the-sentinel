@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { fetchPostsWithPagination } from "@/_components/fetch-posts-with-pagination";
 import { fetchPosts } from "@/_components/fetch-posts";
 import { getCategoryMapping } from "@/_lib/utils/category-mapping";
-import PaginationComponent from "@/_components/pagination/pagination-component";
+import PaginationComponent from "@/_lib/utils/pagination-component";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
 import CategoryGrid from "@/_components/category-page/category-grid";
 

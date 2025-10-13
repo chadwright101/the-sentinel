@@ -4,7 +4,7 @@ import PostGridProps from "@/_types/post-grid-props";
 import PostGridImage from "@/_lib/utils/posts/post-grid-image";
 import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
 import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
-import ReadMoreLink from "../../ui/buttons/read-more-link";
+import ReadMoreLink from "../../../ui/buttons/read-more-link";
 import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
 
 const HomePageEntertainmentGrid = ({

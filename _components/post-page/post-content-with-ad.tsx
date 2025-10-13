@@ -74,7 +74,7 @@ export default function PostContentWithAd({
   [&_figure:has(figure)]:desktop:grid-cols-3
   [&_figure:has(figure)]:gap-5"
       />
-      <div ref={wideAdRef} className="my-2">
+      {/* <div ref={wideAdRef} className="my-2">
         <AdSpaceBillboard
           src={
             adData?.image_billboard || "/images/placeholders/ads/wide-ad.png"
@@ -82,8 +82,8 @@ export default function PostContentWithAd({
           alt={adData?.company_name_billboard || "Advertisement"}
           url={adData?.link_billboard || "#"}
         />
-      </div>
-      <div
+      </div> */}
+      {/* <div
         ref={squareAdRef}
         className="flex w-full justify-center my-7 desktop:hidden"
       >
@@ -96,7 +96,7 @@ export default function PostContentWithAd({
           url={adData?.link_square_primary || "#"}
           cssClasses="w-full"
         />
-      </div>
+      </div> */}
     </div>
   );
 }

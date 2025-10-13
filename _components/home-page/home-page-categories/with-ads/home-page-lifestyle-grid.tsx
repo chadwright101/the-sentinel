@@ -3,11 +3,11 @@ import classNames from "classnames";
 import PostGridProps from "@/_types/post-grid-props";
 import PostGridImage from "@/_lib/utils/posts/post-grid-image";
 import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
-import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
-import ReadMoreLink from "../../ui/buttons/read-more-link";
-import AdSpaceBillboard from "../../ad-spaces/ad-space-billboard";
+import GridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
+import ReadMoreLink from "../../../ui/buttons/read-more-link";
+import AdSpaceSquare from "../../../ad-spaces/ad-space-square";
 
-const HomePageRealEstateGrid = ({
+const HomePageLifestyleGrid = ({
   posts,
   hoveredIndex,
   setHoveredIndex,
@@ -24,15 +24,14 @@ const HomePageRealEstateGrid = ({
             className={classNames("desktop:grid", {
               "desktop:row-span-2 desktop:gap-10": isFirstPost,
               "desktop:order-last": !isFirstPost,
-              "grid-cols-3 desktop:col-span-3": isFirstPost,
+              "grid-cols-2 desktop:col-span-2": isFirstPost,
             })}
           >
             <Link
-              href={`/real-estate/${post.slug}`}
+              href={`/lifestyle/${post.slug}`}
               className={classNames("grid gap-5 mb-2", {
                 "grid-cols-[1fr_1.75fr] tablet:grid-cols-1": !isFirstPost,
                 "desktop:h-full": isFirstPost,
-                "col-span-2": isFirstPost,
               })}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -44,6 +43,7 @@ const HomePageRealEstateGrid = ({
                 cssClasses={classNames({
                   "aspect-[5/3]": isFirstPost,
                   "aspect-[1.2/1] tablet:aspect-[5/3]": !isFirstPost,
+                  "desktop:aspect-[3/3.25]": isFirstPost,
                 })}
               />
               <PostGridTitle
@@ -55,7 +55,7 @@ const HomePageRealEstateGrid = ({
                   "desktop:hidden": isFirstPost,
                 })}
               />
-              <PostGridExcerpt
+              <GridExcerpt
                 post={post}
                 maxLength={150}
                 cssClasses={classNames({
@@ -73,7 +73,7 @@ const HomePageRealEstateGrid = ({
                   "desktop:block": isFirstPost,
                 })}
               />
-              <PostGridExcerpt
+              <GridExcerpt
                 post={post}
                 maxLength={300}
                 cssClasses={classNames("hidden", {
@@ -82,7 +82,7 @@ const HomePageRealEstateGrid = ({
               />
               <ReadMoreLink
                 post={post}
-                categorySlug="real-estate"
+                categorySlug="lifestyle"
                 className={classNames({
                   hidden: !isFirstPost,
                   "inline-block tablet:hidden desktop:block": isFirstPost,
@@ -92,14 +92,18 @@ const HomePageRealEstateGrid = ({
           </article>
         );
       })}
-      <AdSpaceBillboard
-        src={adData?.image_billboard || "/images/placeholders/ads/wide-ad.png"}
-        alt={adData?.company_name_billboard || "Advertisement"}
-        url={adData?.link_billboard || "#"}
-        cssClasses="hidden desktop:block col-span-3 place-self-center"
+      {/* Square Primary */}
+      <AdSpaceSquare
+        src={
+          adData?.image_square_primary ||
+          "/images/placeholders/ads/square-ad.png"
+        }
+        alt={adData?.company_name_square_primary || "Advertisement"}
+        url={adData?.link_square_primary || "#"}
+        cssClasses="hidden desktop:block row-span-2"
       />
     </div>
   );
 };
 
-export default HomePageRealEstateGrid;
+export default HomePageLifestyleGrid;

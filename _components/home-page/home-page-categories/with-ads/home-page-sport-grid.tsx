@@ -4,9 +4,9 @@ import PostGridProps from "@/_types/post-grid-props";
 import PostGridImage from "@/_lib/utils/posts/post-grid-image";
 import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
 import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
-import ReadMoreLink from "../../ui/buttons/read-more-link";
-import AdSpaceSquare from "../../ad-spaces/ad-space-square";
-import AdSpaceBillboard from "../../ad-spaces/ad-space-billboard";
+import ReadMoreLink from "../../../ui/buttons/read-more-link";
+import AdSpaceSquare from "../../../ad-spaces/ad-space-square";
+import AdSpaceBillboard from "../../../ad-spaces/ad-space-billboard";
 
 const HomePageSportGrid = ({
   posts,
