@@ -5,6 +5,7 @@ import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import PaginationComponent from "@/_lib/utils/pagination-component";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
 import CategoryGrid from "@/_components/category-page/category-grid";
+import PageWrapper from "@/_lib/utils/page-wrapper";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -46,8 +47,8 @@ export default async function CategoryPage({
 
   if (posts.length === 0 && currentPage === 1) {
     return (
-      <main className="mx-5 my-10 desktop:mx-10">
-        <div className="max-w-[1100px] mx-auto grid gap-5">
+      <PageWrapper cssClasses="my-10">
+        <main className="grid gap-5">
           <div>
             <BreadcrumbComponent
               items={[
@@ -66,14 +67,14 @@ export default async function CategoryPage({
               {categoryInfo.title.toLowerCase()} news.
             </p>
           </div>
-        </div>
-      </main>
+        </main>
+      </PageWrapper>
     );
   }
 
   return (
-    <main className="mx-5 my-10 desktop:mx-10">
-      <div className="max-w-[1100px] mx-auto grid gap-5">
+    <PageWrapper cssClasses="my-10">
+      <main className="grid gap-5">
         <div>
           <BreadcrumbComponent
             items={[
@@ -93,7 +94,7 @@ export default async function CategoryPage({
           hasMorePosts={hasMore}
           totalPages={totalPages}
         />
-      </div>
-    </main>
+      </main>
+    </PageWrapper>
   );
 }

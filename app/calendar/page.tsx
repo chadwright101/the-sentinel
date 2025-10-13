@@ -6,6 +6,7 @@ import {
   getCategorySlugFromPost,
 } from "@/_lib/utils/get-category-from-post-slug";
 import Image from "next/image";
+import PageWrapper from "@/_lib/utils/page-wrapper";
 
 async function fetchEvents(): Promise<EventData[]> {
   const response = await fetch(
@@ -96,71 +97,72 @@ export default async function CalendarPage() {
   /* const adData = await fetchAdData(); */
 
   return (
-    <main className="mx-5 my-10 desktop:mx-10">
-      {/* <div className="max-w-[1100px] min-h-[500px] mx-auto space-y-10 desktop:grid grid-cols-[1fr_250px] gap-x-10"> */}
-      <div className="max-w-[1100px] min-h-[500px] mx-auto space-y-10">
-        <div className="space-y-10">
-          <h2 className="text-36px font-inter font-bold mb-10">Calendar</h2>
-          {events.length === 0 ? (
-            <div className="w-full h-full min-h-[300px] flex items-center justify-center">
-              <p className="text-18px">No upcoming events at this time.</p>
-            </div>
-          ) : (
-            <ul className="space-y-5">
-              {events.map((event, index) => (
-                <li
-                  key={index}
-                  className={classNames(
-                    "flex flex-col phone:flex-row phone:justify-between phone:items-center gap-5",
-                    {
-                      "border-b border-black/25 pb-5":
-                        index !== events.length - 1,
-                    }
-                  )}
-                >
-                  <div className="space-y-2">
-                    <EventName event={event} />
-                    <p className="text-[17px] font-inter">
-                      {event.acf.event_venue}
-                    </p>
-                  </div>
-                  <div className="space-y-2">
-                    <p>
-                      <time
-                        className="text-16px font-inter"
-                        dateTime={toIsoDate(event.acf.event_date)}
-                      >
-                        {formatDate(event.acf.event_date)}
-                      </time>
-                    </p>
-                    <p>
-                      <time
-                        className="text-16px font-inter"
-                        dateTime={toIsoDateTime(
-                          event.acf.event_date,
-                          event.acf.event_start_time
-                        )}
-                      >
-                        {formatTime(event.acf.event_start_time)}
-                      </time>
-                      {" - "}
-                      <time
-                        className="text-16px font-inter"
-                        dateTime={toIsoDateTime(
-                          event.acf.event_date,
-                          event.acf.event_end_time
-                        )}
-                      >
-                        {formatTime(event.acf.event_end_time)}
-                      </time>
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        {/* <div className="hidden desktop:flex flex-col gap-10">
+    <PageWrapper cssClasses="my-10">
+      <main>
+        {/* <div className="min-h-[500px] space-y-10 desktop:grid grid-cols-[1fr_250px] gap-x-10"> */}
+        <div className="min-h-[500px] space-y-10">
+          <div className="space-y-10">
+            <h2 className="text-36px font-inter font-bold mb-10">Calendar</h2>
+            {events.length === 0 ? (
+              <div className="w-full h-full min-h-[300px] flex items-center justify-center">
+                <p className="text-18px">No upcoming events at this time.</p>
+              </div>
+            ) : (
+              <ul className="space-y-5">
+                {events.map((event, index) => (
+                  <li
+                    key={index}
+                    className={classNames(
+                      "flex flex-col phone:flex-row phone:justify-between phone:items-center gap-5",
+                      {
+                        "border-b border-black/25 pb-5":
+                          index !== events.length - 1,
+                      }
+                    )}
+                  >
+                    <div className="space-y-2">
+                      <EventName event={event} />
+                      <p className="text-[17px] font-inter">
+                        {event.acf.event_venue}
+                      </p>
+                    </div>
+                    <div className="space-y-2">
+                      <p>
+                        <time
+                          className="text-16px font-inter"
+                          dateTime={toIsoDate(event.acf.event_date)}
+                        >
+                          {formatDate(event.acf.event_date)}
+                        </time>
+                      </p>
+                      <p>
+                        <time
+                          className="text-16px font-inter"
+                          dateTime={toIsoDateTime(
+                            event.acf.event_date,
+                            event.acf.event_start_time
+                          )}
+                        >
+                          {formatTime(event.acf.event_start_time)}
+                        </time>
+                        {" - "}
+                        <time
+                          className="text-16px font-inter"
+                          dateTime={toIsoDateTime(
+                            event.acf.event_date,
+                            event.acf.event_end_time
+                          )}
+                        >
+                          {formatTime(event.acf.event_end_time)}
+                        </time>
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          {/* <div className="hidden desktop:flex flex-col gap-10">
           <AdSpaceSquare
             src={
               adData?.image_square_primary ||
@@ -178,7 +180,8 @@ export default async function CalendarPage() {
             url={adData?.link_square_secondary || "#"}
           />
         </div> */}
-      </div>
-    </main>
+        </div>
+      </main>
+    </PageWrapper>
   );
 }

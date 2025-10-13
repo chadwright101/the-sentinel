@@ -1,0 +1,119 @@
+{
+  "aboutPage": {
+    "distribution": [
+      { "Beachmere": ["IGA", "Beachmere Hotel", "Post Office"] },
+      { "Beerburrum": ["Post Office"] },
+      { "Bellmere": ["Bellmere Lotto & Gifts"] },
+      { "Big Fish Caboolture": ["CJ's Bakery", "Coles"] },
+      { "Blackbutt": ["Blackbutt News"] },
+      { "Burpengary": ["IGA", "Beachmere Hotel", "Post Office"] },
+      {
+        "Burpengary IGA Complex": [
+          "Burpengary Community Club",
+          "CJ's Bakery",
+          "Cignall"
+        ]
+      },
+      {
+        "Caboolture": [
+          "Pumicestone Shopping Centre",
+          "Drakes",
+          "Coffee Club",
+          "Central Lakes Woolworths",
+          "Sports Central",
+          "Caboolture Square",
+          "Historical Village",
+          "R&R Hire",
+          "Phelan's Bakery",
+          "Kings Circle Newsagency",
+          "Subway",
+          "Sundowner Hotel Motel",
+          "Meals on Wheels",
+          "Trade Tools",
+          "Woolworths Caboolture South"
+        ]
+      },
+      { "D'Aguilar": ["Liberty", "D'Aguilar Pub"] },
+      { "Elimbah": ["Elimbah Service Station & Takeaway"] },
+      {
+        "Esk": [
+          "Esk Bakery",
+          "Smylie's Cafe/Rudi's Place",
+          "Newsagency",
+          "IGA",
+          "Grand Hotel",
+          "Somerset Regional Council Office"
+        ]
+      },
+      { "Fernvale": ["Tree Change Café", "Woolworths"] },
+      { "Harlin": ["Harlin Service station"] },
+      {
+        "Kilcoy": [
+          "CJ's Bakery",
+          "Ray White",
+          "Exchange Hotel",
+          "Secondhand shop",
+          "IGA",
+          "Craft Cottage",
+          "Historical Centre",
+          "Information Centre",
+          "Coff'n Co Bakery",
+          "Aland's Fruit & Veg",
+          "Milby & Co",
+          "Library",
+          "Nutrien Harcourts Real Estate"
+        ]
+      },
+      { "Lowood": ["Drakes", "Newsagency", "Mitre 10 Hardware"] },
+      {
+        "Morayfield": [
+          "Woolworths at Market Plaza",
+          "The Local Lotto & Gifts",
+          "Meat City",
+          "Keystar Isuzu 7-11 Servo",
+          "Park Ridge Shopping Village",
+          "Foodworks",
+          "Morayfield Central CJ's",
+          "Nextra Morayfield Plaza News",
+          "Original Photos",
+          "Fresh N Save",
+          "Health Hub Morayfield",
+          "Golden Circle",
+          "MP Mark Ryan's Office",
+          "Silly Solly's"
+        ]
+      },
+      {
+        "Morayfield Shopping Centre": [
+          "Legends Barbers",
+          "Woolworths",
+          "Nextra Morayfield Village News",
+          "Centre Management",
+          "Southern carpark entrance",
+          "Coles",
+          "Telstra waiting room"
+        ]
+      },
+      {
+        "Toogoolawah": [
+          "Mitre 10 / IGA",
+          "Newsagents",
+          "BP",
+          "Post Office",
+          "Exchange Hotel"
+        ]
+      },
+      { "Wamuran": ["IGA", "BP", "CJ's Bakery"] },
+      {
+        "Woodford": [
+          "IGA",
+          "CJ's Bakery",
+          "Blacks Electrical",
+          "Remax Living",
+          "Newsagency",
+          "Ray White Woodford"
+        ]
+      }
+    ]
+  }
+}

@@ -188,3 +188,5 @@
   opacity: 0.8 !important;
   @apply cursor-pointer ease-in-out duration-300;
 }
+
+@plugin 'tailwind-scrollbar';

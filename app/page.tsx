@@ -1,10 +1,11 @@
 import HomePageCategoryComponent from "@/_components/home-page/home-page-categories/home-page-categories-component";
 import TopStoriesComponent from "@/_components/home-page/top-stories/top-stories-component";
 import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
+import PageWrapper from "@/_lib/utils/page-wrapper";
 
 export default async function HomePage() {
   return (
-    <div className="px-5 max-w-[1100px] mx-auto desktop:px-10">
+    <PageWrapper>
       <TopStoriesComponent />
       {/* latest news */}
       <HomePageCategoryComponent />
@@ -16,6 +17,6 @@ export default async function HomePage() {
       <NewsletterSubscriptionComponent cssClasses="hidden desktop:grid" />
       <HomePageCategoryComponent categorySlug="lifestyle" />
       <HomePageCategoryComponent categorySlug="real-estate" />
-    </div>
+    </PageWrapper>
   );
 }
