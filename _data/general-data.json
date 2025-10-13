@@ -115,5 +115,44 @@
         ]
       }
     ]
+  },
+  "contactPage": {
+    "phone": "0754 387 445",
+    "newsTeam": {
+      "phone": "0406 505 656",
+      "contactInfo": [
+        {
+          "name": "Mitch Gaynor",
+          "email": "news@sentinelnews.com.au"
+        },
+        {
+          "name": "Marina Gomide",
+          "email": "marina@sentinelnews.com.au"
+        }
+      ]
+    },
+    "advertising": {
+      "phone": "0491 655 129",
+      "contactInfo": [
+        {
+          "name": "Richard Wheltor",
+          "email": "richard@sentinelnews.com.au"
+        },
+        {
+          "name": "Tina Grieve",
+          "email": "production@sentinelnews.com.au"
+        }
+      ]
+    },
+    "design": [
+      {
+        "name": "Sharon King",
+        "email": "sking@gcnews.com.au"
+      },
+      {
+        "name": "Katie Buckley",
+        "email": "production@sentinelnews.com.au"
+      }
+    ]
   }
 }
