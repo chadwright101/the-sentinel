@@ -99,24 +99,21 @@ const FooterComponent = () => {
           <p className="text-white font-inter uppercase text-12px font-medium desktop:text-16px">
             © {new Date().getFullYear()} The Sentinel News |{" "}
             <Link
-              href="#"
-              target="_blank"
+              href="/standards-and-complaints"
               className="text-white uppercase font-inter text-12px font-medium p-2 -m-2 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Standards & Complaints
             </Link>{" "}
             |{" "}
             <Link
-              href="#"
-              target="_blank"
+              href="/terms-and-conditions"
               className="text-white uppercase font-inter text-12px font-medium p-2 -m-2 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Terms
             </Link>{" "}
             |{" "}
             <Link
-              href="#"
-              target="_blank"
+              href="/privacy-policy"
               className="text-white uppercase font-inter text-12px font-medium p-2 -m-2 desktop:hover:text-light-brown desktop:p-0 desktop:m-0 desktop:text-16px"
             >
               Privacy Policy

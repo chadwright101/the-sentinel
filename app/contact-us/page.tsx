@@ -53,9 +53,9 @@ const ContactUsPage = () => {
                 <Image
                   src="/icons/facebook-icon-teal.svg"
                   alt="Follow us on Facebook"
-                  width={40}
-                  height={40}
-                  className="w-10 h-auto desktop:w-7"
+                  width={32}
+                  height={32}
+                  className="w-8 h-auto desktop:w-6"
                 />
               </Link>
             </div>

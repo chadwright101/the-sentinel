@@ -17,7 +17,7 @@ const ContactForm = () => {
           id="name"
           name="name"
           placeholder="Enter your full name"
-          className="w-full px-2 py-2.5 border rounded-md border-black/50 font-inter text-16px focus:outline-non focus:outline-teal transition-colors duration-300"
+          className="w-full p-2.5 border rounded-md border-black/50 font-inter text-16px focus:outline-non focus:outline-teal transition-colors duration-300"
           required
         />
       </div>
@@ -34,7 +34,7 @@ const ContactForm = () => {
           id="email"
           name="email"
           placeholder="Enter your email address"
-          className="w-full px-2 py-2.5 border rounded-md border-black/50 font-inter text-16px focus:outline-non focus:outline-teal transition-colors duration-300"
+          className="w-full p-2.5 border rounded-md border-black/50 font-inter text-16px focus:outline-non focus:outline-teal transition-colors duration-300"
           required
         />
       </div>
@@ -51,7 +51,7 @@ const ContactForm = () => {
           id="phone"
           name="phone"
           placeholder="Enter your phone number"
-          className="w-full px-2 py-2.5 border rounded-md border-black/50 font-inter text-16px focus:outline-non focus:outline-teal transition-colors duration-300"
+          className="w-full p-2.5 border rounded-md border-black/50 font-inter text-16px focus:outline-non focus:outline-teal transition-colors duration-300"
         />
       </div>
 
@@ -67,7 +67,7 @@ const ContactForm = () => {
           name="message"
           placeholder="Enter your message here..."
           rows={6}
-          className="w-full px-2 py-2.5 border rounded-md border-black/50 font-inter text-16px focus:outline-teal transition-colors duration-300 resize-vertical"
+          className="w-full p-2.5 border rounded-md border-black/50 font-inter text-16px focus:outline-teal transition-colors duration-300 resize-vertical"
           required
         />
       </div>
