@@ -103,7 +103,7 @@ const TermsAndConditionsPage = () => {
                   relation to any loss due to the failure of an advertisement to
                   appear according to instructions. The Publisher will not be
                   liable for any delay or failure to publish advertising caused
-                  by a factor outside the Publisher's reasonable control
+                  by a factor outside the Publisher&rsquo;s reasonable control
                   (including but not limited to acts of God, breakdown of
                   equipment, systems or software, press failure, industrial
                   disputes, electricity failure, communication network failure,
@@ -201,7 +201,7 @@ const TermsAndConditionsPage = () => {
               </li>
               <li>
                 <p>
-                  The Publisher does not guarantee that the Customer's product
+                  The Publisher does not guarantee that the Customer&rsquo;s product
                   featured in an advertisement will be the only product of that
                   type featured in advertisements on any one page.
                 </p>
@@ -247,7 +247,7 @@ const TermsAndConditionsPage = () => {
             <ol className="list-decimal ml-6 space-y-2">
               <li>
                 <p>
-                  Every advertisement is subject to the Publisher's approval and
+                  Every advertisement is subject to the Publisher&rsquo;s approval and
                   the Publisher may, at its discretion, refuse to accept an
                   advertisement for publication if it believes the advertisement
                   may infringe the rights of any person or may not comply with

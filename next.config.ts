@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "sentinelnewscomau.wpcomstaging.com",
       },
+      {
+        protocol: "https",
+        hostname: "i.calameoassets.com",
+      },
     ],
   },
 };

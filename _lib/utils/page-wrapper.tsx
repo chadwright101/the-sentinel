@@ -9,7 +9,7 @@ const PageWrapper = ({ cssClasses, children }: PageWrapperProps) => {
   return (
     <div
       className={classNames(
-        "px-5 max-w-[1100px] mx-auto desktop:px-10",
+        "px-5 max-w-[1100px] mx-auto min-h-[500px] desktop:px-10",
         cssClasses
       )}
     >
