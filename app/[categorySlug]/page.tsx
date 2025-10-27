@@ -29,12 +29,13 @@ export default async function CategoryPage({
     notFound();
   }
 
-  let posts, hasMore, totalPages;
+  let posts, hasMore, totalPages, categoryFound;
 
   if (categorySlug === "latest-news") {
     posts = await fetchPosts();
     hasMore = false;
     totalPages = 1;
+    categoryFound = true;
   } else {
     const paginatedResults = await fetchPostsWithPagination(
       categorySlug,
@@ -43,6 +44,11 @@ export default async function CategoryPage({
     posts = paginatedResults.posts;
     hasMore = paginatedResults.hasMore;
     totalPages = paginatedResults.totalPages;
+    categoryFound = paginatedResults.categoryFound;
+  }
+
+  if (!categoryFound) {
+    notFound();
   }
 
   if (posts.length === 0 && currentPage === 1) {
@@ -57,14 +63,17 @@ export default async function CategoryPage({
               ]}
             />
           </div>
-          <h1 className="text-36px font-inter font-bold">
+          <h2 className="text-36px font-inter font-bold">
             {categoryInfo.title}
-          </h1>
+          </h2>
           <div className="text-center py-32">
             <h2 className="text-36px font-inter mb-2 zoom">Coming Soon</h2>
             <p className="font-inter">
               Check back again soon for the latest{" "}
-              {categoryInfo.title.toLowerCase()} news.
+              <span className="font-inter font-semibold">
+                {categoryInfo.title}
+              </span>{" "}
+              news.
             </p>
           </div>
         </main>
@@ -84,7 +93,7 @@ export default async function CategoryPage({
           />
         </div>
 
-        <h1 className="text-36px font-inter font-bold">{categoryInfo.title}</h1>
+        <h2 className="text-36px font-inter font-bold">{categoryInfo.title}</h2>
 
         <CategoryGrid posts={posts} categorySlug={categorySlug} />
 

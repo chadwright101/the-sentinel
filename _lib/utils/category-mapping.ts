@@ -11,7 +11,6 @@ const EXCLUDED_PAGES = [
   "about",
   "contact-us",
   "entertainment/whats-on",
-  "entertainment/time-out",
 ];
 
 export function getCategoryMapping(

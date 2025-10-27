@@ -4,6 +4,7 @@ interface PostsWithPagination {
   posts: PostProps[];
   hasMore: boolean;
   totalPages: number;
+  categoryFound: boolean;
 }
 
 const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL;
@@ -19,6 +20,7 @@ export async function fetchPostsWithPagination(
       );
     }
     let url = `${baseUrl}posts?per_page=10&page=${page}&_embed=author`;
+    let categoryFound = true;
 
     if (categorySlug) {
       const categoryIds: number[] = [];
@@ -28,7 +30,7 @@ export async function fetchPostsWithPagination(
         // Skip adding any categories to the URL
       } else if (categorySlug === "news") {
         const newsAndUncategorizedResponse = await fetch(
-          `${baseUrl}categories?slug=${categorySlug},uncategorized`,
+          `${baseUrl}categories?slug=${categorySlug},uncategorized&per_page=100`,
           { next: { revalidate: 300 } }
         );
 
@@ -38,7 +40,7 @@ export async function fetchPostsWithPagination(
         }
       } else {
         const categoriesResponse = await fetch(
-          `${baseUrl}categories?slug=${categorySlug}`,
+          `${baseUrl}categories?slug=${categorySlug}&per_page=100`,
           { next: { revalidate: 300 } }
         );
 
@@ -47,10 +49,10 @@ export async function fetchPostsWithPagination(
           if (categories.length > 0) {
             categoryIds.push(categories[0].id);
           } else {
-            console.log(`No categories found for slug: ${categorySlug}`);
+            categoryFound = false;
           }
         } else {
-          console.error(`Categories API error: ${categoriesResponse.status}`);
+          categoryFound = false;
         }
       }
 
@@ -80,9 +82,9 @@ export async function fetchPostsWithPagination(
     const hasMore = publishedPosts.length > 9;
     const posts = publishedPosts.slice(0, 9);
 
-    return { posts, hasMore, totalPages };
+    return { posts, hasMore, totalPages, categoryFound };
   } catch (error) {
     console.error("Error fetching posts:", error);
-    return { posts: [], hasMore: false, totalPages: 1 };
+    return { posts: [], hasMore: false, totalPages: 1, categoryFound: true };
   }
 }
