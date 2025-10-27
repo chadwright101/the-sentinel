@@ -189,4 +189,35 @@
   @apply cursor-pointer ease-in-out duration-300;
 }
 
-@plugin 'tailwind-scrollbar';
+/* Custom scrollbar styles - cross-browser compatible */
+
+.custom-scrollbar {
+  /* Firefox scrollbar styles */
+  scrollbar-color: rgba(6, 70, 88, 0.75) #D8C99B;
+  scrollbar-width: thin;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #D8C99B;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(6, 70, 88, 0.75);
+  border-radius: 10px;
+  transition: background-color 300ms ease-in-out;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #BD632F;
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: #D8C99B;
+}

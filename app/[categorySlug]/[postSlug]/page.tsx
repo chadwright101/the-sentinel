@@ -51,24 +51,25 @@ export default async function PostPage({ params }: PostPageProps) {
               { label: post.title.rendered.replace(/<[^>]*>/g, "") },
             ]}
           />
-          <h2
-            className="text-36px font-inter font-bold"
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-          />
-          <div
-            dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-            className="text-14px font-newsreader"
-          />
-          <time
-            dateTime={post.date}
-            className="text-12px font-medium font-inter"
-          >
-            {new Date(post.date).toLocaleDateString("en-AU", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
+          <div>
+            <h2
+              className="text-36px font-inter font-bold"
+              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+            />
+            {post._embedded?.author && post._embedded.author[0] && (
+              <p className="text-14px font-inter">
+                Written by {post._embedded.author[0].name}
+              </p>
+            )}
+
+            <time dateTime={post.date} className="text-12px italic font-inter">
+              {new Date(post.date).toLocaleDateString("en-AU", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          </div>
           {/*  <div className="desktop:grid grid-cols-[1fr_250px] gap-7"> */}
           <div>
             <div className="grid gap-5">
