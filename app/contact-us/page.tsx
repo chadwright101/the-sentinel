@@ -28,6 +28,18 @@ const ContactUsPage = () => {
                   {contactPage.phone}
                 </Link>
               </div>
+              <p className="text-16px grid desktop:grid-cols-[125px_1fr] place-items-start font-medium desktop:gap-5">
+                Email:
+                <span className="font-light">
+                  <Link
+                    className="font-light desktop:hover:opacity-80"
+                    href={`mailto:${contactPage.email}`}
+                  >
+                    {contactPage.email}
+                  </Link>
+                </span>
+              </p>
+
               <div className="grid desktop:grid-cols-[125px_1fr] place-items-start desktop:gap-5">
                 <p className="font-medium">Physical address:</p>
                 <p className="text-16px">Shop 6, 35 Swan Street, Beerwah</p>
@@ -48,7 +60,7 @@ const ContactUsPage = () => {
               <Link
                 href="https://www.facebook.com/TheSentinelNews"
                 target="_blank"
-                className="desktop:hover:opacity-80"
+                className="desktop:hover:opacity-80 mr-auto"
               >
                 <Image
                   src="/icons/facebook-icon-teal.svg"
@@ -101,6 +113,7 @@ const ContactUsPage = () => {
                   href={`tel:${formatPhoneNumber(
                     contactPage.advertising.phone
                   )}`}
+                  className="desktop:hover:opacity-80"
                 >
                   {contactPage.advertising.phone}
                 </Link>

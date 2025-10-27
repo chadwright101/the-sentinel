@@ -38,7 +38,7 @@ export default async function CalameoComponent() {
               />
             </div>
             {pub.Date && (
-              <p className="px-2 text-16px">
+              <p className="px-2 mt-1 text-16px">
                 {new Date(pub.Date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",

@@ -5,27 +5,30 @@
   },
   {
     "title": "News",
-    "url": "/news",
     "children": [
       {
         "title": "Latest News",
         "url": "/latest-news"
       },
       {
-        "title": "Business",
-        "url": "/business"
+        "title": "Community",
+        "url": "/community"
+      },
+      {
+        "title": "Council",
+        "url": "/council"
       },
       {
         "title": "Rural",
         "url": "/rural"
       },
       {
-        "title": "Schools",
-        "url": "/schools"
+        "title": "Health & Wellbeing",
+        "url": "/health-wellbeing"
       },
       {
-        "title": "Council",
-        "url": "/council"
+        "title": "Schools",
+        "url": "/schools"
       }
     ]
   },
@@ -35,29 +38,80 @@
   },
   {
     "title": "Entertainment",
-    "url": "/entertainment",
     "children": [
+      {
+        "title": "Time Out",
+        "url": "/time-out"
+      },
       {
         "title": "What's On",
         "url": "/whats-on"
-      },
-      {
-        "title": "Calendar",
-        "url": "/calendar"
       }
     ]
   },
   {
-    "title": "Lifestyle",
-    "url": "/lifestyle",
+    "title": "Town Spotlights",
     "children": [
       {
-        "title": "Health",
-        "url": "/health"
+        "title": "Kilcoy & Surrounds",
+        "url": "/kilcoy-surrounds"
       },
       {
-        "title": "Food & Drinks",
-        "url": "/food-and-drinks"
+        "title": "Toogoolawah to Esk",
+        "url": "/toogoolawah-esk"
+      },
+      {
+        "title": "Lowood to Fernvale",
+        "url": "/lowood-fernvale"
+      },
+      {
+        "title": "Woodford to Wamuran",
+        "url": "/woodford-wamuran"
+      },
+      {
+        "title": "Beachmere & Surrounds",
+        "url": "/beachmere-surrounds"
+      },
+      {
+        "title": "Caboolture",
+        "url": "/caboolture"
+      },
+      {
+        "title": "Burpengary",
+        "url": "/burpengary"
+      },
+      {
+        "title": "Morayfield",
+        "url": "/morayfield"
+      }
+    ]
+  },
+  {
+    "title": "Features",
+    "children": [
+      {
+        "title": "Seniors",
+        "url": "/seniors"
+      },
+      {
+        "title": "Pets & Animals",
+        "url": "/pets-animals"
+      },
+      {
+        "title": "Travel",
+        "url": "/travel"
+      },
+      {
+        "title": "Eat / Drink /Stay",
+        "url": "/eat-drink-stay"
+      },
+      {
+        "title": "Money Matters",
+        "url": "/money-matters"
+      },
+      {
+        "title": "Tech Time",
+        "url": "/tech-time"
       }
     ]
   },
@@ -66,6 +120,22 @@
     "url": "/real-estate"
   },
   { "title": "Editions", "url": "/editions" },
-  { "title": "About", "url": "/about" },
+  {
+    "title": "About",
+    "children": [
+      {
+        "title": "History",
+        "url": "/about/history"
+      },
+      {
+        "title": "Coverage Area",
+        "url": "/about/coverage-area"
+      },
+      {
+        "title": "Where to Pick up a Copy",
+        "url": "/about/where-to-pick-up-a-copy"
+      }
+    ]
+  },
   { "title": "Contact Us", "url": "/contact-us" }
 ]

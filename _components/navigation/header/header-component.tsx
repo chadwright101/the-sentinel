@@ -34,7 +34,7 @@ export function HeaderComponent({
           height={30}
           className={classNames("h-auto", {
             "w-[30px] desktop:w-[60px]": !isOpen,
-            "w-[24px] -translate-y-0.5 translate-x-0.5 desktop:-translate-y-2 desktop:translate-x-1 desktop:w-[50px]":
+            "w-[24px] translate-x-0.5 desktop:-translate-y-2 desktop:translate-x-1 desktop:w-[50px]":
               isOpen,
           })}
         />

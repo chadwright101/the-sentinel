@@ -55,7 +55,7 @@ const HomePageCategoryComponent = ({
 
   return (
     <main className="pt-5 space-y-5 desktop:pt-10">
-      <h3>
+      <h3 className="desktop:text-center">
         <Link
           href={categorySlug ? `/${categorySlug}` : "/latest-news"}
           aria-label={`View our latest ${categorySlug} articles`}

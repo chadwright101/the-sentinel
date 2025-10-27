@@ -13,19 +13,30 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
 
   return (
     <nav className="relative">
-      <ul className="flex gap-10 items-center">
+      <ul className="flex gap-6 items-center">
         {navData.map(({ title, url, children }, index) => {
           const hasChildren = children && children.length > 0;
           return (
             <li
               key={index}
-              className="text-white font-inter font-medium uppercase relative"
+              className="text-white font-inter font-medium uppercase relative text-[15px]"
               onMouseEnter={() => hasChildren && setHoveredItem(index)}
               onMouseLeave={() => hasChildren && setHoveredItem(null)}
             >
-              {url ? (
+              {hasChildren ? (
+                <span
+                  className={classNames(
+                    "text-white font-inter font-medium hover:text-light-brown cursor-default",
+                    {
+                      "pb-5 pr-5 -mr-5": hoveredItem === index,
+                    }
+                  )}
+                >
+                  {title}
+                </span>
+              ) : (
                 <Link
-                  href={url}
+                  href={url!}
                   className={classNames(
                     "text-white font-inter hover:text-light-brown ease-in-out duration-300",
                     {
@@ -35,17 +46,6 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
                 >
                   {title}
                 </Link>
-              ) : (
-                <span
-                  className={classNames(
-                    "text-white font-medium hover:text-light-brown cursor-default",
-                    {
-                      "pb-5 pr-5 -mr-5": hoveredItem === index,
-                    }
-                  )}
-                >
-                  {title}
-                </span>
               )}
               {hasChildren && (
                 <div
