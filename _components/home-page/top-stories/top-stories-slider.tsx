@@ -56,7 +56,7 @@ const HeroSlider = ({ cssClasses, data }: Props) => {
                 </h2>
                 <div className="text-white [&_p]:text-white [&_p]:desktop:text-20px">
                   <p>
-                    {slide.excerpt.rendered
+                    {slide.content.rendered
                       .replace(/<[^>]*>/g, "")
                       .substring(0, 105)
                       .concat("...")}

@@ -17,7 +17,7 @@ const PostGridExcerpt = ({
       cssClasses
     )}
   >
-    {truncateText(post.excerpt.rendered, maxLength)}
+    {truncateText(post.content.rendered, maxLength)}
   </p>
 );
 

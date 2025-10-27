@@ -9,7 +9,7 @@ export async function fetchSinglePost(slug: string): Promise<PostProps | null> {
         "NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL environment variable is not set"
       );
     }
-    const response = await fetch(`${baseUrl}posts?slug=${slug}`, {
+    const response = await fetch(`${baseUrl}posts?slug=${slug}&_embed=author`, {
       cache: "no-store",
     });
 
