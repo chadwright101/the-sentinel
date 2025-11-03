@@ -25,6 +25,7 @@ import HeaderContainer from "@/_components/navigation/header/header-container";
 import FooterComponent from "@/_components/navigation/footer/footer-component";
 import LayoutAdSpaceComponent from "@/_components/ad-spaces/layout-ad-space-component";
 import { fetchAdData } from "@/_components/fetch-ad-data";
+import RecaptchaProvider from "@/_components/providers/recaptcha-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thesentinelnews.com.au/"),
@@ -61,7 +62,9 @@ export default async function RootLayout({
       >
         <HeaderContainer />
         <LayoutAdSpaceComponent adData={adData} />
-        {children}
+        <RecaptchaProvider>
+          {children}
+        </RecaptchaProvider>
         <FooterComponent />
       </body>
     </html>

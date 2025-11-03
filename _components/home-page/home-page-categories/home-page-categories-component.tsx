@@ -5,12 +5,6 @@ import { fetchPosts } from "../../fetch-posts";
 import { fetchAdData } from "../../fetch-ad-data";
 import { PostProps } from "@/_types/post-types";
 import { AdData } from "@/_types/ad-types";
-import HomePageLatestNewsGrid from "./with-ads/home-page-latest-news-grid";
-import HomePageGeneralNewsGrid from "./with-ads/home-page-general-news-grid";
-import HomePageSportGrid from "./with-ads/home-page-sport-grid";
-import HomePageEntertainmentGrid from "./with-ads/home-page-entertainment-grid";
-import HomePageLifestyleGrid from "./with-ads/home-page-lifestyle-grid";
-import HomePageRealEstateGrid from "./with-ads/home-page-real-estate-grid";
 import LoadingAnimation from "@/_lib/utils/loading-animation";
 import Link from "next/link";
 import HomePageNewsGridNoAds from "./home-page-news-grid-no-ads";
@@ -102,7 +96,7 @@ const HomePageCategoryComponent = ({
               adData={adData}
             />
           )}
-          {categorySlug === "lifestyle" && (
+          {categorySlug === "community" && (
             <HomePageNewsGridNoAds
               posts={posts}
               hoveredIndex={hoveredIndex}
@@ -118,54 +112,6 @@ const HomePageCategoryComponent = ({
               adData={adData}
             />
           )}
-          {/* {!categorySlug && (
-            <HomePageLatestNewsGrid
-              posts={posts}
-              hoveredIndex={hoveredIndex}
-              setHoveredIndex={setHoveredIndex}
-              adData={adData}
-            />
-          )}
-          {categorySlug === "news" && (
-            <HomePageGeneralNewsGrid
-              posts={posts}
-              hoveredIndex={hoveredIndex}
-              setHoveredIndex={setHoveredIndex}
-              adData={adData}
-            />
-          )}
-          {categorySlug === "sport" && (
-            <HomePageSportGrid
-              posts={posts}
-              hoveredIndex={hoveredIndex}
-              setHoveredIndex={setHoveredIndex}
-              adData={adData}
-            />
-          )}
-          {categorySlug === "entertainment" && (
-            <HomePageEntertainmentGrid
-              posts={posts}
-              hoveredIndex={hoveredIndex}
-              setHoveredIndex={setHoveredIndex}
-              adData={adData}
-            />
-          )}
-          {categorySlug === "lifestyle" && (
-            <HomePageLifestyleGrid
-              posts={posts}
-              hoveredIndex={hoveredIndex}
-              setHoveredIndex={setHoveredIndex}
-              adData={adData}
-            />
-          )}
-          {categorySlug === "real-estate" && (
-            <HomePageRealEstateGrid
-              posts={posts}
-              hoveredIndex={hoveredIndex}
-              setHoveredIndex={setHoveredIndex}
-              adData={adData}
-            />
-          )} */}
         </>
       )}
     </main>

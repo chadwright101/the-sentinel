@@ -26,14 +26,14 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  const [post, adData, posts, sportPosts, entertainmentPosts, lifestylePosts] =
+  const [post, adData, posts, sportPosts, timeOutPosts, communityPosts] =
     await Promise.all([
       fetchSinglePost(postSlug),
       fetchAdData(),
       fetchPosts(categorySlug),
       fetchPosts("sport", { perPage: 2 }),
-      fetchPosts("entertainment", { perPage: 2 }),
-      fetchPosts("lifestyle", { perPage: 2 }),
+      fetchPosts("time-out", { perPage: 2 }),
+      fetchPosts("community", { perPage: 2 }),
     ]);
 
   if (!post) {
@@ -125,11 +125,8 @@ export default async function PostPage({ params }: PostPageProps) {
           <NewsletterSubscriptionComponent />
           <div className="flex flex-col gap-10 mt-5 tablet:mt-10 desktop:gap-10 desktop:mt-10 desktop:flex-row">
             <LatestArticles categorySlug="sport" posts={sportPosts} />
-            <LatestArticles
-              categorySlug="entertainment"
-              posts={entertainmentPosts}
-            />
-            <LatestArticles categorySlug="lifestyle" posts={lifestylePosts} />
+            <LatestArticles categorySlug="time-out" posts={timeOutPosts} />
+            <LatestArticles categorySlug="community" posts={communityPosts} />
           </div>
         </article>
       </main>

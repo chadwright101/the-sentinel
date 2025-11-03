@@ -34,8 +34,8 @@ const TermsAndConditionsPage = () => {
               <li>Letters to the editor</li>
               <li>Advertorials</li>
               <li>
-                &lsquo;Asylum seekers&rsquo;, &lsquo;illegal immigrants&rsquo; and entry to Australia
-                without a visa
+                &lsquo;Asylum seekers&rsquo;, &lsquo;illegal immigrants&rsquo;
+                and entry to Australia without a visa
               </li>
               <li>Bias</li>
               <li>Digital alteration of images</li>
@@ -54,10 +54,11 @@ const TermsAndConditionsPage = () => {
             <ol className="list-decimal ml-6 space-y-2">
               <li>
                 These terms and conditions apply to all advertising provided to
-                any person or entity (the &ldquo;Customer&rdquo;) by Seven of Clubs Media
-                Pty Ltd, trading as The Sentinel (the &ldquo;Publisher&rdquo;), and include
-                any additional terms and conditions laid down from time to time
-                by the Publisher. &ldquo;Advertising&rdquo; includes images submitted for
+                any person or entity (the &ldquo;Customer&rdquo;) by Glasshouse
+                Country & Maleny News, trading as The Sentinel (the
+                &ldquo;Publisher&rdquo;), and include any additional terms and
+                conditions laid down from time to time by the Publisher.
+                &ldquo;Advertising&rdquo; includes images submitted for
                 publication and content or information relating to published
                 advertisements.
               </li>
@@ -201,9 +202,9 @@ const TermsAndConditionsPage = () => {
               </li>
               <li>
                 <p>
-                  The Publisher does not guarantee that the Customer&rsquo;s product
-                  featured in an advertisement will be the only product of that
-                  type featured in advertisements on any one page.
+                  The Publisher does not guarantee that the Customer&rsquo;s
+                  product featured in an advertisement will be the only product
+                  of that type featured in advertisements on any one page.
                 </p>
               </li>
               <li>
@@ -247,21 +248,21 @@ const TermsAndConditionsPage = () => {
             <ol className="list-decimal ml-6 space-y-2">
               <li>
                 <p>
-                  Every advertisement is subject to the Publisher&rsquo;s approval and
-                  the Publisher may, at its discretion, refuse to accept an
-                  advertisement for publication if it believes the advertisement
-                  may infringe the rights of any person or may not comply with
-                  all laws and regulations of the States and Territories. The
-                  Publisher also reserves the right to make adjustments to
-                  advertising material in keeping with the general format of the
-                  publication.
+                  Every advertisement is subject to the Publisher&rsquo;s
+                  approval and the Publisher may, at its discretion, refuse to
+                  accept an advertisement for publication if it believes the
+                  advertisement may infringe the rights of any person or may not
+                  comply with all laws and regulations of the States and
+                  Territories. The Publisher also reserves the right to make
+                  adjustments to advertising material in keeping with the
+                  general format of the publication.
                 </p>
               </li>
               <li>
                 <p>
-                  The word &lsquo;advertisement&rsquo; will be included in an advertisement
-                  if, in the opinion of the Publisher, it resembles editorial
-                  matter.
+                  The word &lsquo;advertisement&rsquo; will be included in an
+                  advertisement if, in the opinion of the Publisher, it
+                  resembles editorial matter.
                 </p>
               </li>
             </ol>

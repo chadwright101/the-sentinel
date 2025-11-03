@@ -26,9 +26,8 @@ export default async function HomePage() {
       </div>
       <HomePageCategoryComponent categorySlug="sport" />
       <HomePageCategoryComponent categorySlug="entertainment" />
-      <NewsletterSubscriptionComponent cssClasses="desktop:hidden" />
-      <NewsletterSubscriptionComponent cssClasses="hidden desktop:grid" />
-      <HomePageCategoryComponent categorySlug="lifestyle" />
+      <NewsletterSubscriptionComponent />
+      <HomePageCategoryComponent categorySlug="community" />
       <HomePageCategoryComponent categorySlug="real-estate" />
     </PageWrapper>
   );

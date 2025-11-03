@@ -1,15 +1,50 @@
+"use client";
+
 import PageWrapper from "@/_lib/utils/page-wrapper";
 import Link from "next/link";
 import generalData from "@/_data/general-data.json";
 import Image from "next/image";
 import ContactForm from "@/_components/contact-page/contact-form";
+import { useEffect, useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { verifyContactView } from "@/_actions/verify-contact-view";
+import ProtectedEmail from "@/_components/contact-page/protected-email";
+import ProtectedPhone from "@/_components/contact-page/protected-phone";
 
 const ContactUsPage = () => {
   const { contactPage } = generalData;
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [isVerified, setIsVerified] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(true);
 
   const formatPhoneNumber = (phone: string) => {
     return phone.replace(/^0/, "+61").replace(/\s/g, "");
   };
+
+  useEffect(() => {
+    const verifyAccess = async () => {
+      try {
+        if (!executeRecaptcha) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          if (!executeRecaptcha) {
+            setIsVerifying(false);
+            return;
+          }
+        }
+
+        const token = await executeRecaptcha("view_contact_info");
+        const result = await verifyContactView(token);
+        setIsVerified(result.success);
+      } catch (error) {
+        console.error("Verification error:", error);
+        setIsVerified(false);
+      } finally {
+        setIsVerifying(false);
+      }
+    };
+
+    verifyAccess();
+  }, [executeRecaptcha]);
 
   return (
     <PageWrapper cssClasses="my-10">
@@ -19,38 +54,37 @@ const ContactUsPage = () => {
           <section>
             <h3 className="text-20px font-inter font-bold mb-3">General</h3>
             <div className="grid gap-2">
-              <div className="grid desktop:grid-cols-[125px_1fr] place-items-start desktop:gap-5">
+              <div className="grid desktop:grid-cols-[135px_1fr] place-items-start desktop:gap-5">
                 <p className="font-medium">Phone:</p>
-                <Link
-                  href={`tel:${formatPhoneNumber(contactPage.phone)}`}
-                  className="text-16px  desktop:hover:opacity-80"
-                >
-                  {contactPage.phone}
-                </Link>
+                <ProtectedPhone
+                  phone={contactPage.phone}
+                  isVerified={isVerified}
+                  isVerifying={isVerifying}
+                  formatPhoneNumber={formatPhoneNumber}
+                />
               </div>
-              <p className="text-16px grid desktop:grid-cols-[125px_1fr] place-items-start font-medium desktop:gap-5">
+              <p className="text-16px grid desktop:grid-cols-[135px_1fr] place-items-start font-medium desktop:gap-5">
                 Email:
                 <span className="font-light">
-                  <Link
-                    className="font-light desktop:hover:opacity-80"
-                    href={`mailto:${contactPage.email}`}
-                  >
-                    {contactPage.email}
-                  </Link>
+                  <ProtectedEmail
+                    email={contactPage.email}
+                    isVerified={isVerified}
+                    isVerifying={isVerifying}
+                  />
                 </span>
               </p>
 
-              <div className="grid desktop:grid-cols-[125px_1fr] place-items-start desktop:gap-5">
+              <div className="grid desktop:grid-cols-[135px_1fr] place-items-start desktop:gap-5">
                 <p className="font-medium">Physical address:</p>
                 <p className="text-16px">Shop 6, 35 Swan Street, Beerwah</p>
               </div>
-              <div className="grid desktop:grid-cols-[125px_1fr] place-items-start desktop:gap-5">
+              <div className="grid desktop:grid-cols-[135px_1fr] place-items-start desktop:gap-5">
                 <p className="font-medium">Mail address:</p>
                 <p className="text-16px">
                   PO Box 190, Beerwah, Queensland 4519
                 </p>
               </div>
-              <div className="grid desktop:grid-cols-[125px_1fr] place-items-start desktop:gap-5">
+              <div className="grid desktop:grid-cols-[135px_1fr] place-items-start desktop:gap-5">
                 <p className="font-medium">Office hours:</p>
                 <p className="text-16px">
                   9am – 2pm each weekday (or give us a call to arrange an
@@ -75,28 +109,27 @@ const ContactUsPage = () => {
           <section>
             <h3 className="text-20px font-inter font-bold mb-3">News team</h3>
             <div className="grid gap-2">
-              <div className="grid desktop:grid-cols-[125px_1fr] place-items-start desktop:gap-5">
+              <div className="grid desktop:grid-cols-[135px_1fr] place-items-start desktop:gap-5">
                 <p className="font-medium">Phone:</p>
-                <Link
-                  href={`tel:${formatPhoneNumber(contactPage.newsTeam.phone)}`}
-                  className="desktop:hover:opacity-80"
-                >
-                  {contactPage.newsTeam.phone}
-                </Link>
+                <ProtectedPhone
+                  phone={contactPage.newsTeam.phone}
+                  isVerified={isVerified}
+                  isVerifying={isVerifying}
+                  formatPhoneNumber={formatPhoneNumber}
+                />
               </div>
               {contactPage.newsTeam.contactInfo.map((member, index) => (
                 <p
                   key={index}
-                  className="text-16px grid desktop:grid-cols-[125px_1fr] place-items-start font-medium desktop:gap-5"
+                  className="text-16px grid desktop:grid-cols-[135px_1fr] place-items-start font-medium desktop:gap-5"
                 >
                   {member.name}:
                   <span className="font-light">
-                    <Link
-                      className="font-light desktop:hover:opacity-80"
-                      href={`mailto:${member.email}`}
-                    >
-                      {member.email}
-                    </Link>
+                    <ProtectedEmail
+                      email={member.email}
+                      isVerified={isVerified}
+                      isVerifying={isVerifying}
+                    />
                   </span>
                 </p>
               ))}
@@ -107,29 +140,26 @@ const ContactUsPage = () => {
               Advertising team
             </h3>
             <div className="grid gap-2">
-              <div className="grid desktop:grid-cols-[125px_1fr] place-items-start desktop:gap-5">
+              <div className="grid desktop:grid-cols-[135px_1fr] place-items-start desktop:gap-5">
                 <p className="font-medium">Phone:</p>
-                <Link
-                  href={`tel:${formatPhoneNumber(
-                    contactPage.advertising.phone
-                  )}`}
-                  className="desktop:hover:opacity-80"
-                >
-                  {contactPage.advertising.phone}
-                </Link>
+                <ProtectedPhone
+                  phone={contactPage.advertising.phone}
+                  isVerified={isVerified}
+                  isVerifying={isVerifying}
+                  formatPhoneNumber={formatPhoneNumber}
+                />
               </div>
               {contactPage.advertising.contactInfo.map((person, index) => (
                 <p
                   key={index}
-                  className="text-16px grid desktop:grid-cols-[125px_1fr] place-items-start font-medium desktop:gap-5"
+                  className="text-16px grid desktop:grid-cols-[135px_1fr] place-items-start font-medium desktop:gap-5"
                 >
                   {person.name}:
-                  <Link
-                    className="font-light desktop:hover:opacity-80"
-                    href={`mailto:${person.email}`}
-                  >
-                    {person.email}
-                  </Link>
+                  <ProtectedEmail
+                    email={person.email}
+                    isVerified={isVerified}
+                    isVerifying={isVerifying}
+                  />
                 </p>
               ))}
               <p className="italic">
@@ -145,15 +175,14 @@ const ContactUsPage = () => {
               {contactPage.design.map((person, index) => (
                 <p
                   key={index}
-                  className="text-16px grid desktop:grid-cols-[125px_1fr] place-items-start font-medium desktop:gap-5"
+                  className="text-16px grid desktop:grid-cols-[135px_1fr] place-items-start font-medium desktop:gap-5"
                 >
                   {person.name}:
-                  <Link
-                    className="font-light desktop:hover:opacity-80"
-                    href={`mailto:${person.email}`}
-                  >
-                    {person.email}
-                  </Link>
+                  <ProtectedEmail
+                    email={person.email}
+                    isVerified={isVerified}
+                    isVerifying={isVerifying}
+                  />
                 </p>
               ))}
             </div>
