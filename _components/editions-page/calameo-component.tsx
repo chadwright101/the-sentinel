@@ -1,7 +1,6 @@
 // app/components/CalameoComponent.tsx
 
 import getRecentPublications from "@/_actions/calameo-actions";
-import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 

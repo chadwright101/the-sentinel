@@ -15,6 +15,7 @@ interface CalameoPublication {
   Status: string;
   IsPublished: number;
   IsPrivate: number;
+  Pages: number;
   PosterUrl: string;
   ViewUrl: string;
 }
@@ -66,11 +67,12 @@ export default async function getRecentPublications(): Promise<
 
     const publications = data.response?.content?.items || [];
 
-    // Filter publications to only include published, non-private, and completed ones
+    // Filter publications to only include published, non-private, completed ones with over 12 pages
     const filteredPublications = publications.filter((pub: any) =>
       pub.Status === 'DONE' &&
       pub.IsPublished === 1 &&
-      pub.IsPrivate === 0
+      pub.IsPrivate === 0 &&
+      pub.Pages > 12
     );
 
     // Sort filtered publications by date in descending order (most recent first)
