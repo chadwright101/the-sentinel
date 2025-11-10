@@ -24,6 +24,7 @@ import "@/_styles/globals.css";
 import HeaderContainer from "@/_components/navigation/header/header-container";
 import FooterComponent from "@/_components/navigation/footer/footer-component";
 import LayoutAdSpaceComponent from "@/_components/ad-spaces/layout-ad-space-component";
+import SearchBarComponent from "@/_components/navigation/search-bar-component";
 import { fetchAdData } from "@/_components/fetch-ad-data";
 import RecaptchaProvider from "@/_components/providers/recaptcha-provider";
 
@@ -62,6 +63,7 @@ export default async function RootLayout({
       >
         <HeaderContainer />
         <LayoutAdSpaceComponent adData={adData} />
+        <SearchBarComponent />
         <RecaptchaProvider>
           {children}
         </RecaptchaProvider>

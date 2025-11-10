@@ -75,9 +75,7 @@ export async function fetchPostsWithPagination(
     const publishedPosts = allPosts
       .filter((post) => post.status === "publish")
       .filter((post) => post.jetpack_featured_media_url)
-      .filter(
-        (post) => post.title && post.excerpt?.rendered && post.content?.rendered
-      );
+      .filter((post) => post.title && post.content?.rendered);
 
     const hasMore = publishedPosts.length > 9;
     const posts = publishedPosts.slice(0, 9);

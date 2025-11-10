@@ -5,6 +5,7 @@ interface PaginationComponentProps {
   categorySlug: string;
   hasMorePosts: boolean;
   totalPages: number;
+  baseQuery?: string;
 }
 
 export default function PaginationComponent({
@@ -12,6 +13,7 @@ export default function PaginationComponent({
   categorySlug,
   hasMorePosts,
   totalPages,
+  baseQuery = "",
 }: PaginationComponentProps) {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage >= totalPages;
@@ -49,30 +51,37 @@ export default function PaginationComponent({
     >
       {!isFirstPage && (
         <Link
-          href={`/${categorySlug}`}
+          href={`/${categorySlug}${baseQuery}`}
           className="px-4 py-3 bg-teal text-white font-inter font-bold text-14px rounded-lg hover:bg-dark-brown transition-colors duration-300"
         >
           First
         </Link>
       )}
 
-      {pageNumbers.map((pageNum) => (
-        <Link
-          key={pageNum}
-          href={`/${categorySlug}${pageNum > 1 ? `?page=${pageNum}` : ""}`}
-          className={`px-4 py-3 font-inter font-bold text-14px rounded-lg transition-colors duration-300 ${
-            pageNum === currentPage
-              ? "bg-beige text-teal"
-              : "bg-white text-teal border border-beige hover:bg-beige"
-          }`}
-        >
-          {pageNum}
-        </Link>
-      ))}
+      {pageNumbers.map((pageNum) => {
+        const pageParam = pageNum > 1 ? `&page=${pageNum}` : "";
+        const href = baseQuery
+          ? `/${categorySlug}${baseQuery}${pageParam}`
+          : `/${categorySlug}${pageNum > 1 ? `?page=${pageNum}` : ""}`;
+
+        return (
+          <Link
+            key={pageNum}
+            href={href}
+            className={`px-4 py-3 font-inter font-bold text-14px rounded-lg transition-colors duration-300 ${
+              pageNum === currentPage
+                ? "bg-beige text-teal"
+                : "bg-white text-teal border border-beige hover:bg-beige"
+            }`}
+          >
+            {pageNum}
+          </Link>
+        );
+      })}
 
       {!isLastPage && (
         <Link
-          href={`/${categorySlug}?page=${totalPages}`}
+          href={`/${categorySlug}${baseQuery}${baseQuery ? "&page=" : "?page="}${totalPages}`}
           className="px-4 py-3 bg-teal text-white font-inter font-bold text-14px rounded-lg hover:bg-dark-brown transition-colors duration-300"
         >
           Last

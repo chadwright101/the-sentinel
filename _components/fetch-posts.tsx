@@ -95,9 +95,7 @@ export async function fetchPosts(
     const publishedPosts = posts.filter((post) => post.status === "publish");
     return publishedPosts
       .filter((post) => post.jetpack_featured_media_url)
-      .filter(
-        (post) => post.title && post.excerpt?.rendered && post.content?.rendered
-      );
+      .filter((post) => post.title && post.content?.rendered);
   } catch (error) {
     console.error("Error fetching posts:", error);
     return [];
