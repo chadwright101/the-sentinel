@@ -29,10 +29,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <main className="grid gap-5">
         <div>
           <BreadcrumbComponent
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Search" },
-            ]}
+            items={[{ label: "Home", href: "/" }, { label: "Search" }]}
           />
         </div>
 
@@ -42,13 +39,15 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           <p className="text-16px font-inter">
             {totalResults === 0 ? (
               <span>
-                No results found for <span className="font-semibold">"{searchQuery}"</span>
+                No results found for{" "}
+                <span className="font-semibold">&quot;{searchQuery}&quot;</span>
               </span>
             ) : (
               <span>
                 Showing <span className="font-semibold">{posts.length}</span> of{" "}
-                <span className="font-semibold">{totalResults}</span> results for{" "}
-                <span className="font-semibold">"{searchQuery}"</span>
+                <span className="font-semibold">{totalResults}</span> results
+                for{" "}
+                <span className="font-semibold">&quot;{searchQuery}&quot;</span>
               </span>
             )}
           </p>
