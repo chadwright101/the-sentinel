@@ -21,6 +21,7 @@ const abrilFatfaceSerif = Abril_Fatface({
 });
 
 import "@/_styles/globals.css";
+import { Suspense } from "react";
 import HeaderContainer from "@/_components/navigation/header/header-container";
 import FooterComponent from "@/_components/navigation/footer/footer-component";
 import LayoutAdSpaceComponent from "@/_components/ad-spaces/layout-ad-space-component";
@@ -63,7 +64,9 @@ export default async function RootLayout({
       >
         <HeaderContainer />
         <LayoutAdSpaceComponent adData={adData} />
-        <SearchBarComponent />
+        <Suspense fallback={null}>
+          <SearchBarComponent />
+        </Suspense>
         <RecaptchaProvider>
           {children}
         </RecaptchaProvider>
