@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import ButtonType from "@/_components/ui/buttons/button-type";
 import classNames from "classnames";
@@ -15,6 +16,7 @@ const NewsletterSubscriptionComponent = ({
 }: NewsletterSubscribeComponentProps) => {
   const [showSignupSuccessful, setShowSignupSuccessful] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   return (
     <form
@@ -22,7 +24,7 @@ const NewsletterSubscriptionComponent = ({
         try {
           setError(null);
 
-          /* if (!executeRecaptcha) {
+          if (!executeRecaptcha) {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             if (!executeRecaptcha) {
               setError(
@@ -32,8 +34,8 @@ const NewsletterSubscriptionComponent = ({
             }
           }
 
-          const recaptchaToken = await executeRecaptcha("contact_form");
-          formData.append("recaptchaToken", recaptchaToken); */
+          const recaptchaToken = await executeRecaptcha("newsletter_signup");
+          formData.append("recaptchaToken", recaptchaToken);
 
           const result = await newsletterSignUp(formData);
 

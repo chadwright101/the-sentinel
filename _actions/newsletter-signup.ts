@@ -1,5 +1,7 @@
 "use server";
 
+import { verifyRecaptchaToken } from "@/_lib/verify-recaptcha";
+
 interface NewsletterSignupResult {
   success: boolean;
   error?: string;
@@ -7,7 +9,25 @@ interface NewsletterSignupResult {
 
 export async function newsletterSignUp(formData: FormData): Promise<NewsletterSignupResult> {
   try {
+    const recaptchaToken = formData.get("recaptchaToken") as string;
+
+    if (!recaptchaToken) {
+      return {
+        success: false,
+        error: "Security verification failed. Please try again."
+      };
+    }
+
+    const recaptchaResult = await verifyRecaptchaToken(recaptchaToken);
+    if (!recaptchaResult.success) {
+      return {
+        success: false,
+        error: recaptchaResult.error || "Security verification failed. Please try again."
+      };
+    }
+
     const email = formData.get("email")?.toString();
+    const name = formData.get("given-name")?.toString();
 
     if (!email) {
       return {
@@ -37,21 +57,31 @@ export async function newsletterSignUp(formData: FormData): Promise<NewsletterSi
 
     const url = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members`;
 
+    const requestBody: {
+      email_address: string;
+      status: string;
+      merge_fields?: { FNAME: string };
+    } = {
+      email_address: email,
+      status: "subscribed"
+    };
+
+    if (name) {
+      requestBody.merge_fields = { FNAME: name };
+    }
+
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Basic ${Buffer.from(`anystring:${apiKey}`).toString("base64")}`
       },
-      body: JSON.stringify({
-        email_address: email,
-        status: "subscribed"
-      })
+      body: JSON.stringify(requestBody)
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      
+
       if (response.status === 400 && errorData.title === "Member Exists") {
         return {
           success: false,
