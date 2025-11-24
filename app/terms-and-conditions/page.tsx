@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import PageWrapper from "@/_lib/utils/page-wrapper";
+
+export const metadata: Metadata = {
+  title: "Terms and Conditions | The Sentinel",
+  description:
+    "The Sentinel terms and conditions. Review our editorial and advertising guidelines.",
+};
 
 const TermsAndConditionsPage = () => {
   return (

@@ -1,5 +1,12 @@
+import { Metadata } from "next";
 import CalameoComponent from "@/_components/editions-page/calameo-component";
 import PageWrapper from "@/_lib/utils/page-wrapper";
+
+export const metadata: Metadata = {
+  title: "Digital Editions | The Sentinel",
+  description:
+    "Browse the digital editions of The Sentinel. Read the latest newspaper editions online.",
+};
 
 const EditionsPage = () => {
   return (

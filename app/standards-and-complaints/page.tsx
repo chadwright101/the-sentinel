@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import PageWrapper from "@/_lib/utils/page-wrapper";
+
+export const metadata: Metadata = {
+  title: "Standards & Complaints | The Sentinel",
+  description:
+    "The Sentinel complaints process. Learn how to report editorial complaints and our standards.",
+};
 
 const StandardsAndComplaintsPage = () => {
   return (

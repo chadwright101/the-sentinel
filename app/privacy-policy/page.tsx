@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import PageWrapper from "@/_lib/utils/page-wrapper";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | The Sentinel",
+  description:
+    "The Sentinel privacy policy. Learn how we collect, use, and protect your personal information.",
+};
 
 const PrivacyPage = () => {
   return (

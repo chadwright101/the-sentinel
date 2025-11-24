@@ -1,5 +1,12 @@
+import { Metadata } from "next";
 import PageWrapper from "@/_lib/utils/page-wrapper";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Coverage Area | The Sentinel",
+  description:
+    "The Sentinel coverage area map. We serve Somerset, Moreton Bay, and surrounding regions.",
+};
 
 const CoverageAreaPage = () => {
   return (

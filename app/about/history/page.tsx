@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import PageWrapper from "@/_lib/utils/page-wrapper";
+
+export const metadata: Metadata = {
+  title: "Our History | The Sentinel",
+  description:
+    "Learn about The Sentinel history. From The Kilcoy Sentinel to Somerset Sentinel and beyond.",
+};
 
 const HistoryPage = () => {
   return (

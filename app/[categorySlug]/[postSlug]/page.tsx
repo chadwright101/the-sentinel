@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { fetchSinglePost } from "@/_components/fetch-single-post";
 import { getCategoryMapping } from "@/_lib/utils/category-mapping";
@@ -16,6 +17,62 @@ interface PostPageProps {
     categorySlug: string;
     postSlug: string;
   }>;
+}
+
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, "");
+}
+
+function generateDescription(content: string): string {
+  const plainText = stripHtml(content).trim();
+  const maxLength = 155;
+
+  if (plainText.length <= maxLength) {
+    return plainText;
+  }
+
+  return plainText.substring(0, maxLength).trim() + "...";
+}
+
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const { postSlug } = await params;
+  const post = await fetchSinglePost(postSlug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found | The Sentinel",
+    };
+  }
+
+  const title = stripHtml(post.title.rendered);
+  const description = generateDescription(post.content.rendered);
+
+  return {
+    title: `${title} | The Sentinel`,
+    description,
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      images: [
+        {
+          url: post.jetpack_featured_media_url,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      publishedTime: post.date,
+      authors: post._embedded?.author?.[0]?.name ? [post._embedded.author[0].name] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [post.jetpack_featured_media_url],
+    },
+  };
 }
 
 export default async function PostPage({ params }: PostPageProps) {

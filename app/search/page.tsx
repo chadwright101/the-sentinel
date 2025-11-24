@@ -1,8 +1,14 @@
+import { Metadata } from "next";
 import { fetchSearchResults } from "@/_components/fetch-search-results";
 import SearchGrid from "@/_components/search-page/search-grid";
 import PaginationComponent from "@/_lib/utils/pagination-component";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
 import PageWrapper from "@/_lib/utils/page-wrapper";
+
+export const metadata: Metadata = {
+  title: "Search | The Sentinel",
+  description: "Search The Sentinel for articles, news, and information.",
+};
 
 interface SearchPageProps {
   searchParams: Promise<{

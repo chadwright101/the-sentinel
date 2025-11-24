@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { fetchPostsWithPagination } from "@/_components/fetch-posts-with-pagination";
 import { fetchPosts } from "@/_components/fetch-posts";
@@ -14,6 +15,24 @@ interface CategoryPageProps {
   searchParams: Promise<{
     page?: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
+  const { categorySlug } = await params;
+  const categoryInfo = getCategoryMapping(categorySlug);
+
+  if (!categoryInfo) {
+    return {
+      title: "Category Not Found | The Sentinel",
+    };
+  }
+
+  return {
+    title: `${categoryInfo.title} | The Sentinel`,
+    description: `Latest news and updates from ${categoryInfo.title}. Read the latest stories from The Sentinel.`,
+  };
 }
 
 export default async function CategoryPage({

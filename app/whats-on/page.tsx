@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { EventData } from "@/_types/calendar-types";
 import classNames from "classnames";
 import Link from "next/link";
@@ -51,6 +52,12 @@ function toIsoDate(dateString: string): string {
 function toIsoDateTime(dateString: string, timeString: string): string {
   return `${toIsoDate(dateString)}T${timeString}`;
 }
+
+export const metadata: Metadata = {
+  title: "What's On | The Sentinel",
+  description:
+    "Discover upcoming events and activities in the Clarence Town area. Find dates, times, and details for community events.",
+};
 
 async function EventName({ event }: { event: EventData }) {
   if (!event.acf.published_article) {

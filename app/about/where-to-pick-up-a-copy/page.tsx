@@ -1,5 +1,12 @@
+import { Metadata } from "next";
 import PageWrapper from "@/_lib/utils/page-wrapper";
 import DistributionAccordion from "@/_components/about-page/distribution-accordion";
+
+export const metadata: Metadata = {
+  title: "Where to Pick Up a Copy | The Sentinel",
+  description:
+    "Find where to pick up a copy of The Sentinel in your area. View distribution locations.",
+};
 
 const WhereToPickUpACopyPage = () => {
   return (
