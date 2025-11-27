@@ -55,7 +55,11 @@ const HomePageCategoryComponent = ({
           aria-label={`View our latest ${categorySlug} articles`}
           className="font-inter p-2 -m-2 text-24px text-black font-bold desktop:text-36px desktop:hover:text-teal desktop:p-0 desktop:m-0"
         >
-          {categorySlug ? formatCategoryTitle(categorySlug) : "Latest News"}
+          {categorySlug === "time-out"
+            ? "Entertainment"
+            : categorySlug
+              ? formatCategoryTitle(categorySlug)
+              : "Latest News"}
         </Link>
       </h3>
       {loading ? (
@@ -80,7 +84,7 @@ const HomePageCategoryComponent = ({
               adData={adData}
             />
           )}
-          {categorySlug === "entertainment" && (
+          {categorySlug === "time-out" && (
             <HomePageNewsGridNoAds
               posts={posts}
               hoveredIndex={hoveredIndex}

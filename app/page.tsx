@@ -31,7 +31,7 @@ export default async function HomePage() {
         {/* categories */}
       </div>
       <HomePageCategoryComponent categorySlug="sport" />
-      <HomePageCategoryComponent categorySlug="entertainment" />
+      <HomePageCategoryComponent categorySlug="time-out" />
       <NewsletterSubscriptionComponent />
       <HomePageCategoryComponent categorySlug="community" />
       <HomePageCategoryComponent categorySlug="real-estate" />

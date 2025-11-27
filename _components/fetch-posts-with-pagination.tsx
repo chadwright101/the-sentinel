@@ -19,7 +19,7 @@ export async function fetchPostsWithPagination(
         "NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL environment variable is not set"
       );
     }
-    let url = `${baseUrl}posts?per_page=10&page=${page}&_embed=author`;
+    let url = `${baseUrl}posts?per_page=10&page=${page}&_embed=author&orderby=date&order=desc`;
     let categoryFound = true;
 
     if (categorySlug) {

@@ -42,7 +42,7 @@ export async function fetchPosts(
     const page = options.page ?? 1;
     const perPage = Math.max(1, Math.min(100, options.perPage ?? 9));
 
-    let url = `${baseUrl}posts?per_page=${perPage}&page=${page}&_embed=author`;
+    let url = `${baseUrl}posts?per_page=${perPage}&page=${page}&_embed=author&orderby=date&order=desc`;
 
     if (categorySlug) {
       const categoryIds: number[] = [];
