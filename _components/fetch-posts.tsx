@@ -50,16 +50,6 @@ export async function fetchPosts(
       if (categorySlug === "latest-news") {
         // latest-news shows all posts, no category filtering
         // Skip adding any categories to the URL
-      } else if (categorySlug === "news") {
-        const newsAndUncategorizedResponse = await fetch(
-          `${baseUrl}categories?slug=${categorySlug},uncategorized`,
-          { next: { revalidate: 300 } }
-        );
-
-        if (newsAndUncategorizedResponse.ok) {
-          const categories = await newsAndUncategorizedResponse.json();
-          categoryIds.push(...categories.map((cat: any) => cat.id));
-        }
       } else {
         const categoriesResponse = await fetch(
           `${baseUrl}categories?slug=${categorySlug}`,
@@ -79,7 +69,7 @@ export async function fetchPosts(
       }
 
       if (categoryIds.length > 0) {
-        url += `&categories=${categoryIds.join(',')}`;
+        url += `&categories=${categoryIds.join(",")}`;
       }
     }
 

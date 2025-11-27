@@ -20,8 +20,6 @@ export default async function HomePage() {
       <TopStoriesComponent />
       {/* latest news */}
       <HomePageCategoryComponent />
-      {/* categories */}
-      <HomePageCategoryComponent categorySlug="news" />
       <div className="my-10">
         <AdSpaceBillboard
           src={
@@ -30,6 +28,7 @@ export default async function HomePage() {
           alt={adData?.company_name_billboard || "Advertisement"}
           url={adData?.link_billboard || "#"}
         />
+        {/* categories */}
       </div>
       <HomePageCategoryComponent categorySlug="sport" />
       <HomePageCategoryComponent categorySlug="entertainment" />

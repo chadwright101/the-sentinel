@@ -6,7 +6,7 @@ import PostGridDate from "@/_lib/utils/posts/post-grid-date";
 import PostGridImage from "@/_lib/utils/posts/post-grid-image";
 import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
 import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
-import { getCategoryMapping, getAllCategorySlugs } from "@/_lib/utils/category-mapping";
+import { getAllCategorySlugs } from "@/_lib/utils/category-mapping";
 
 interface Post {
   id: number;

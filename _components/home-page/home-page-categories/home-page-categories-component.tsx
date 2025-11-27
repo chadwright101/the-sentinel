@@ -72,14 +72,6 @@ const HomePageCategoryComponent = ({
               adData={adData}
             />
           )}
-          {categorySlug === "news" && (
-            <HomePageNewsGridNoAds
-              posts={posts}
-              hoveredIndex={hoveredIndex}
-              setHoveredIndex={setHoveredIndex}
-              adData={adData}
-            />
-          )}
           {categorySlug === "sport" && (
             <HomePageNewsGridNoAds
               posts={posts}

@@ -120,7 +120,7 @@ export default async function CalendarPage() {
                   <li
                     key={index}
                     className={classNames(
-                      "flex flex-col phone:flex-row phone:justify-between phone:items-center gap-5",
+                      "grid phone:grid-cols-2 phone:justify-between phone:items-center gap-5",
                       {
                         "border-b border-black/25 pb-5":
                           index !== events.length - 1,
@@ -164,6 +164,11 @@ export default async function CalendarPage() {
                         </time>
                       </p>
                     </div>
+                    {event.acf.event_description && (
+                      <p className="phone:col-span-2">
+                        {event.acf.event_description}
+                      </p>
+                    )}
                   </li>
                 ))}
               </ul>
