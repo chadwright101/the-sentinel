@@ -33,10 +33,6 @@
 }
 
 @layer components {
-  html {
-    scroll-behavior: smooth;
-  }
-
   * {
     @apply text-black;
     font-family: var(--font-newsreader);

@@ -45,6 +45,10 @@ export default async function getRecentPublications(): Promise<
       apikey: CALAMEO_API_KEY,
       output: "JSON",
       action: "API.fetchAccountBooks",
+      start: "0",
+      step: "20",
+      order: "Date",
+      way: "DOWN",
     };
 
     const signature = generateSignature(params);
@@ -68,11 +72,12 @@ export default async function getRecentPublications(): Promise<
     const publications = data.response?.content?.items || [];
 
     // Filter publications to only include published, non-private, completed ones with over 12 pages
-    const filteredPublications = publications.filter((pub: any) =>
-      pub.Status === 'DONE' &&
-      pub.IsPublished === 1 &&
-      pub.IsPrivate === 0 &&
-      pub.Pages > 12
+    const filteredPublications = publications.filter(
+      (pub: any) =>
+        pub.Status === "DONE" &&
+        pub.IsPublished === 1 &&
+        pub.IsPrivate === 0 &&
+        pub.Pages > 12
     );
 
     // Sort filtered publications by date in descending order (most recent first)

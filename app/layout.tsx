@@ -73,7 +73,7 @@ export default async function RootLayout({
   const adData = await fetchAdData();
 
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${interSansSerif.variable} ${newsreaderSerif.variable} ${abrilFatfaceSerif.variable} antialiased`}
       >
