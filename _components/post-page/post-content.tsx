@@ -73,7 +73,9 @@ export default function PostContent({ content, adData }: PostContentProps) {
     let htmlBuffer = "";
 
     Array.from(doc.body.children).forEach((child) => {
-      if (child.classList.contains("wp-block-jetpack-tiled-gallery")) {
+      if (child.classList.contains("wp-block-jetpack-tiled-gallery") ||
+          child.classList.contains("wp-block-gallery") ||
+          child.classList.contains("wp-block-jetpack-slideshow")) {
         if (htmlBuffer) {
           blocks.push({ type: "html", content: htmlBuffer });
           htmlBuffer = "";
