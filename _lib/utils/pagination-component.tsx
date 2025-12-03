@@ -31,7 +31,10 @@ export default function PaginationComponent({
     // Always show at least 3 pages when possible
     const minEndPage = Math.max(startPage + 2, endPage);
 
-    for (let i = startPage; i <= minEndPage; i++) {
+    // Cap endPage to totalPages so we don't show pages that don't exist
+    const cappedEndPage = Math.min(minEndPage, totalPages);
+
+    for (let i = startPage; i <= cappedEndPage; i++) {
       pages.push(i);
     }
 
@@ -44,12 +47,14 @@ export default function PaginationComponent({
     return null;
   }
 
+  const showFirstLastButtons = categorySlug !== "latest-news";
+
   return (
     <nav
       className="flex justify-center items-center space-x-2 mt-10"
       aria-label="Pagination Navigation"
     >
-      {!isFirstPage && (
+      {showFirstLastButtons && !isFirstPage && (
         <Link
           href={`/${categorySlug}${baseQuery}`}
           className="px-4 py-3 bg-teal text-white font-inter font-bold text-14px rounded-lg hover:bg-dark-brown transition-colors duration-300"
@@ -79,9 +84,11 @@ export default function PaginationComponent({
         );
       })}
 
-      {!isLastPage && (
+      {showFirstLastButtons && !isLastPage && (
         <Link
-          href={`/${categorySlug}${baseQuery}${baseQuery ? "&page=" : "?page="}${totalPages}`}
+          href={`/${categorySlug}${baseQuery}${
+            baseQuery ? "&page=" : "?page="
+          }${totalPages}`}
           className="px-4 py-3 bg-teal text-white font-inter font-bold text-14px rounded-lg hover:bg-dark-brown transition-colors duration-300"
         >
           Last

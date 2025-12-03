@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { fetchSinglePost } from "@/_components/fetch-single-post";
 import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import Image from "next/image";
-import PostContentWithAd from "@/_components/post-page/post-content-with-ad";
+import PostContent from "@/_components/post-page/post-content";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
 import { fetchAdData } from "@/_components/fetch-ad-data";
 import { fetchPosts } from "@/_components/fetch-posts";
@@ -64,7 +64,9 @@ export async function generateMetadata({
         },
       ],
       publishedTime: post.date,
-      authors: post._embedded?.author?.[0]?.name ? [post._embedded.author[0].name] : undefined,
+      authors: post._embedded?.author?.[0]?.name
+        ? [post._embedded.author[0].name]
+        : undefined,
     },
     twitter: {
       card: "summary_large_image",
@@ -113,11 +115,13 @@ export default async function PostPage({ params }: PostPageProps) {
               className="text-36px font-inter font-bold"
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
             />
-            {post._embedded?.author && post._embedded.author[0] && (
-              <p className="text-14px font-inter">
-                Written by {post._embedded.author[0].name}
-              </p>
-            )}
+            {post._embedded?.author &&
+              post._embedded.author[0] &&
+              post._embedded.author[0].name !== "Archive" && (
+                <p className="text-14px font-inter">
+                  Written by {post._embedded.author[0].name}
+                </p>
+              )}
 
             <time dateTime={post.date} className="text-12px italic font-inter">
               {new Date(post.date).toLocaleDateString("en-AU", {
@@ -127,6 +131,12 @@ export default async function PostPage({ params }: PostPageProps) {
               })}
             </time>
           </div>
+          {post.acf && post.acf.subheading && (
+            <h3
+              className="text-18px"
+              dangerouslySetInnerHTML={{ __html: post.acf.subheading }}
+            ></h3>
+          )}
           {/*  <div className="desktop:grid grid-cols-[1fr_250px] gap-7"> */}
           <div>
             <div className="grid gap-5">
@@ -140,10 +150,7 @@ export default async function PostPage({ params }: PostPageProps) {
                   sizes="(max-width: 1100px) 100vw, 1100px"
                 />
               </div>
-              <PostContentWithAd
-                content={post.content.rendered}
-                adData={adData}
-              />
+              <PostContent content={post.content.rendered} adData={adData} />
             </div>
             {/* <div className="hidden desktop:flex flex-col gap-10">
               <AdSpaceTower

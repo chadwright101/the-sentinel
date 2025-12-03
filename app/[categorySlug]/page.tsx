@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { fetchPostsWithPagination } from "@/_components/fetch-posts-with-pagination";
-import { fetchPosts } from "@/_components/fetch-posts";
 import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import PaginationComponent from "@/_lib/utils/pagination-component";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
@@ -51,10 +50,14 @@ export default async function CategoryPage({
   let posts, hasMore, totalPages, categoryFound;
 
   if (categorySlug === "latest-news") {
-    posts = await fetchPosts();
-    hasMore = false;
-    totalPages = 1;
-    categoryFound = true;
+    const paginatedResults = await fetchPostsWithPagination(
+      categorySlug,
+      currentPage
+    );
+    posts = paginatedResults.posts;
+    hasMore = paginatedResults.hasMore;
+    totalPages = paginatedResults.totalPages;
+    categoryFound = paginatedResults.categoryFound;
   } else {
     const paginatedResults = await fetchPostsWithPagination(
       categorySlug,

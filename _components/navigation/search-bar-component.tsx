@@ -13,6 +13,8 @@ export default function SearchBarComponent() {
     const query = searchParams.get("q");
     if (query) {
       setSearchValue(decodeURIComponent(query));
+    } else {
+      setSearchValue("");
     }
     setIsLoading(false);
   }, [searchParams]);

@@ -12,7 +12,6 @@ interface Post {
   id: number;
   slug: string;
   title: { rendered: string };
-  excerpt: { rendered: string };
   jetpack_featured_media_url: string;
   date: string;
   class_list: string[];

@@ -20,11 +20,11 @@ export interface PostProps {
   title: {
     rendered: string;
   };
-  excerpt: {
-    rendered: string;
-  };
   content: {
     rendered: string;
+  };
+  acf?: {
+    subheading?: string;
   };
   class_list: string[];
   jetpack_featured_media_url: string;

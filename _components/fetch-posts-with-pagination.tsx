@@ -19,7 +19,14 @@ export async function fetchPostsWithPagination(
         "NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL environment variable is not set"
       );
     }
-    let url = `${baseUrl}posts?per_page=10&page=${page}&_embed=author&orderby=date&order=desc`;
+
+    // For latest-news, enforce max 2 pages
+    const isLatestNews = categorySlug === "latest-news";
+    if (isLatestNews && page > 2) {
+      return { posts: [], hasMore: false, totalPages: 2, categoryFound: true };
+    }
+
+    let url = `${baseUrl}posts?per_page=12&page=${page}&_embed=author&orderby=date&order=desc`;
     let categoryFound = true;
 
     if (categorySlug) {
@@ -67,10 +74,18 @@ export async function fetchPostsWithPagination(
       .filter((post) => post.jetpack_featured_media_url)
       .filter((post) => post.title && post.content?.rendered);
 
-    const hasMore = publishedPosts.length > 9;
+    // For latest-news, cap totalPages at 2 and hasMore accordingly
+    let finalTotalPages = totalPages;
+    let hasMore = publishedPosts.length > 9;
+
+    if (isLatestNews) {
+      finalTotalPages = Math.min(totalPages, 2);
+      hasMore = page < 2 && publishedPosts.length > 9;
+    }
+
     const posts = publishedPosts.slice(0, 9);
 
-    return { posts, hasMore, totalPages, categoryFound };
+    return { posts, hasMore, totalPages: finalTotalPages, categoryFound };
   } catch (error) {
     console.error("Error fetching posts:", error);
     return { posts: [], hasMore: false, totalPages: 1, categoryFound: true };
