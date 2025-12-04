@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     "Clarence Town news, NSW local news, regional news, independent journalism, Clarence Town NSW, local community news, Hunter Valley news, Australian regional news, local government news, community issues",
   icons: {
     icon: [
-      { url: "/logo/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/logo/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/logo/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico" },
     ],
   },
   openGraph: {

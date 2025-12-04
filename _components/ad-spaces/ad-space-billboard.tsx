@@ -6,9 +6,7 @@ import AdFallback from "./ad-fallback";
 
 const AdSpaceBillboard = ({ src, alt, url, cssClasses }: AdProps) => {
   if (!src) {
-    return (
-      <AdFallback cssClasses={classNames("w-full aspect-[4/1]", cssClasses)} />
-    );
+    return <AdFallback cssClasses={classNames("w-full", cssClasses)} />;
   }
 
   return (
@@ -23,7 +21,7 @@ const AdSpaceBillboard = ({ src, alt, url, cssClasses }: AdProps) => {
         alt={alt}
         width={900}
         height={150}
-        className="object-cover aspect-[4/1] w-full"
+        className="object-contain h-auto w-full"
       />
     </Link>
   );

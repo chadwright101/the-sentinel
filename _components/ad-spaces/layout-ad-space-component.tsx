@@ -27,7 +27,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
 
   return (
     <div className="w-full relative flex justify-center max-w-[1920px] mx-auto">
-      {/* banner - ratio 6/1 */}
+      {/* banner */}
       {adData?.image_banner ? (
         <Link
           href={adData.link_banner || "#"}
@@ -39,9 +39,9 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
             src={adData.image_banner}
             alt={adData.company_name_banner || "Advertisement"}
             width={900}
-            height={150}
+            height={300}
             sizes="(max-width: 750px) 100vw, 900px"
-            className="aspect-[6/1] object-cover h-full w-full"
+            className="object-contain h-auto w-full"
           />
         </Link>
       ) : (
@@ -57,7 +57,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           target="_blank"
           referrerPolicy="no-referrer"
           className={classNames(
-            "hidden min-[calc(1300px+52vh)]:block fixed left-24 desktop:hover:opacity-85",
+            "hidden min-[calc(1300px+52vh)]:block z-50 fixed left-24 desktop:hover:opacity-85",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
@@ -91,7 +91,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           target="_blank"
           referrerPolicy="no-referrer"
           className={classNames(
-            "hidden min-[calc(1300px+52vh)]:block fixed right-24 desktop:hover:opacity-85",
+            "hidden min-[calc(1300px+52vh)]:block fixed z-50 right-24 desktop:hover:opacity-85",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
