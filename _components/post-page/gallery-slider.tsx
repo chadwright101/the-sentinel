@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import classNames from "classnames";
 import { GallerySliderProps } from "@/_types/gallery-types";
 import { useRef } from "react";
 import "swiper/css";
+import "swiper/css/pagination";
 
 export default function GallerySlider({
   images,
@@ -46,14 +47,22 @@ export default function GallerySlider({
               }
             : false
         }
-        spaceBetween={0}
+        spaceBetween={20}
         speed={800}
-        modules={[Autoplay]}
+        modules={[Autoplay, Pagination]}
         loop={shouldLoop}
         slidesPerView={1}
         allowTouchMove={true}
         grabCursor={true}
+        pagination={{ clickable: true, dynamicBullets: true }}
         className={classNames("w-full mt-10 bg-teal/10", cssClasses)}
+        style={{
+          ["--swiper-pagination-color" as string]: "#064658",
+          ["--swiper-pagination-bullet-inactive-color" as string]: "#064658",
+          ["--swiper-pagination-bullet-inactive-opacity" as string]: 1,
+          ["--swiper-pagination-bullet-size" as string]: "8px",
+          ["--swiper-pagination-bullet-horizontal-gap" as string]: "4px",
+        }}
       >
         {images.map((image, index) => (
           <SwiperSlide

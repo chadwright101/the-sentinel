@@ -33,8 +33,6 @@ const tableStyles =
 const horizontalRuleStyles = "[&_hr]:border-t [&_hr]:border-black [&_hr]:my-5";
 const imageStyles =
   "[&_img:not(.gallery-placeholder_img)]:object-cover [&_img:not(.gallery-placeholder_img)]:mx-auto [&_img:not(.gallery-placeholder_img)]:max-w-[700px] [&_img:not(.gallery-placeholder_img)]:max-h-[600px] [&_img:not(.gallery-placeholder_img)]:w-full [&_img:not(.gallery-placeholder_img)]:h-full";
-const figureGridStyles =
-  "[&_figure:has(figure)]:grid [&_figure:has(figure)]:grid-cols-1 [&_figure:has(figure)]:tablet:grid-cols-2 [&_figure:has(figure)]:desktop:grid-cols-3 [&_figure:has(figure)]:gap-5";
 
 function extractImageSrc(img: HTMLImageElement): string {
   const dataOrigFile = img.getAttribute("data-orig-file");
@@ -182,8 +180,7 @@ export default function PostContent({ content, adData }: PostContentProps) {
                 preStyles,
                 tableStyles,
                 horizontalRuleStyles,
-                imageStyles,
-                figureGridStyles
+                imageStyles
               )}
             />
           );

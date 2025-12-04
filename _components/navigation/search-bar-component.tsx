@@ -35,6 +35,11 @@ export default function SearchBarComponent() {
     setSearchValue("");
   };
 
+  const handleClearSearch = () => {
+    setSearchValue("");
+    router.push("/latest-news");
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -101,6 +106,15 @@ export default function SearchBarComponent() {
           )}
         </button>
       </div>
+
+      {searchValue && (
+        <button
+          onClick={handleClearSearch}
+          className="text-teal p-2 -m-2 font-inter text-14px mt-1 desktop:hover:text-dark-brown transition-colors duration-300 desktop:hover:cursor-pointer desktop:m-0 desktop:mt-2 desktop:p-0"
+        >
+          Clear search
+        </button>
+      )}
     </form>
   );
 }

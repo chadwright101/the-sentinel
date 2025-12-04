@@ -50,7 +50,7 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
               {hasChildren && (
                 <div
                   className={classNames(
-                    "absolute top-full left-0 mt-4 w-max min-w-[180px] bg-white/85 shadow-lg rounded-b-md overflow-hidden transition-all duration-300 delay-75 ease-in-out origin-top transform",
+                    "absolute top-full left-0 mt-4 w-max min-w-[180px] bg-white/90 shadow-lg rounded-b-md overflow-hidden transition-all duration-300 delay-75 ease-in-out origin-top transform",
                     {
                       "opacity-0 invisible max-h-0 scale-y-0":
                         hoveredItem !== index,
