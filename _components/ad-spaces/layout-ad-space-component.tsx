@@ -57,7 +57,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           target="_blank"
           referrerPolicy="no-referrer"
           className={classNames(
-            "hidden min-[calc(1300px+52vh)]:block z-50 fixed left-24 desktop:hover:opacity-85",
+            "hidden min-[calc(1300px+52vh)]:block z-40 fixed left-24 desktop:hover:opacity-85",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,
@@ -91,7 +91,7 @@ const LayoutAdSpaceComponent = ({ adData }: LayoutAdSpaceProps) => {
           target="_blank"
           referrerPolicy="no-referrer"
           className={classNames(
-            "hidden min-[calc(1300px+52vh)]:block fixed z-50 right-24 desktop:hover:opacity-85",
+            "hidden min-[calc(1300px+52vh)]:block fixed z-40 right-24 desktop:hover:opacity-85",
             {
               "top-[150px]": isScrolled,
               "top-[250px]": !isScrolled,

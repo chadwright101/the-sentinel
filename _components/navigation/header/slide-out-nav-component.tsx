@@ -104,7 +104,7 @@ const SlideOutNavComponent = ({
     <div
       ref={navRef}
       className={classNames(
-        "fixed w-full left-0 top-[100px] transform transition-transform duration-300 ease-in-out desktop:w-1/4 z-10",
+        "fixed w-full left-0 top-[100px] transform transition-transform duration-300 ease-in-out desktop:w-1/4 z-50",
         {
           "-translate-x-full": !isOpen,
           "desktop:top-[250px]": !isScrolled,
