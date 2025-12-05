@@ -2,7 +2,6 @@
 
 import nodemailer from "nodemailer";
 import { emailTemplate } from "@/_lib/email-template";
-import DOMPurify from "isomorphic-dompurify";
 import { verifyRecaptchaToken } from "@/_lib/verify-recaptcha";
 
 interface EmailTemplateData {
@@ -39,12 +38,10 @@ export async function sendEmail(
           error: recaptchaResult.error || "reCAPTCHA verification failed",
         };
       }
-      const name = DOMPurify.sanitize(formData.get("name")?.toString() || "");
-      const email = DOMPurify.sanitize(formData.get("email")?.toString() || "");
-      const phone = DOMPurify.sanitize(formData.get("phone")?.toString() || "");
-      const message = DOMPurify.sanitize(
-        formData.get("message")?.toString() || ""
-      );
+      const name = formData.get("name")?.toString().trim() || "";
+      const email = formData.get("email")?.toString().trim() || "";
+      const phone = formData.get("phone")?.toString().trim() || "";
+      const message = formData.get("message")?.toString().trim() || "";
 
       if (!name.trim() || !email.trim() || !message.trim()) {
         return { success: false, error: "All required fields must be filled" };
