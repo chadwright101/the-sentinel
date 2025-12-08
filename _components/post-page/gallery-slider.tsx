@@ -22,6 +22,7 @@ export default function GallerySlider({
 
   const shouldLoop = images.length > 1;
   const shouldAutoplay = images.length > 1;
+  const hasAnyCaptions = images.some((img) => img.caption);
 
   const handlePrev = () => {
     if (swiperRef.current) {
@@ -62,7 +63,7 @@ export default function GallerySlider({
           ["--swiper-pagination-bullet-inactive-opacity" as string]: 1,
           ["--swiper-pagination-bullet-size" as string]: "8px",
           ["--swiper-pagination-bullet-horizontal-gap" as string]: "4px",
-          ["--swiper-pagination-bottom" as string]: "78px",
+          ["--swiper-pagination-bottom" as string]: hasAnyCaptions ? "78px" : "16px",
         }}
       >
         {images.map((image, index) => (
