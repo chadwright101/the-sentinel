@@ -53,6 +53,10 @@ function toIsoDateTime(dateString: string, timeString: string): string {
   return `${toIsoDate(dateString)}T${timeString}`;
 }
 
+function isValidTime(time: string): boolean {
+  return time !== "" && time.trim() !== "";
+}
+
 export const metadata: Metadata = {
   title: "What's On | The Sentinel",
   description:
@@ -101,6 +105,11 @@ async function EventName({ event }: { event: EventData }) {
 
 export default async function CalendarPage() {
   const events = await fetchEvents();
+  const sortedEvents = events.sort((a, b) => {
+    const dateA = new Date(toIsoDate(a.acf.event_date));
+    const dateB = new Date(toIsoDate(b.acf.event_date));
+    return dateA.getTime() - dateB.getTime();
+  });
   /* const adData = await fetchAdData(); */
 
   return (
@@ -110,20 +119,20 @@ export default async function CalendarPage() {
         <div className="min-h-[500px] space-y-10">
           <div className="space-y-10">
             <h2 className="text-36px font-inter font-bold mb-10">Calendar</h2>
-            {events.length === 0 ? (
+            {sortedEvents.length === 0 ? (
               <div className="w-full h-full min-h-[300px] flex items-center justify-center">
                 <p className="text-18px">No upcoming events at this time.</p>
               </div>
             ) : (
               <ul className="space-y-5">
-                {events.map((event, index) => (
+                {sortedEvents.map((event, index) => (
                   <li
                     key={index}
                     className={classNames(
                       "grid phone:grid-cols-2 phone:justify-between phone:items-center gap-5",
                       {
                         "border-b border-black/25 pb-5":
-                          index !== events.length - 1,
+                          index !== sortedEvents.length - 1,
                       }
                     )}
                   >
@@ -142,27 +151,65 @@ export default async function CalendarPage() {
                           {formatDate(event.acf.event_date)}
                         </time>
                       </p>
-                      <p>
-                        <time
-                          className="text-16px font-inter"
-                          dateTime={toIsoDateTime(
-                            event.acf.event_date,
-                            event.acf.event_start_time
-                          )}
-                        >
-                          {formatTime(event.acf.event_start_time)}
-                        </time>
-                        {" - "}
-                        <time
-                          className="text-16px font-inter"
-                          dateTime={toIsoDateTime(
-                            event.acf.event_date,
-                            event.acf.event_end_time
-                          )}
-                        >
-                          {formatTime(event.acf.event_end_time)}
-                        </time>
-                      </p>
+                      {(isValidTime(event.acf.event_start_time) ||
+                        isValidTime(event.acf.event_end_time)) && (
+                        <p className="text-16px font-inter">
+                          {isValidTime(event.acf.event_start_time) &&
+                            !isValidTime(event.acf.event_end_time) && (
+                              <>
+                                Starts @{"  "}
+                                <time
+                                  className="text-16px font-inter"
+                                  dateTime={toIsoDateTime(
+                                    event.acf.event_date,
+                                    event.acf.event_start_time
+                                  )}
+                                >
+                                  {formatTime(event.acf.event_start_time)}
+                                </time>
+                              </>
+                            )}
+                          {!isValidTime(event.acf.event_start_time) &&
+                            isValidTime(event.acf.event_end_time) && (
+                              <>
+                                Ends @{"  "}
+                                <time
+                                  className="text-16px font-inter"
+                                  dateTime={toIsoDateTime(
+                                    event.acf.event_date,
+                                    event.acf.event_end_time
+                                  )}
+                                >
+                                  {formatTime(event.acf.event_end_time)}
+                                </time>
+                              </>
+                            )}
+                          {isValidTime(event.acf.event_start_time) &&
+                            isValidTime(event.acf.event_end_time) && (
+                              <>
+                                <time
+                                  className="text-16px font-inter"
+                                  dateTime={toIsoDateTime(
+                                    event.acf.event_date,
+                                    event.acf.event_start_time
+                                  )}
+                                >
+                                  {formatTime(event.acf.event_start_time)}
+                                </time>
+                                {" - "}
+                                <time
+                                  className="text-16px font-inter"
+                                  dateTime={toIsoDateTime(
+                                    event.acf.event_date,
+                                    event.acf.event_end_time
+                                  )}
+                                >
+                                  {formatTime(event.acf.event_end_time)}
+                                </time>
+                              </>
+                            )}
+                        </p>
+                      )}
                     </div>
                     {event.acf.event_description && (
                       <p className="phone:col-span-2">

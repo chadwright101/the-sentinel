@@ -21,7 +21,7 @@ const headingStyles =
 const figureStyles =
   "[&_figure]:mt-5 [&_figure]:grid [&_figure]:gap-3 [&_figure]:pb-5";
 const imageCaptionStyles =
-  "[&_figcaption]:text-16px [&_figcaption]:text-center [&_figcaption]:max-w-[700px] [&_figcaption]:mx-auto [&_figcaption]:font-abril-fatface";
+  "[&_figcaption]:text-14px [&_figcaption]:text-center [&_figcaption]:max-w-[700px] [&_figcaption]:mx-auto [&_figcaption]:font-sans";
 const textFormattingStyles =
   "[&_strong]:font-bold [&_em]:italic [&_u]:underline";
 const blockquoteStyles =
@@ -71,9 +71,11 @@ export default function PostContent({ content, adData }: PostContentProps) {
     let htmlBuffer = "";
 
     Array.from(doc.body.children).forEach((child) => {
-      if (child.classList.contains("wp-block-jetpack-tiled-gallery") ||
-          child.classList.contains("wp-block-gallery") ||
-          child.classList.contains("wp-block-jetpack-slideshow")) {
+      if (
+        child.classList.contains("wp-block-jetpack-tiled-gallery") ||
+        child.classList.contains("wp-block-gallery") ||
+        child.classList.contains("wp-block-jetpack-slideshow")
+      ) {
         if (htmlBuffer) {
           blocks.push({ type: "html", content: htmlBuffer });
           htmlBuffer = "";
@@ -85,7 +87,8 @@ export default function PostContent({ content, adData }: PostContentProps) {
         imgElements.forEach((img) => {
           const src = extractImageSrc(img);
           const alt = img.getAttribute("alt") || "";
-          if (src) images.push({ src, alt });
+          const caption = img.getAttribute("data-image-caption") || "";
+          if (src) images.push({ src, alt, caption });
         });
 
         if (images.length > 0) {

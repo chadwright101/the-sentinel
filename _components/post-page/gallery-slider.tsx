@@ -55,27 +55,36 @@ export default function GallerySlider({
         allowTouchMove={true}
         grabCursor={true}
         pagination={{ clickable: true, dynamicBullets: true }}
-        className={classNames("w-full mt-10 bg-teal/10", cssClasses)}
+        className={classNames("w-full mt-10", cssClasses)}
         style={{
           ["--swiper-pagination-color" as string]: "#064658",
           ["--swiper-pagination-bullet-inactive-color" as string]: "#064658",
           ["--swiper-pagination-bullet-inactive-opacity" as string]: 1,
           ["--swiper-pagination-bullet-size" as string]: "8px",
           ["--swiper-pagination-bullet-horizontal-gap" as string]: "4px",
+          ["--swiper-pagination-bottom" as string]: "78px",
         }}
       >
         {images.map((image, index) => (
           <SwiperSlide
             key={`${galleryId}-${index}`}
-            className="relative w-full aspect-[4/3]"
+            className="relative w-full flex flex-col"
           >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              sizes="600px"
-              className="object-contain"
-            />
+            <div className="aspect-[4/3] relative bg-teal/10">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="600px"
+                className="object-contain"
+              />
+            </div>
+            {image.caption && (
+              <div
+                dangerouslySetInnerHTML={{ __html: image.caption }}
+                className="text-14px text-center max-w-[700px] mt-3 mx-auto font-sans text-black h-14"
+              />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>

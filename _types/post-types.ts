@@ -8,8 +8,15 @@ export interface Author {
   };
 }
 
+export interface FeaturedMedia {
+  caption: {
+    rendered: string;
+  };
+}
+
 export interface EmbeddedData {
   author: Author[];
+  "wp:featuredmedia"?: FeaturedMedia[];
 }
 
 export interface PostProps {

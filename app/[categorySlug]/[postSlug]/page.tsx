@@ -133,7 +133,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
           {post.acf && post.acf.subheading && (
             <h3
-              className="text-18px"
+              className="text-20px font-bold"
               dangerouslySetInnerHTML={{ __html: post.acf.subheading }}
             ></h3>
           )}
@@ -144,11 +144,21 @@ export default async function PostPage({ params }: PostPageProps) {
                 <Image
                   src={post.jetpack_featured_media_url}
                   alt={post.title.rendered}
-                  className="w-full h-full object-cover aspect-[4/3] tablet:aspect-video"
+                  className="w-full object-cover aspect-[4/3] tablet:aspect-video"
                   width={1100}
                   height={500}
                   sizes="(max-width: 1100px) 100vw, 1100px"
                 />
+                {post._embedded?.["wp:featuredmedia"]?.[0]?.caption
+                  ?.rendered && (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        post._embedded["wp:featuredmedia"][0].caption.rendered,
+                    }}
+                    className="text-14px text-center mt-3 mx-auto font-sans text-black"
+                  />
+                )}
               </div>
               <PostContent content={post.content.rendered} adData={adData} />
             </div>
