@@ -6,6 +6,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import classNames from "classnames";
 import { GallerySliderProps } from "@/_types/gallery-types";
 import { useRef } from "react";
+import getCleanImageUrl from "@/_lib/utils/get-clean-image-url";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -73,11 +74,12 @@ export default function GallerySlider({
           >
             <div className="aspect-[4/3] relative bg-teal/10">
               <Image
-                src={image.src}
+                src={`${getCleanImageUrl(image.src)}?w=800&ssl=1`}
                 alt={image.alt}
                 fill
-                sizes="600px"
+                sizes="(max-width: 799px) 800px, 900px"
                 className="object-contain"
+                unoptimized
               />
             </div>
             {image.caption && (

@@ -6,12 +6,12 @@ import generalData from "@/_data/general-data.json";
 import Image from "next/image";
 import ContactForm from "@/_components/contact-page/contact-form";
 import { useEffect, useState } from "react";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { verifyContactView } from "@/_actions/verify-contact-view";
 import ProtectedEmail from "@/_components/contact-page/protected-email";
 import ProtectedPhone from "@/_components/contact-page/protected-phone";
 
-const ContactUsPage = () => {
+const ContactPageContent = () => {
   const { contactPage } = generalData;
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [isVerified, setIsVerified] = useState(false);
@@ -196,6 +196,20 @@ const ContactUsPage = () => {
         </section>
       </div>
     </PageWrapper>
+  );
+};
+
+const ContactUsPage = () => {
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+      scriptProps={{
+        async: true,
+        defer: true,
+      }}
+    >
+      <ContactPageContent />
+    </GoogleReCaptchaProvider>
   );
 };
 

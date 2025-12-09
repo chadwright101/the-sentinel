@@ -217,3 +217,7 @@
 .custom-scrollbar::-webkit-scrollbar-corner {
   background: #D8C99B;
 }
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}

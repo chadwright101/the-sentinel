@@ -1,19 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import ButtonType from "@/_components/ui/buttons/button-type";
 import classNames from "classnames";
 import { newsletterSignUp } from "@/_actions/newsletter-signup";
+import Link from "next/link";
 
 interface NewsletterSubscribeComponentProps {
   cssClasses?: string;
 }
 
-const NewsletterSubscriptionComponent = ({
-  cssClasses,
-}: NewsletterSubscribeComponentProps) => {
+const NewsletterForm = () => {
   const [showSignupSuccessful, setShowSignupSuccessful] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -52,10 +51,7 @@ const NewsletterSubscriptionComponent = ({
           console.error("Contact form error:", err);
         }
       }}
-      className={classNames(
-        "grid gap-5 mt-5 w-full bg-teal px-5 py-7 tablet:grid-cols-[1.25fr_1fr] desktop:grid-cols-3 desktop:gap-10 desktop:mt-[50px] desktop:py-[100px] desktop:px-10",
-        cssClasses
-      )}
+      className="grid gap-5 mt-5 w-full bg-teal px-5 py-7 tablet:grid-cols-[1.25fr_1fr] desktop:grid-cols-3 desktop:gap-10 desktop:mt-[50px] desktop:py-[100px] desktop:px-10"
     >
       <h3 className="grid place-items-center text-32px uppercase font-bold font-inter text-white text-center tablet:col-span-2 desktop:col-span-1 desktop:text-36px">
         Subscribe to <span className="text-white font-inter">The Sentinel</span>
@@ -97,12 +93,25 @@ const NewsletterSubscriptionComponent = ({
               />
             </div>
           </div>
-          <ButtonType
-            type="submit"
-            cssClasses="w-full min-[600px]:w-auto min-[600px]:place-self-center"
-          >
-            Subscribe Now
-          </ButtonType>
+          <div className="grid gap-3 w-full min-[600px]:w-auto min-[600px]:place-self-center">
+            <ButtonType
+              type="submit"
+              cssClasses="w-full min-[600px]:w-auto"
+            >
+              Subscribe Now
+            </ButtonType>
+            <p className="text-12px text-white text-center font-inter">
+              This site is protected by reCAPTCHA and the Google{" "}
+              <Link href="https://policies.google.com/privacy" target="_blank" className="underline text-white">
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link href="https://policies.google.com/terms" target="_blank" className="underline text-white">
+                Terms of Service
+              </Link>{" "}
+              apply.
+            </p>
+          </div>
 
           {error && (
             <p className="w-full text-center text-white font-inter text-16px tablet:col-span-2 desktop:col-span-3">
@@ -112,6 +121,24 @@ const NewsletterSubscriptionComponent = ({
         </>
       )}
     </form>
+  );
+};
+
+const NewsletterSubscriptionComponent = ({
+  cssClasses,
+}: NewsletterSubscribeComponentProps) => {
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+      scriptProps={{
+        async: true,
+        defer: true,
+      }}
+    >
+      <div className={cssClasses}>
+        <NewsletterForm />
+      </div>
+    </GoogleReCaptchaProvider>
   );
 };
 

@@ -28,7 +28,6 @@ import FooterComponent from "@/_components/navigation/footer/footer-component";
 import LayoutAdSpaceComponent from "@/_components/ad-spaces/layout-ad-space-component";
 import SearchBarComponent from "@/_components/navigation/search-bar-component";
 import { fetchAdData } from "@/_components/fetch-ad-data";
-import RecaptchaProvider from "@/_components/providers/recaptcha-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sentinelnews.com.au/"),
@@ -82,7 +81,7 @@ export default async function RootLayout({
         <Suspense fallback={null}>
           <SearchBarComponent />
         </Suspense>
-        <RecaptchaProvider>{children}</RecaptchaProvider>
+        {children}
         <FooterComponent />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-HDPFPPJJJ2"

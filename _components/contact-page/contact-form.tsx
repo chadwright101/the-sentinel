@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import ButtonType from "@/_components/ui/buttons/button-type";
 import { sendEmail } from "@/_actions/send-email-actions";
+import Link from "next/link";
 
 const ContactForm = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -132,12 +133,25 @@ const ContactForm = () => {
             </div>
           )}
 
-          <ButtonType
-            type="submit"
-            cssClasses="w-full tablet:w-auto desktop:w-full"
-          >
-            Send Message
-          </ButtonType>
+          <div className="grid gap-3">
+            <ButtonType
+              type="submit"
+              cssClasses="w-full tablet:w-auto desktop:w-full"
+            >
+              Send Message
+            </ButtonType>
+            <p className="text-12px text-black text-center tablet:text-left desktop:text-center font-inter">
+              This site is protected by reCAPTCHA and the Google{" "}
+              <Link href="https://policies.google.com/privacy" target="_blank" className="underline">
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link href="https://policies.google.com/terms" target="_blank" className="underline">
+                Terms of Service
+              </Link>{" "}
+              apply.
+            </p>
+          </div>
         </form>
       )}
     </div>

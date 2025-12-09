@@ -7,6 +7,7 @@ import { type ContentBlock, type GalleryImage } from "@/_types/gallery-types";
 import AdSpaceBillboard from "../ad-spaces/ad-space-billboard";
 import AdSpaceSquare from "../ad-spaces/ad-space-square";
 import GallerySlider from "./gallery-slider";
+import getCleanImageUrl from "@/_lib/utils/get-clean-image-url";
 
 interface PostContentProps {
   content: string;
@@ -53,6 +54,28 @@ function extractImageSrc(img: HTMLImageElement): string {
   return src || "";
 }
 
+function optimizeImageUrls(htmlContent: string): string {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlContent, "text/html");
+  const images = doc.querySelectorAll("img:not(.gallery-placeholder_img)");
+
+  images.forEach((img) => {
+    const currentSrc = img.getAttribute("src");
+    if (!currentSrc || !currentSrc.includes("i0.wp.com")) return;
+
+    const cleanUrl = getCleanImageUrl(currentSrc);
+
+    img.setAttribute("src", `${cleanUrl}?w=800&ssl=1`);
+    img.setAttribute(
+      "srcset",
+      `${cleanUrl}?w=800&ssl=1 800w, ${cleanUrl}?w=900&ssl=1 900w`
+    );
+    img.setAttribute("sizes", "(max-width: 799px) 800px, 900px");
+  });
+
+  return doc.body.innerHTML;
+}
+
 export default function PostContent({ content, adData }: PostContentProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const wideAdRef = useRef<HTMLDivElement>(null);
@@ -77,7 +100,7 @@ export default function PostContent({ content, adData }: PostContentProps) {
         child.classList.contains("wp-block-jetpack-slideshow")
       ) {
         if (htmlBuffer) {
-          blocks.push({ type: "html", content: htmlBuffer });
+          blocks.push({ type: "html", content: optimizeImageUrls(htmlBuffer) });
           htmlBuffer = "";
         }
 
@@ -104,7 +127,7 @@ export default function PostContent({ content, adData }: PostContentProps) {
     });
 
     if (htmlBuffer) {
-      blocks.push({ type: "html", content: htmlBuffer });
+      blocks.push({ type: "html", content: optimizeImageUrls(htmlBuffer) });
     }
 
     setContentBlocks(blocks);
