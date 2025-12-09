@@ -4,14 +4,25 @@ import PostGridProps from "@/_types/post-grid-props";
 import PostGridImage from "@/_lib/utils/posts/post-grid-image";
 import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
 import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
+import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
 
-const HomePageNewsGridNoAds = ({
+const HomePageNewsGrid = ({
   posts,
   hoveredIndex,
+  categorySlug,
   setHoveredIndex,
+  adData,
 }: PostGridProps) => {
   return (
-    <div className="grid grid-cols-1 gap-5 items-start tablet:grid-cols-2 desktop:gap-10 desktop:grid-cols-3">
+    <div
+      className={classNames(
+        "grid grid-cols-1 gap-5 items-start tablet:grid-cols-2 desktop:gap-10 desktop:grid-cols-3",
+        {
+          "desktop:grid-cols-4":
+            categorySlug === "time-out" || categorySlug === "community",
+        }
+      )}
+    >
       {posts.map((post, index) => {
         const isFirstPost = index === 0;
 
@@ -57,8 +68,33 @@ const HomePageNewsGridNoAds = ({
           </article>
         );
       })}
+      {(categorySlug === "time-out" || categorySlug === "community") && (
+        <AdSpaceSquare
+          src={
+            categorySlug === "time-out"
+              ? adData?.image_home_page_entertainment || ""
+              : categorySlug === "community"
+              ? adData?.image_home_page_community || ""
+              : ""
+          }
+          alt={
+            categorySlug === "time-out"
+              ? adData?.company_name_home_page_entertainment || "Advertisement"
+              : categorySlug === "community"
+              ? adData?.company_name_home_page_community || "Advertisement"
+              : "Advertisement"
+          }
+          url={
+            categorySlug === "time-out"
+              ? adData?.link_home_page_entertainment || "#"
+              : categorySlug === "community"
+              ? adData?.link_home_page_community || "#"
+              : "#"
+          }
+        />
+      )}
     </div>
   );
 };
 
-export default HomePageNewsGridNoAds;
+export default HomePageNewsGrid;

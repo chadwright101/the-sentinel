@@ -21,9 +21,9 @@ const AdSpaceSquare = ({ src, alt, url, cssClasses }: AdProps) => {
       <Image
         src={src}
         alt={alt}
-        width={500}
-        height={500}
-        className="object-cover aspect-square w-full"
+        width={300}
+        height={300}
+        className="object-contain max-w-[300px] w-full"
       />
     </Link>
   );

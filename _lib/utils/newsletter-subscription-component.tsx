@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 
 import ButtonType from "@/_components/ui/buttons/button-type";
 import classNames from "classnames";
@@ -62,7 +65,7 @@ const NewsletterForm = () => {
         </p>
       ) : (
         <>
-          <div className="grid gap-4 w-full min-[600px]:grid-cols-2 desktop:grid-cols-1">
+          <div className="grid gap-4 w-full min-[600px]:grid-cols-2 desktop:grid-cols-1 items-start">
             <div className="grid">
               <label htmlFor="email" className="sr-only">
                 Email address
@@ -94,19 +97,24 @@ const NewsletterForm = () => {
             </div>
           </div>
           <div className="grid gap-3 w-full min-[600px]:w-auto min-[600px]:place-self-center">
-            <ButtonType
-              type="submit"
-              cssClasses="w-full min-[600px]:w-auto"
-            >
+            <ButtonType type="submit" cssClasses="w-full min-[600px]:w-auto">
               Subscribe Now
             </ButtonType>
             <p className="text-12px text-white text-center font-inter">
               This site is protected by reCAPTCHA and the Google{" "}
-              <Link href="https://policies.google.com/privacy" target="_blank" className="underline text-white">
+              <Link
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                className="underline text-white"
+              >
                 Privacy Policy
               </Link>{" "}
               and{" "}
-              <Link href="https://policies.google.com/terms" target="_blank" className="underline text-white">
+              <Link
+                href="https://policies.google.com/terms"
+                target="_blank"
+                className="underline text-white"
+              >
                 Terms of Service
               </Link>{" "}
               apply.

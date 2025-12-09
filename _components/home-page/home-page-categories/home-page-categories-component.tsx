@@ -7,14 +7,18 @@ import { PostProps } from "@/_types/post-types";
 import { AdData } from "@/_types/ad-types";
 import LoadingAnimation from "@/_lib/utils/loading-animation";
 import Link from "next/link";
-import HomePageNewsGridNoAds from "./home-page-news-grid-no-ads";
+import HomePageNewsGrid from "./home-page-news-grid";
+import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
+import classNames from "classnames";
 
 interface HomePageCategoryLatestProps {
   categorySlug?: string;
+  adData?: AdData | null;
 }
 
 const HomePageCategoryComponent = ({
   categorySlug,
+  adData: adDataProp,
 }: HomePageCategoryLatestProps) => {
   const [posts, setPosts] = useState<PostProps[]>([]);
   const [adData, setAdData] = useState<AdData | null>(null);
@@ -24,17 +28,16 @@ const HomePageCategoryComponent = ({
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-      const [fetchedPosts, fetchedAdData] = await Promise.all([
-        fetchPosts(categorySlug),
-        fetchAdData(),
-      ]);
+      const fetchedPosts = await fetchPosts(categorySlug);
+      const fetchedAdData =
+        adDataProp !== undefined ? adDataProp : await fetchAdData();
       setPosts(fetchedPosts.slice(0, 3));
       setAdData(fetchedAdData);
       setLoading(false);
     };
 
     loadData();
-  }, [categorySlug]);
+  }, [categorySlug, adDataProp]);
 
   const formatCategoryTitle = (slug: string) => {
     return slug
@@ -58,8 +61,8 @@ const HomePageCategoryComponent = ({
           {categorySlug === "time-out"
             ? "Entertainment"
             : categorySlug
-              ? formatCategoryTitle(categorySlug)
-              : "Latest News"}
+            ? formatCategoryTitle(categorySlug)
+            : "Latest News"}
         </Link>
       </h3>
       {loading ? (
@@ -69,43 +72,42 @@ const HomePageCategoryComponent = ({
       ) : (
         <>
           {!categorySlug && (
-            <HomePageNewsGridNoAds
+            <HomePageNewsGrid
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
-              adData={adData}
             />
           )}
           {categorySlug === "sport" && (
-            <HomePageNewsGridNoAds
+            <HomePageNewsGrid
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
-              adData={adData}
             />
           )}
           {categorySlug === "time-out" && (
-            <HomePageNewsGridNoAds
+            <HomePageNewsGrid
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
               adData={adData}
+              categorySlug={categorySlug}
             />
           )}
           {categorySlug === "community" && (
-            <HomePageNewsGridNoAds
+            <HomePageNewsGrid
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
               adData={adData}
+              categorySlug={categorySlug}
             />
           )}
           {categorySlug === "real-estate" && (
-            <HomePageNewsGridNoAds
+            <HomePageNewsGrid
               posts={posts}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
-              adData={adData}
             />
           )}
         </>

@@ -22,16 +22,14 @@ export default async function HomePage() {
       <HomePageCategoryComponent />
       <div className="my-10">
         <AdSpaceBillboard
-          src={
-            adData?.image_billboard || "/images/placeholders/ads/wide-ad.png"
-          }
+          src={adData?.image_billboard || ""}
           alt={adData?.company_name_billboard || "Advertisement"}
           url={adData?.link_billboard || "#"}
         />
         {/* categories */}
       </div>
       <HomePageCategoryComponent categorySlug="sport" />
-      <HomePageCategoryComponent categorySlug="time-out" />
+      <HomePageCategoryComponent categorySlug="time-out" adData={adData} />
       <NewsletterSubscriptionComponent />
       <HomePageCategoryComponent categorySlug="community" />
       <HomePageCategoryComponent categorySlug="real-estate" />

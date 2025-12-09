@@ -6,4 +6,5 @@ export default interface PostGridProps {
   hoveredIndex: number | null;
   setHoveredIndex: (index: number | null) => void;
   adData?: AdData | null;
+  categorySlug?: string;
 }

@@ -14,12 +14,12 @@ export interface AdData {
   company_name_tower: string;
   link_tower: string;
   image_tower: string;
-  company_name_square_primary: string;
-  link_square_primary: string;
-  image_square_primary: string;
-  company_name_square_secondary: string;
-  link_square_secondary: string;
-  image_square_secondary: string;
+  company_name_home_page_entertainment: string;
+  link_home_page_entertainment: string;
+  image_home_page_entertainment: string;
+  company_name_home_page_community: string;
+  link_home_page_community: string;
+  image_home_page_community: string;
 }
 
 export interface AdResponse {
