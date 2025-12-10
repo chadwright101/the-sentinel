@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { PostProps } from "@/_types/post-types";
+import decodeHtmlEntities from "../decode-html-entities";
 
 const PostGridTitle = ({
   post,
@@ -21,7 +22,7 @@ const PostGridTitle = ({
       }
     )}
   >
-    {post.title.rendered}
+    {decodeHtmlEntities(post.title.rendered)}
   </h3>
 );
 

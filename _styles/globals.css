@@ -33,7 +33,7 @@
 }
 
 @layer components {
-  * {
+  body {
     @apply text-black;
     font-family: var(--font-newsreader);
   }

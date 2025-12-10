@@ -19,8 +19,25 @@ interface PostPageProps {
   }>;
 }
 
+function decodeHtmlEntities(text: string): string {
+  return text
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
+    .replace(/&#8211;/g, "–")
+    .replace(/&#8212;/g, "—")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, " ");
+}
+
 function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, "");
+  const withoutTags = html.replace(/<[^>]*>/g, "");
+  return decodeHtmlEntities(withoutTags);
 }
 
 function generateDescription(content: string): string {
@@ -49,6 +66,10 @@ export async function generateMetadata({
   const title = stripHtml(post.title.rendered);
   const description = generateDescription(post.content.rendered);
 
+  const ogImageUrl = post.jetpack_featured_media_url.includes('?')
+    ? post.jetpack_featured_media_url.split('?')[0] + '?w=1200'
+    : post.jetpack_featured_media_url + '?w=1200';
+
   return {
     title: `${title} | The Sentinel`,
     description,
@@ -58,7 +79,7 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: post.jetpack_featured_media_url,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
         },
@@ -72,7 +93,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [post.jetpack_featured_media_url],
+      images: [ogImageUrl],
     },
   };
 }
@@ -107,12 +128,31 @@ export default async function PostPage({ params }: PostPageProps) {
             items={[
               { label: "Home", href: "/" },
               { label: categoryInfo.title, href: `/${categorySlug}` },
-              { label: post.title.rendered.replace(/<[^>]*>/g, "") },
+              { label: stripHtml(post.title.rendered) },
             ]}
           />
           <div>
+            <div className="w-full mb-10">
+              <Image
+                src={post.jetpack_featured_media_url}
+                alt={stripHtml(post.title.rendered)}
+                className="w-full object-cover aspect-[4/3] tablet:aspect-video"
+                width={1100}
+                height={500}
+                sizes="(max-width: 1100px) 100vw, 1100px"
+              />
+              {post._embedded?.["wp:featuredmedia"]?.[0]?.caption?.rendered && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      post._embedded["wp:featuredmedia"][0].caption.rendered,
+                  }}
+                  className="text-[13px] [&_p]:font-inter text-center mt-3 mx-auto text-black"
+                />
+              )}
+            </div>
             <h2
-              className="text-36px font-inter font-bold"
+              className="text-36px font-inter font-bold mb-1"
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
             />
             {post._embedded?.author &&
@@ -139,29 +179,7 @@ export default async function PostPage({ params }: PostPageProps) {
           )}
           {/*  <div className="desktop:grid grid-cols-[1fr_250px] gap-7"> */}
           <div>
-            <div className="grid gap-5">
-              <div className="w-full">
-                <Image
-                  src={post.jetpack_featured_media_url}
-                  alt={post.title.rendered}
-                  className="w-full object-cover aspect-[4/3] tablet:aspect-video"
-                  width={1100}
-                  height={500}
-                  sizes="(max-width: 1100px) 100vw, 1100px"
-                />
-                {post._embedded?.["wp:featuredmedia"]?.[0]?.caption
-                  ?.rendered && (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        post._embedded["wp:featuredmedia"][0].caption.rendered,
-                    }}
-                    className="text-14px text-center mt-3 mx-auto font-sans text-black"
-                  />
-                )}
-              </div>
-              <PostContent content={post.content.rendered} adData={adData} />
-            </div>
+            <PostContent content={post.content.rendered} adData={adData} />
             {/* <div className="hidden desktop:flex flex-col gap-10">
               <AdSpaceTower
                 src={

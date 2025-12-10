@@ -10,11 +10,18 @@ import { PostProps } from "@/_types/post-types";
 import "swiper/css/pagination";
 import "swiper/css";
 import Link from "next/link";
+import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
 
 interface Props {
   cssClasses?: string;
   data: PostProps[];
 }
+
+const decodeAndTruncate = (html: string, maxLength: number): string => {
+  const cleanText = html.replace(/<[^>]*>/g, "");
+  const decodedText = decodeHtmlEntities(cleanText);
+  return decodedText.substring(0, maxLength).concat("...");
+};
 
 const HeroSlider = ({ cssClasses, data }: Props) => {
   return (
@@ -52,15 +59,10 @@ const HeroSlider = ({ cssClasses, data }: Props) => {
               <div className="absolute bg-gradient-to-b from-45% to-80% to-black/50 w-full h-full" />
               <div className="absolute bottom-[70px] px-5 z-10 tablet:max-w-3/4 desktop:bottom-[55px]">
                 <h2 className="text-white text-36px font-bold desktop:text-44px">
-                  {slide.title.rendered}
+                  {decodeHtmlEntities(slide.title.rendered)}
                 </h2>
                 <div className="text-white [&_p]:text-white [&_p]:desktop:text-20px">
-                  <p>
-                    {slide.content.rendered
-                      .replace(/<[^>]*>/g, "")
-                      .substring(0, 105)
-                      .concat("...")}
-                  </p>
+                  <p>{decodeAndTruncate(slide.content.rendered, 105)}</p>
                 </div>
               </div>
               <Image

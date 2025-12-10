@@ -1,8 +1,11 @@
+import decodeHtmlEntities from "./decode-html-entities";
+
 const truncateText = (text: string, maxLength: number) => {
   const cleanText = text.replace(/<[^>]*>/g, "");
-  return cleanText.length > maxLength
-    ? cleanText.substring(0, maxLength) + "..."
-    : cleanText;
+  const decodedText = decodeHtmlEntities(cleanText);
+  return decodedText.length > maxLength
+    ? decodedText.substring(0, maxLength) + "..."
+    : decodedText;
 };
 
 export default truncateText;

@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { AdData } from "@/_types/ad-types";
 import { type ContentBlock, type GalleryImage } from "@/_types/gallery-types";
-import AdSpaceBillboard from "../ad-spaces/ad-space-billboard";
-import AdSpaceSquare from "../ad-spaces/ad-space-square";
 import GallerySlider from "./gallery-slider";
 import getCleanImageUrl from "@/_lib/utils/get-clean-image-url";
 
@@ -22,7 +20,7 @@ const headingStyles =
 const figureStyles =
   "[&_figure]:mt-5 [&_figure]:grid [&_figure]:gap-3 [&_figure]:pb-5";
 const imageCaptionStyles =
-  "[&_figcaption]:text-14px [&_figcaption]:text-center [&_figcaption]:max-w-[700px] [&_figcaption]:mx-auto [&_figcaption]:font-sans";
+  "[&_figcaption]:text-14px [&_figcaption]:text-center [&_figcaption]:max-w-[700px] [&_figcaption]:mx-auto [&_figcaption]:font-inter";
 const textFormattingStyles =
   "[&_strong]:font-bold [&_em]:italic [&_u]:underline";
 const blockquoteStyles =

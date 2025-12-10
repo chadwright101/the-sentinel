@@ -64,7 +64,9 @@ export default function GallerySlider({
           ["--swiper-pagination-bullet-inactive-opacity" as string]: 1,
           ["--swiper-pagination-bullet-size" as string]: "8px",
           ["--swiper-pagination-bullet-horizontal-gap" as string]: "4px",
-          ["--swiper-pagination-bottom" as string]: hasAnyCaptions ? "78px" : "16px",
+          ["--swiper-pagination-bottom" as string]: hasAnyCaptions
+            ? "78px"
+            : "16px",
         }}
       >
         {images.map((image, index) => (
@@ -85,7 +87,7 @@ export default function GallerySlider({
             {image.caption && (
               <div
                 dangerouslySetInnerHTML={{ __html: image.caption }}
-                className="text-14px text-center max-w-[700px] mt-3 mx-auto font-sans text-black h-14"
+                className="text-[13px] [&_p]:font-inter text-center max-w-[700px] mt-3 mx-auto text-black h-14"
               />
             )}
           </SwiperSlide>
