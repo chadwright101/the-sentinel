@@ -66,16 +66,16 @@ export async function generateMetadata({
   const title = stripHtml(post.title.rendered);
   const description = generateDescription(post.content.rendered);
 
-  const ogImageUrl = post.jetpack_featured_media_url.includes('?')
-    ? post.jetpack_featured_media_url.split('?')[0] + '?w=1200'
-    : post.jetpack_featured_media_url + '?w=1200';
+  const ogImageUrl = post.jetpack_featured_media_url.includes("?")
+    ? post.jetpack_featured_media_url.split("?")[0] + "?w=1200"
+    : post.jetpack_featured_media_url + "?w=1200";
 
   return {
-    title: `${title} | The Sentinel`,
+    title: `${title} | The Sentinel News`,
     description,
     openGraph: {
       type: "article",
-      title,
+      title: `${title} - The Sentinel News`,
       description,
       images: [
         {
@@ -91,7 +91,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: `${title} - The Sentinel News`,
       description,
       images: [ogImageUrl],
     },
