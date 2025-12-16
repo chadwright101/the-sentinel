@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-
+import { Suspense } from "react";
+import HeaderContainer from "@/_components/navigation/header/header-container";
+import FooterComponent from "@/_components/navigation/footer/footer-component";
+import LayoutAdSpaceComponent from "@/_components/ad-spaces/layout-ad-space-component";
+import SearchBarComponent from "@/_components/navigation/search-bar-component";
+import { fetchAdData } from "@/_components/fetch-ad-data";
+import { Analytics } from "@vercel/analytics/next";
 import { Inter, Newsreader, Abril_Fatface } from "next/font/google";
+
+import "@/_styles/globals.css";
 
 const interSansSerif = Inter({
   subsets: ["latin"],
@@ -20,14 +28,6 @@ const abrilFatfaceSerif = Abril_Fatface({
   weight: "400",
   variable: "--font-abril-fatface",
 });
-
-import "@/_styles/globals.css";
-import { Suspense } from "react";
-import HeaderContainer from "@/_components/navigation/header/header-container";
-import FooterComponent from "@/_components/navigation/footer/footer-component";
-import LayoutAdSpaceComponent from "@/_components/ad-spaces/layout-ad-space-component";
-import SearchBarComponent from "@/_components/navigation/search-bar-component";
-import { fetchAdData } from "@/_components/fetch-ad-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sentinelnews.com.au/"),
@@ -82,6 +82,7 @@ export default async function RootLayout({
           <SearchBarComponent />
         </Suspense>
         {children}
+        <Analytics />
         <FooterComponent />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-HDPFPPJJJ2"
