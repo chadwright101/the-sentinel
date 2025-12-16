@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import AdSpaceBillboard from "@/_components/ad-spaces/ad-space-billboard";
-import HomePageCategoryComponent from "@/_components/home-page/home-page-categories/home-page-categories-component";
+import HomePageCategoryServer from "@/_components/home-page/home-page-categories/home-page-categories-server";
 import TopStoriesComponent from "@/_components/home-page/top-stories/top-stories-component";
 import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
 import PageWrapper from "@/_lib/utils/page-wrapper";
@@ -18,21 +18,19 @@ export default async function HomePage() {
   return (
     <PageWrapper>
       <TopStoriesComponent />
-      {/* latest news */}
-      <HomePageCategoryComponent />
+      <HomePageCategoryServer />
       <div className="my-10">
         <AdSpaceBillboard
           src={adData?.image_billboard || ""}
           alt={adData?.company_name_billboard || "Advertisement"}
           url={adData?.link_billboard || "#"}
         />
-        {/* categories */}
       </div>
-      <HomePageCategoryComponent categorySlug="sport" />
-      <HomePageCategoryComponent categorySlug="time-out" adData={adData} />
+      <HomePageCategoryServer categorySlug="sport" />
+      <HomePageCategoryServer categorySlug="time-out" adData={adData} />
       <NewsletterSubscriptionComponent />
-      <HomePageCategoryComponent categorySlug="community" />
-      <HomePageCategoryComponent categorySlug="real-estate" />
+      <HomePageCategoryServer categorySlug="community" adData={adData} />
+      <HomePageCategoryServer categorySlug="real-estate" />
     </PageWrapper>
   );
 }
