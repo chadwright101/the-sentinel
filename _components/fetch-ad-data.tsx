@@ -12,7 +12,7 @@ export async function fetchAdData(): Promise<AdData | null> {
 
     const url = `${baseUrl}ad-space`;
     const response = await fetch(url, {
-      next: { revalidate: 300 },
+      next: { revalidate: 3600 },
     });
 
     if (!response.ok) {

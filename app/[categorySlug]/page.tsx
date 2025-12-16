@@ -16,6 +16,20 @@ interface CategoryPageProps {
   }>;
 }
 
+export async function generateStaticParams() {
+  const topCategories = [
+    'latest-news',
+    'community',
+    'sport',
+    'time-out',
+    'real-estate',
+  ];
+
+  return topCategories.map(slug => ({
+    categorySlug: slug,
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {

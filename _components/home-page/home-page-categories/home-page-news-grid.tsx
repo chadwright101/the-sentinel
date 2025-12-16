@@ -46,6 +46,7 @@ const HomePageNewsGrid = ({
                 post={post}
                 index={index}
                 hoveredIndex={hoveredIndex}
+                imageWidth={isFirstPost ? 800 : 600}
                 cssClasses={classNames({
                   "aspect-[5/3]": isFirstPost,
                   "aspect-[1.2/1] tablet:aspect-[5/3]": !isFirstPost,

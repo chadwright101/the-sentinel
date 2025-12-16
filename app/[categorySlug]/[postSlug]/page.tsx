@@ -11,12 +11,42 @@ import RelatedPostsComponent from "@/_components/post-page/related-posts-compone
 import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
 import LatestArticles from "@/_components/post-page/latest-articles";
 import PageWrapper from "@/_lib/utils/page-wrapper";
+import { getOptimizedImageUrl } from "@/_lib/utils/image-utils";
 
 interface PostPageProps {
   params: Promise<{
     categorySlug: string;
     postSlug: string;
   }>;
+}
+
+export async function generateStaticParams() {
+  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL;
+
+  try {
+    const response = await fetch(
+      `${baseUrl}posts?per_page=50&_embed=author&orderby=date&order=desc`,
+      { next: { revalidate: 3600 } }
+    );
+
+    if (!response.ok) return [];
+    const posts = await response.json();
+
+    return posts
+      .filter((post: any) => post.status === 'publish')
+      .map((post: any) => {
+        const categoryClass = post.class_list?.find((c: string) => c.startsWith('category-'));
+        const categorySlug = categoryClass?.replace('category-', '') || 'latest-news';
+
+        return {
+          categorySlug,
+          postSlug: post.slug,
+        };
+      });
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    return [];
+  }
 }
 
 function decodeHtmlEntities(text: string): string {
@@ -134,7 +164,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <div>
             <div className="w-full mb-10">
               <Image
-                src={post.jetpack_featured_media_url}
+                src={getOptimizedImageUrl(post.jetpack_featured_media_url, 1100)}
                 alt={stripHtml(post.title.rendered)}
                 className="w-full object-cover aspect-[4/3] tablet:aspect-video"
                 width={1100}

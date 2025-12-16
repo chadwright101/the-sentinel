@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css";
 import Link from "next/link";
 import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
+import { getOptimizedImageUrl } from "@/_lib/utils/image-utils";
 
 interface Props {
   cssClasses?: string;
@@ -66,13 +67,13 @@ const HeroSlider = ({ cssClasses, data }: Props) => {
                 </div>
               </div>
               <Image
-                src={slide.jetpack_featured_media_url}
+                src={getOptimizedImageUrl(slide.jetpack_featured_media_url, 1100)}
                 alt={slide.title.rendered}
                 className="rounded-none w-full h-full object-cover"
-                width={1920}
-                height={600}
+                width={1100}
+                height={500}
                 loading={index < 1 ? "eager" : "lazy"}
-                sizes="(max-width:1920px) 100vw, 1920px"
+                sizes="(max-width:1100px) 100vw, 1100px"
               />
             </Link>
           </article>
