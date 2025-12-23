@@ -70,6 +70,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const adData = await fetchAdData();
+  const enableAnalytics = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === "true";
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
@@ -84,16 +85,20 @@ export default async function RootLayout({
         {children}
         <Analytics />
         <FooterComponent />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-HDPFPPJJJ2"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
+        {enableAnalytics && (
+          <>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-HDPFPPJJJ2"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-HDPFPPJJJ2');`}
-        </Script>
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

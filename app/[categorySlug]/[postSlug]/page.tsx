@@ -33,10 +33,13 @@ export async function generateStaticParams() {
     const posts = await response.json();
 
     return posts
-      .filter((post: any) => post.status === 'publish')
+      .filter((post: any) => post.status === "publish")
       .map((post: any) => {
-        const categoryClass = post.class_list?.find((c: string) => c.startsWith('category-'));
-        const categorySlug = categoryClass?.replace('category-', '') || 'latest-news';
+        const categoryClass = post.class_list?.find((c: string) =>
+          c.startsWith("category-")
+        );
+        const categorySlug =
+          categoryClass?.replace("category-", "") || "latest-news";
 
         return {
           categorySlug,
@@ -44,7 +47,7 @@ export async function generateStaticParams() {
         };
       });
   } catch (error) {
-    console.error('Error in generateStaticParams:', error);
+    console.error("Error in generateStaticParams:", error);
     return [];
   }
 }
@@ -164,7 +167,10 @@ export default async function PostPage({ params }: PostPageProps) {
           <div>
             <div className="w-full mb-10">
               <Image
-                src={getOptimizedImageUrl(post.jetpack_featured_media_url, 1100)}
+                src={getOptimizedImageUrl(
+                  post.jetpack_featured_media_url,
+                  1100
+                )}
                 alt={stripHtml(post.title.rendered)}
                 className="w-full object-cover aspect-[4/3] tablet:aspect-video"
                 width={1100}
