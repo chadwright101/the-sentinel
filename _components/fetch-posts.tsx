@@ -42,7 +42,7 @@ export async function fetchPosts(
     const page = options.page ?? 1;
     const perPage = Math.max(1, Math.min(100, options.perPage ?? 9));
 
-    let url = `${baseUrl}posts?per_page=${perPage}&page=${page}&_embed=author&orderby=date&order=desc`;
+    let url = `${baseUrl}posts?per_page=${perPage}&page=${page}&_fields=id,slug,title,excerpt,date,jetpack_featured_media_url,status,content,class_list&orderby=date&order=desc`;
 
     if (categorySlug) {
       const categoryIds: number[] = [];
@@ -74,7 +74,7 @@ export async function fetchPosts(
     }
 
     const response = await fetch(url, {
-      next: { revalidate: categorySlug === 'top-stories' ? 600 : 900 },
+      next: { revalidate: 1800 },
     });
 
     if (!response.ok) {

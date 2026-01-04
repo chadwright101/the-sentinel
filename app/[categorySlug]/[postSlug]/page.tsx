@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 
   try {
     const response = await fetch(
-      `${baseUrl}posts?per_page=50&_embed=author&orderby=date&order=desc`,
+      `${baseUrl}posts?per_page=200&_fields=slug,status,class_list&orderby=date&order=desc`,
       { next: { revalidate: 3600 } }
     );
 

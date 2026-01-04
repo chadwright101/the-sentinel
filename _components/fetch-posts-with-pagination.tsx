@@ -26,7 +26,7 @@ export async function fetchPostsWithPagination(
       return { posts: [], hasMore: false, totalPages: 2, categoryFound: true };
     }
 
-    let url = `${baseUrl}posts?per_page=12&page=${page}&_embed=author&orderby=date&order=desc`;
+    let url = `${baseUrl}posts?per_page=12&page=${page}&_fields=id,slug,title,excerpt,date,jetpack_featured_media_url,status,content,class_list&orderby=date&order=desc`;
     let categoryFound = true;
 
     if (categorySlug) {
@@ -59,7 +59,7 @@ export async function fetchPostsWithPagination(
     }
 
     const response = await fetch(url, {
-      next: { revalidate: 900 },
+      next: { revalidate: 1800 },
     });
 
     if (!response.ok) {

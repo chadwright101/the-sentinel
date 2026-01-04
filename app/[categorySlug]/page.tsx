@@ -17,15 +17,33 @@ interface CategoryPageProps {
 }
 
 export async function generateStaticParams() {
-  const topCategories = [
+  const allCategories = [
     'latest-news',
     'community',
     'sport',
     'time-out',
     'real-estate',
+    'council',
+    'rural',
+    'health-wellbeing',
+    'schools',
+    'kilcoy-surrounds',
+    'toogoolawah-esk',
+    'lowood-fernvale',
+    'woodford-wamuran',
+    'beachmere-surrounds',
+    'caboolture',
+    'burpengary',
+    'morayfield',
+    'seniors',
+    'pets-animals',
+    'travel',
+    'eat-drink-stay',
+    'money-matters',
+    'tech-time',
   ];
 
-  return topCategories.map(slug => ({
+  return allCategories.map(slug => ({
     categorySlug: slug,
   }));
 }

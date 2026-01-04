@@ -12,7 +12,7 @@ import PageWrapper from "@/_lib/utils/page-wrapper";
 async function fetchEvents(): Promise<EventData[]> {
   const response = await fetch(
     "https://sentinelnewscomau.wpcomstaging.com/wp-json/wp/v2/event",
-    { cache: "no-store" }
+    { next: { revalidate: 3600 } }
   );
 
   if (!response.ok) {

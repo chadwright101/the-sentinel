@@ -25,10 +25,10 @@ export async function fetchSearchResults(
     }
 
     const encodedQuery = encodeURIComponent(searchQuery.trim());
-    const url = `${baseUrl}posts?search=${encodedQuery}&per_page=10&page=${page}&_embed=author`;
+    const url = `${baseUrl}posts?search=${encodedQuery}&per_page=10&page=${page}&_fields=id,slug,title,excerpt,date,jetpack_featured_media_url,status,content,class_list`;
 
     const response = await fetch(url, {
-      next: { revalidate: 300 },
+      next: { revalidate: 1800 },
     });
 
     if (!response.ok) {
