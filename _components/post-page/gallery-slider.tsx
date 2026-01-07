@@ -81,7 +81,6 @@ export default function GallerySlider({
                 fill
                 sizes="(max-width: 799px) 800px, 900px"
                 className="object-contain"
-                unoptimized
               />
             </div>
             {image.caption && (
