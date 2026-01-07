@@ -1,24 +1,21 @@
 import Image from "next/image";
 import classNames from "classnames";
 import { PostProps } from "@/_types/post-types";
-import { getOptimizedImageUrl } from "@/_lib/utils/image-utils";
 
 const PostGridImage = ({
   post,
   index,
   hoveredIndex,
   cssClasses,
-  imageWidth = 800,
 }: {
   post: PostProps;
   index: number;
   hoveredIndex: number | null;
   cssClasses?: string;
-  imageWidth?: number;
 }) => (
   <div className="overflow-hidden place-self-start">
     <Image
-      src={getOptimizedImageUrl(post.jetpack_featured_media_url, imageWidth)}
+      src={post.jetpack_featured_media_url}
       alt={post.title.rendered}
       width={800}
       height={600}

@@ -11,7 +11,6 @@ import RelatedPostsComponent from "@/_components/post-page/related-posts-compone
 import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscription-component";
 import LatestArticles from "@/_components/post-page/latest-articles";
 import PageWrapper from "@/_lib/utils/page-wrapper";
-import { getOptimizedImageUrl } from "@/_lib/utils/image-utils";
 
 interface PostPageProps {
   params: Promise<{
@@ -167,10 +166,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <div>
             <div className="w-full mb-10">
               <Image
-                src={getOptimizedImageUrl(
-                  post.jetpack_featured_media_url,
-                  1100
-                )}
+                src={post.jetpack_featured_media_url}
                 alt={stripHtml(post.title.rendered)}
                 className="w-full object-cover aspect-[4/3] tablet:aspect-video"
                 width={1100}
