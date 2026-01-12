@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Suspense } from "react";
 import HeaderContainer from "@/_components/navigation/header/header-container";
 import FooterComponent from "@/_components/navigation/footer/footer-component";
@@ -85,20 +85,7 @@ export default async function RootLayout({
         {children}
         <Analytics />
         <FooterComponent />
-        {enableAnalytics && (
-          <>
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-HDPFPPJJJ2"
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-HDPFPPJJJ2');`}
-            </Script>
-          </>
-        )}
+        {enableAnalytics && <GoogleAnalytics gaId="G-HDPFPPJJJ2" />}
       </body>
     </html>
   );
