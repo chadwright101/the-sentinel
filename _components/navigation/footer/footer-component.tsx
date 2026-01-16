@@ -33,14 +33,14 @@ const FooterComponent = () => {
             className="w-[335px] h-auto desktop:w-[400px]"
           />
           <div className="flex flex-col gap-5">
-            <div className="space-y-2 desktop:space-y-0">
+            <div className="flex flex-col gap-2 desktop:gap-0">
               <h4 className="text-14px font-inter font-bold grid text-white desktop:text-16px">
                 Proudly Covering:
               </h4>
               <h5 className="text-14px font-inter font-medium text-white w-[230px] desktop:text-16px desktop:w-[310px]">
                 Caboolture, Morayfield, Elimbah, D'Aguilar, Beachmere,
                 Burpengary, Ningi, Burpengary East, Bellmere, Kilcoy, Woolmar,
-                Neurum, Woodford, Wamuran ,Hazeldean, Toogoolawah Esk, Lowood,
+                Neurum, Woodford, Wamuran, Hazeldean, Toogoolawah Esk, Lowood,
                 Fernvale
               </h5>
             </div>

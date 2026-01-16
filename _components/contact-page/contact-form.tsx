@@ -25,7 +25,7 @@ const ContactForm = () => {
         </p>
       ) : (
         <form
-          className="space-y-6"
+          className="flex flex-col gap-6"
           action={async (formData) => {
             try {
               setError(null);
@@ -142,11 +142,19 @@ const ContactForm = () => {
             </ButtonType>
             <p className="text-12px text-black text-center tablet:text-left desktop:text-center font-inter">
               This site is protected by reCAPTCHA and the Google{" "}
-              <Link href="https://policies.google.com/privacy" target="_blank" className="underline">
+              <Link
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                className="underline"
+              >
                 Privacy Policy
               </Link>{" "}
               and{" "}
-              <Link href="https://policies.google.com/terms" target="_blank" className="underline">
+              <Link
+                href="https://policies.google.com/terms"
+                target="_blank"
+                className="underline"
+              >
                 Terms of Service
               </Link>{" "}
               apply.

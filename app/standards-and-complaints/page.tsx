@@ -14,7 +14,7 @@ const StandardsAndComplaintsPage = () => {
         <h2 className="text-36px font-inter font-bold mb-10">
           Standards & Complaints
         </h2>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           <p>
             The Sentinel is committed to addressing complaints about the
             editorial content in a fair and reasonable manner, and upholds the

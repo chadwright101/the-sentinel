@@ -12,7 +12,7 @@ const PrivacyPage = () => {
     <PageWrapper cssClasses="my-10">
       <main>
         <h2 className="text-36px font-inter font-bold mb-10">Privacy Policy</h2>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           <p>
             The Sentinel respects your privacy and is committed to protecting
             your personal information. We collect limited data to deliver our

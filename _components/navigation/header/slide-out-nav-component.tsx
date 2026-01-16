@@ -128,7 +128,7 @@ const SlideOutNavComponent = ({
               const hasChildren = children && children.length > 0;
 
               return (
-                <li key={index} className="space-y-5">
+                <li key={index} className="flex flex-col gap-5">
                   <div
                     className={classNames({
                       "mobile-menu-heading w-full flex items-center":

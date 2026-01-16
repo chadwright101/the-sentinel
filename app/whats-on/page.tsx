@@ -115,16 +115,16 @@ export default async function CalendarPage() {
   return (
     <PageWrapper cssClasses="my-10">
       <main>
-        {/* <div className="min-h-[500px] space-y-10 desktop:grid grid-cols-[1fr_250px] gap-x-10"> */}
-        <div className="min-h-[500px] space-y-10">
-          <div className="space-y-10">
+        {/* <div className="min-h-[500px] flex flex-col gap-10 desktop:grid grid-cols-[1fr_250px] gap-x-10"> */}
+        <div className="min-h-[500px] flex flex-col gap-10">
+          <div className="flex flex-col gap-10">
             <h2 className="text-36px font-inter font-bold mb-10">Calendar</h2>
             {sortedEvents.length === 0 ? (
               <div className="w-full h-full min-h-[300px] flex items-center justify-center">
                 <p className="text-18px">No upcoming events at this time.</p>
               </div>
             ) : (
-              <ul className="space-y-5">
+              <ul className="flex flex-col gap-5">
                 {sortedEvents.map((event, index) => (
                   <li
                     key={index}
@@ -136,13 +136,13 @@ export default async function CalendarPage() {
                       }
                     )}
                   >
-                    <div className="space-y-2">
+                    <div className="flex flex-col gap-2">
                       <EventName event={event} />
                       <p className="text-[17px] font-inter">
                         {event.acf.event_venue}
                       </p>
                     </div>
-                    <div className="space-y-2">
+                    <div className="flex flex-col gap-2">
                       <p>
                         <time
                           className="text-16px font-inter"

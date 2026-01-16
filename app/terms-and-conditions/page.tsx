@@ -14,7 +14,7 @@ const TermsAndConditionsPage = () => {
         <h2 className="text-36px font-inter font-bold mb-10">
           Terms and Conditions
         </h2>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           <h3 className="text-24px font-inter font-medium mb-5">Editorial</h3>
           <p>
             The Sentinel is a member of Country Press Australia, which is a
@@ -23,15 +23,15 @@ const TermsAndConditionsPage = () => {
             principles, standards and guidelines established by the Australian
             Press Council. This includes:
           </p>
-          <ol className="list-decimal ml-6 space-y-2">
+          <ol className="list-decimal ml-6 flex flex-col gap-2">
             <li>The Statement of General Principles</li>
             <li>The Statement of Privacy Principles</li>
             <li>The specific standard on the coverage of suicide</li>
             <li>The specific standard on the contact of patients</li>
           </ol>
-          <div className="space-y-2">
+          <div className="flex flex-col gap-2">
             <p className="font-medium">Advisory guidelines on:</p>
-            <ul className="list-disc ml-6 space-y-2">
+            <ul className="list-disc ml-6 flex flex-col gap-2">
               <li>
                 Reporting on people with diverse sexual orientation, gender
                 identity, and sex characteristics
@@ -56,9 +56,9 @@ const TermsAndConditionsPage = () => {
           </div>
 
           <h3 className="text-24px font-inter font-medium mb-5">Advertising</h3>
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             <h4 className="text-16px font-inter font-medium mb-2">General</h4>
-            <ol className="list-decimal ml-6 space-y-2">
+            <ol className="list-decimal ml-6 flex flex-col gap-2">
               <li>
                 These terms and conditions apply to all advertising provided to
                 any person or entity (the &ldquo;Customer&rdquo;) by Glasshouse
@@ -103,8 +103,8 @@ const TermsAndConditionsPage = () => {
           <h3 className="text-24px font-inter font-medium mb-5">
             Warranty and Indemnity
           </h3>
-          <div className="space-y-4">
-            <ol className="list-decimal ml-6 space-y-2">
+          <div className="flex flex-col gap-4">
+            <ol className="list-decimal ml-6 flex flex-col gap-2">
               <li>
                 <p>
                   The Publisher accepts no responsibility or liability in
@@ -121,7 +121,7 @@ const TermsAndConditionsPage = () => {
               </li>
               <li>
                 <p className="font-medium">The Customer warrants that:</p>
-                <ol className="list-alpha ml-6 space-y-2">
+                <ol className="list-alpha ml-6 flex flex-col gap-2">
                   <li>
                     i. the advertisement is legal, decent, honest and truthful
                     and that it complies with the requirements of relevant
@@ -161,8 +161,8 @@ const TermsAndConditionsPage = () => {
           </div>
 
           <h3 className="text-24px font-inter font-medium mb-5">Copyright</h3>
-          <div className="space-y-4">
-            <ol className="list-decimal ml-6 space-y-2">
+          <div className="flex flex-col gap-4">
+            <ol className="list-decimal ml-6 flex flex-col gap-2">
               <li>
                 <p>
                   Copyright in all advertising and editorial material designed
@@ -187,8 +187,8 @@ const TermsAndConditionsPage = () => {
           <h3 className="text-24px font-inter font-medium mb-5">
             Placement of Advertisements
           </h3>
-          <div className="space-y-4">
-            <ol className="list-decimal ml-6 space-y-2">
+          <div className="flex flex-col gap-4">
+            <ol className="list-decimal ml-6 flex flex-col gap-2">
               <li>
                 <p>
                   Whilst the Publisher will endeavour to comply with reasonable
@@ -231,8 +231,8 @@ const TermsAndConditionsPage = () => {
           <h3 className="text-24px font-inter font-medium mb-5">
             Booking Deadlines
           </h3>
-          <div className="space-y-4">
-            <ol className="list-decimal ml-6 space-y-2">
+          <div className="flex flex-col gap-4">
+            <ol className="list-decimal ml-6 flex flex-col gap-2">
               <li>
                 <p>
                   General Display Advertising — booking and copy deadline is 12
@@ -251,8 +251,8 @@ const TermsAndConditionsPage = () => {
           <h3 className="text-24px font-inter font-medium mb-5">
             Refusing or Amending Advertisements
           </h3>
-          <div className="space-y-4">
-            <ol className="list-decimal ml-6 space-y-2">
+          <div className="flex flex-col gap-4">
+            <ol className="list-decimal ml-6 flex flex-col gap-2">
               <li>
                 <p>
                   Every advertisement is subject to the Publisher&rsquo;s
@@ -278,8 +278,8 @@ const TermsAndConditionsPage = () => {
           <h3 className="text-24px font-inter font-medium mb-5">
             Errors, Cancellations & Alterations
           </h3>
-          <div className="space-y-4">
-            <ol className="list-decimal ml-6 space-y-2">
+          <div className="flex flex-col gap-4">
+            <ol className="list-decimal ml-6 flex flex-col gap-2">
               <li>
                 <p>
                   Advertisements cancelled after booking deadlines will be

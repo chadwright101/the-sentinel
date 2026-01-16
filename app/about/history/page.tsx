@@ -12,7 +12,7 @@ const HistoryPage = () => {
     <PageWrapper cssClasses="my-10">
       <h2 className="text-36px font-inter font-bold mb-10">History</h2>
       <main>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           <p>
             With deep roots in local storytelling,{" "}
             <span className="italic">The Sentinel</span> has been a trusted

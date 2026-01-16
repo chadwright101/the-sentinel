@@ -19,7 +19,7 @@ const DistributionAccordion = () => {
       <h3 className="text-20px font-inter font-bold mb-5">
         Where to pick up a copy
       </h3>
-      <div className="space-y-2">
+      <div className="flex flex-col gap-2">
         {distribution.map((region) => {
           const regionName = Object.keys(region)[0];
           const locations = region[regionName as keyof typeof region] || [];
@@ -52,7 +52,7 @@ const DistributionAccordion = () => {
               </button>
               <ul
                 className={classNames(
-                  "space-y-1 px-4 py-2.5 list-disc list-inside scrollbar-thin scrollbar-thumb-teal/75 scrollbar-track-beige/10",
+                  "flex flex-col gap-1 px-4 py-2.5 list-disc list-inside scrollbar-thin scrollbar-thumb-teal/75 scrollbar-track-beige/10",
                   {
                     "max-h-72 overflow-y-auto": isOpen,
                     hidden: !isOpen,
