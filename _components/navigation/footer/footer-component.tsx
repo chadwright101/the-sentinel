@@ -25,7 +25,7 @@ const FooterComponent = () => {
       <div className="max-w-[1100px] mx-auto px-5 py-10 desktop:grid grid-cols-[1fr_0.55fr] desktop:pt-[60px] desktop:pb-10 desktop:px-10">
         <div className="flex flex-col gap-10 desktop:gap-10">
           <Image
-            src="/logo/the-sentinel-logo.svg"
+            src="/logos/the-sentinel-logo.svg"
             alt="The Sentinel logo"
             width={450}
             height={100}
@@ -86,7 +86,7 @@ const FooterComponent = () => {
             ))}
           </div>
         </nav>
-        <div className="flex justify-between items-center mt-10 desktop:mt-5 desktop:col-span-2">
+        <div className="flex gap-10 justify-between mt-7 items-end desktop:mt-0 desktop:col-span-2">
           <p className="text-white font-inter uppercase text-12px font-medium desktop:text-16px">
             © {new Date().getFullYear()} The Sentinel News |{" "}
             <Link
@@ -110,7 +110,19 @@ const FooterComponent = () => {
               Privacy Policy
             </Link>
           </p>
-          <ButtonLink cssClasses="hidden desktop:block">Subscribe</ButtonLink>
+          <Link
+            href="https://vonblackstudios.com.au"
+            target="_blank"
+            className="shrink-0"
+          >
+            <Image
+              src="/logos/von-black-studios-logo.png"
+              alt="Von Black Studios logo"
+              width={100}
+              height={100}
+              className="w-[80px] h-auto desktop:w-[100px]"
+            />
+          </Link>
         </div>
       </div>
     </footer>

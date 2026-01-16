@@ -143,9 +143,9 @@ export default async function PostPage({ params }: PostPageProps) {
       fetchSinglePost(postSlug),
       fetchAdData(),
       fetchPosts(categorySlug),
-      fetchPosts("sport", { perPage: 2 }),
-      fetchPosts("time-out", { perPage: 2 }),
-      fetchPosts("community", { perPage: 2 }),
+      fetchPosts("sport", { perPage: 5 }),
+      fetchPosts("time-out", { perPage: 5 }),
+      fetchPosts("community", { perPage: 5 }),
     ]);
 
   if (!post) {
@@ -248,9 +248,9 @@ export default async function PostPage({ params }: PostPageProps) {
           />
           <NewsletterSubscriptionComponent />
           <div className="flex flex-col gap-10 mt-5 tablet:mt-10 desktop:gap-10 desktop:mt-10 desktop:flex-row">
-            <LatestArticles categorySlug="sport" posts={sportPosts} />
-            <LatestArticles categorySlug="time-out" posts={timeOutPosts} />
-            <LatestArticles categorySlug="community" posts={communityPosts} />
+            <LatestArticles categorySlug="sport" posts={sportPosts} currentPostSlug={postSlug} />
+            <LatestArticles categorySlug="time-out" posts={timeOutPosts} currentPostSlug={postSlug} />
+            <LatestArticles categorySlug="community" posts={communityPosts} currentPostSlug={postSlug} />
           </div>
         </article>
       </main>

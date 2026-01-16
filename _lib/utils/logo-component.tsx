@@ -4,7 +4,7 @@ const LogoComponent = () => {
   return (
     <div className="relative">
       <Image
-        src="/logo/the-sentinel-logo-the.svg"
+        src="/logos/the-sentinel-logo-the.svg"
         alt="The Sentinel logo"
         width={30}
         height={30}

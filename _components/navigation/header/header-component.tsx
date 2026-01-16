@@ -74,7 +74,7 @@ export function HeaderComponent({
         )}
       >
         <Image
-          src="/logo/the-sentinel-logo.svg"
+          src="/logos/the-sentinel-logo.svg"
           alt="The Sentinel logo"
           width={200}
           height={60}

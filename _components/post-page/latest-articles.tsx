@@ -12,11 +12,14 @@ import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
 interface LatestArticlesProps {
   categorySlug: string;
   posts: PostProps[];
+  currentPostSlug: string;
 }
 
-const LatestArticles = ({ categorySlug, posts }: LatestArticlesProps) => {
+const LatestArticles = ({ categorySlug, posts, currentPostSlug }: LatestArticlesProps) => {
   const categoryInfo = getCategoryMapping(categorySlug);
-  const latestPosts = posts.slice(0, 2);
+  const latestPosts = posts
+    .filter((post) => post.slug !== currentPostSlug)
+    .slice(0, 2);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   if (!categoryInfo || latestPosts.length === 0) {

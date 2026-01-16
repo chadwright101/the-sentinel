@@ -14,7 +14,7 @@ interface PostContentProps {
 
 const listStyles =
   "[&_ul]:list-disc [&_ul]:list-inside [&_ol]:list-disc [&_ol]:list-inside";
-const linkStyles = "[&_a]:text-blue [&_a]:underline [&_a]:hover:text-blue/80";
+const linkStyles = "[&_a]:text-blue [&_a]:underline [&_a]:hover:text-blue/80 [&_a]:break-all";
 const headingStyles =
   "[&_h2]:text-24px [&_h2]:font-bold [&_h2]:mb-2 [&_h3]:text-20px [&_h3]:font-bold [&_h3]:mb-2 [&_h4]:text-18px [&_h4]:font-bold [&_h4]:mb-2 [h5_]:text-16px [&_h5]:font-bold [&_h5]:mb-2";
 const figureStyles =
