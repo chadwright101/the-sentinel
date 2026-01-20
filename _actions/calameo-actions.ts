@@ -60,7 +60,7 @@ export default async function getRecentPublications(): Promise<
     url.searchParams.append("signature", signature);
 
     const response = await fetch(url.toString(), {
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 },
     });
 
     const data = await response.json();
@@ -77,7 +77,7 @@ export default async function getRecentPublications(): Promise<
         pub.Status === "DONE" &&
         pub.IsPublished === 1 &&
         pub.IsPrivate === 0 &&
-        pub.Pages > 12
+        pub.Pages > 12,
     );
 
     // Sort filtered publications by date in descending order (most recent first)
@@ -88,7 +88,7 @@ export default async function getRecentPublications(): Promise<
     });
 
     // Return only the 10 most recent
-    const recentPublications = sortedPublications.slice(0, 10);
+    const recentPublications = sortedPublications.slice(0, 12);
     return recentPublications;
   } catch (error) {
     return [];
