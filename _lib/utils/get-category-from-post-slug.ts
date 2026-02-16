@@ -26,7 +26,7 @@ export async function getCategorySlugFromPost(postSlug: string): Promise<string 
 
     const categoriesResponse = await fetch(
       `${baseUrl}posts/${post.id}?_embed=wp:term`,
-      { cache: "no-store" }
+      { next: { revalidate: 86400, tags: ["wordpress"] } }
     );
 
     if (!categoriesResponse.ok) {

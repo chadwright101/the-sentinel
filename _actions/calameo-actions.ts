@@ -60,7 +60,7 @@ export default async function getRecentPublications(): Promise<
     url.searchParams.append("signature", signature);
 
     const response = await fetch(url.toString(), {
-      next: { revalidate: 300 },
+      next: { revalidate: 43200, tags: ["calameo"] },
     });
 
     const data = await response.json();

@@ -53,7 +53,7 @@ export async function fetchPosts(
       } else {
         const categoriesResponse = await fetch(
           `${baseUrl}categories?slug=${categorySlug}`,
-          { next: { revalidate: 3600 } }
+          { next: { revalidate: 7200, tags: ["wordpress"] } }
         );
 
         if (categoriesResponse.ok) {
@@ -74,7 +74,7 @@ export async function fetchPosts(
     }
 
     const response = await fetch(url, {
-      next: { revalidate: 1800 },
+      next: { revalidate: 7200, tags: ["wordpress"] },
     });
 
     if (!response.ok) {
