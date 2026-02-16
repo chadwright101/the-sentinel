@@ -9,8 +9,8 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    revalidateTag("wordpress", "max");
-    revalidateTag("calameo", "max");
+    revalidateTag("wordpress", { expire: 0 });
+    revalidateTag("calameo", { expire: 0 });
     return NextResponse.json({ revalidated: true, message: "Site successfully refreshed!" });
   } catch (error) {
     return NextResponse.json({ revalidated: false, error: String(error) }, { status: 500 });
@@ -35,8 +35,8 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    revalidateTag("wordpress", "max");
-    revalidateTag("calameo", "max");
+    revalidateTag("wordpress", { expire: 0 });
+    revalidateTag("calameo", { expire: 0 });
     return new NextResponse(
       `<!DOCTYPE html>
 <html>
