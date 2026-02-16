@@ -1,6 +1,7 @@
 import Image from "next/image";
 import classNames from "classnames";
 import { PostProps } from "@/_types/post-types";
+import getPhotonUrl from "@/_lib/utils/get-photon-url";
 
 const PostGridImage = ({
   post,
@@ -15,7 +16,7 @@ const PostGridImage = ({
 }) => (
   <div className="overflow-hidden place-self-start">
     <Image
-      src={post.jetpack_featured_media_url}
+      src={getPhotonUrl(post.jetpack_featured_media_url, 800)}
       alt={post.title.rendered}
       width={800}
       height={600}

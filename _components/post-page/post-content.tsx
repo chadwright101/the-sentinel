@@ -63,12 +63,12 @@ function optimizeImageUrls(htmlContent: string): string {
 
     const cleanUrl = getCleanImageUrl(currentSrc);
 
-    img.setAttribute("src", `${cleanUrl}?w=800&ssl=1`);
+    img.setAttribute("src", `${cleanUrl}?w=700&quality=80&strip=info&ssl=1`);
     img.setAttribute(
       "srcset",
-      `${cleanUrl}?w=800&ssl=1 800w, ${cleanUrl}?w=900&ssl=1 900w`
+      `${cleanUrl}?w=425&quality=80&strip=info&ssl=1 425w, ${cleanUrl}?w=700&quality=80&strip=info&ssl=1 700w`
     );
-    img.setAttribute("sizes", "(max-width: 799px) 800px, 900px");
+    img.setAttribute("sizes", "(max-width: 425px) 425px, 700px");
   });
 
   return doc.body.innerHTML;

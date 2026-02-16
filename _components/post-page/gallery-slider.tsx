@@ -6,7 +6,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import classNames from "classnames";
 import { GallerySliderProps } from "@/_types/gallery-types";
 import { useRef } from "react";
-import getCleanImageUrl from "@/_lib/utils/get-clean-image-url";
+import getPhotonUrl from "@/_lib/utils/get-photon-url";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -76,10 +76,10 @@ export default function GallerySlider({
           >
             <div className="aspect-[4/3] relative bg-teal/10">
               <Image
-                src={`${getCleanImageUrl(image.src)}?w=800&ssl=1`}
+                src={getPhotonUrl(image.src, 700)}
                 alt={image.alt}
                 fill
-                sizes="(max-width: 799px) 800px, 900px"
+                sizes="(max-width: 425px) 425px, 700px"
                 className="object-contain"
               />
             </div>
