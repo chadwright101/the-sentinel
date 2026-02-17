@@ -1,34 +1,6 @@
 import { revalidateTag, revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
-async function purgeVercelEdgeCache(): Promise<boolean> {
-  const token = process.env.VERCEL_API_TOKEN;
-  const projectId = process.env.VERCEL_PROJECT_ID;
-
-  if (!token || !projectId) return false;
-
-  const teamId = process.env.VERCEL_TEAM_ID;
-  const params = new URLSearchParams({ projectIdOrName: projectId });
-  if (teamId) params.set("teamId", teamId);
-
-  const response = await fetch(
-    `https://api.vercel.com/v1/edge-cache/invalidate-by-tags?${params.toString()}`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        tags: ["wordpress", "calameo"],
-        target: "production",
-      }),
-    }
-  );
-
-  return response.ok;
-}
-
 function htmlResponse(
   title: string,
   heading: string,
@@ -66,16 +38,10 @@ export async function GET(request: NextRequest) {
     revalidateTag("calameo", { expire: 0 });
     revalidatePath("/", "layout");
 
-    const edgePurged = await purgeVercelEdgeCache();
-
-    const edgeStatus = edgePurged
-      ? "CDN cache purged."
-      : "CDN cache could not be purged (check Vercel API token).";
-
     return htmlResponse(
       "Success",
       "Site Refreshed!",
-      `The Sentinel website has been revalidated. ${edgeStatus}`,
+      "The Sentinel website has been revalidated.",
       200
     );
   } catch (error) {
