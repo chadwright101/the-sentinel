@@ -1,4 +1,4 @@
-import { revalidateTag, revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 function htmlResponse(
@@ -34,9 +34,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    revalidateTag("wordpress", { expire: 0 });
-    revalidateTag("calameo", { expire: 0 });
-    revalidatePath("/", "layout");
+    revalidatePath("/");
 
     return htmlResponse(
       "Success",
