@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) {
   try {
     revalidateTag("wordpress", { expire: 0 });
     revalidateTag("calameo", { expire: 0 });
+    revalidatePath("/", "layout");
     return NextResponse.json({ revalidated: true, message: "Site successfully refreshed!" });
   } catch (error) {
     return NextResponse.json({ revalidated: false, error: String(error) }, { status: 500 });
@@ -37,6 +38,7 @@ export async function GET(request: NextRequest) {
   try {
     revalidateTag("wordpress", { expire: 0 });
     revalidateTag("calameo", { expire: 0 });
+    revalidatePath("/", "layout");
     return new NextResponse(
       `<!DOCTYPE html>
 <html>
