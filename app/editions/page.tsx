@@ -15,8 +15,8 @@ const EditionsPage = () => {
       <main>
         <h2 className="text-36px font-inter font-bold">Editions</h2>
         <div className="flex flex-col gap-10">
-          <NewsletterSubscriptionComponent />
           <CalameoComponent />
+          <NewsletterSubscriptionComponent />
         </div>
       </main>
     </PageWrapper>
