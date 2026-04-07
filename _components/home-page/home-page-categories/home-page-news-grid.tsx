@@ -13,14 +13,15 @@ const HomePageNewsGrid = ({
   setHoveredIndex,
   adData,
 }: PostGridProps) => {
+  const adCategories =
+    categorySlug === "time-out" || categorySlug === "community";
   return (
     <div
       className={classNames(
         "grid grid-cols-1 gap-5 items-start tablet:grid-cols-2 desktop:gap-10 desktop:grid-cols-3",
         {
-          "desktop:grid-cols-4":
-            categorySlug === "time-out" || categorySlug === "community",
-        }
+          "desktop:grid-cols-4": adCategories,
+        },
       )}
     >
       {posts.map((post, index) => {
@@ -51,19 +52,49 @@ const HomePageNewsGrid = ({
                   "aspect-[1.2/1] tablet:aspect-[5/3]": !isFirstPost,
                 })}
               />
-              <PostGridTitle
-                post={post}
-                index={index}
-                hoveredIndex={hoveredIndex}
-              />
-              <PostGridExcerpt
-                post={post}
-                maxLength={150}
-                cssClasses={classNames({
-                  hidden: !isFirstPost,
-                  "block tablet:hidden": isFirstPost,
-                })}
-              />
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3">
+                  <PostGridTitle
+                    post={post}
+                    index={index}
+                    hoveredIndex={hoveredIndex}
+                  />
+                  <PostGridExcerpt
+                    post={post}
+                    maxLength={180}
+                    cssClasses={classNames(
+                      !isFirstPost && "tablet:hidden",
+                      isFirstPost && "hidden",
+                    )}
+                  />
+                </div>
+                {adCategories ? (
+                  <>
+                    <PostGridExcerpt
+                      post={post}
+                      maxLength={180}
+                      cssClasses={classNames(
+                        "tablet:text-[14px] desktop:hidden",
+                        !isFirstPost && "hidden tablet:block",
+                      )}
+                    />
+                    <PostGridExcerpt
+                      post={post}
+                      maxLength={100}
+                      cssClasses="hidden tablet:text-[14px] desktop:block"
+                    />
+                  </>
+                ) : (
+                  <PostGridExcerpt
+                    post={post}
+                    maxLength={180}
+                    cssClasses={classNames(
+                      "tablet:text-[14px]",
+                      !isFirstPost && "hidden tablet:block",
+                    )}
+                  />
+                )}
+              </div>
             </Link>
           </article>
         );
@@ -74,22 +105,22 @@ const HomePageNewsGrid = ({
             categorySlug === "time-out"
               ? adData?.image_home_page_entertainment || ""
               : categorySlug === "community"
-              ? adData?.image_home_page_community || ""
-              : ""
+                ? adData?.image_home_page_community || ""
+                : ""
           }
           alt={
             categorySlug === "time-out"
               ? adData?.company_name_home_page_entertainment || "Advertisement"
               : categorySlug === "community"
-              ? adData?.company_name_home_page_community || "Advertisement"
-              : "Advertisement"
+                ? adData?.company_name_home_page_community || "Advertisement"
+                : "Advertisement"
           }
           url={
             categorySlug === "time-out"
               ? adData?.link_home_page_entertainment || "#"
               : categorySlug === "community"
-              ? adData?.link_home_page_community || "#"
-              : "#"
+                ? adData?.link_home_page_community || "#"
+                : "#"
           }
         />
       )}

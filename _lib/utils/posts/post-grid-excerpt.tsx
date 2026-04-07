@@ -14,7 +14,7 @@ const PostGridExcerpt = ({
   <p
     className={classNames(
       "text-12px font-normal font-newsreader tablet:text-16px text-black",
-      cssClasses
+      cssClasses,
     )}
   >
     {truncateText(post.content.rendered, maxLength)}
