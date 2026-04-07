@@ -30,7 +30,7 @@ const NewsletterForm = () => {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             if (!executeRecaptcha) {
               setError(
-                "Security verification unavailable. Please refresh the page and try again."
+                "Security verification unavailable. Please refresh the page and try again.",
               );
               return;
             }
@@ -46,7 +46,7 @@ const NewsletterForm = () => {
           } else {
             setError(
               result.error ||
-                "Failed to subscribe to newsletter. Please try again."
+                "Failed to subscribe to newsletter. Please try again.",
             );
           }
         } catch (err) {
@@ -54,7 +54,8 @@ const NewsletterForm = () => {
           console.error("Contact form error:", err);
         }
       }}
-      className="grid gap-5 mt-5 w-full bg-teal px-5 py-7 tablet:grid-cols-[1.25fr_1fr] desktop:grid-cols-3 desktop:gap-10 desktop:mt-[50px] desktop:py-[100px] desktop:px-10"
+      className="grid gap-5 mt-5 w-full bg-teal px-5 py-7 scroll-mt-5 tablet:grid-cols-[1.25fr_1fr] desktop:grid-cols-3 desktop:gap-10 desktop:mt-[50px] desktop:py-[100px] desktop:px-10 desktop:scroll-mt-44"
+      id="newsletter"
     >
       <h3 className="grid place-items-center text-32px uppercase font-bold font-inter text-white text-center tablet:col-span-2 desktop:col-span-1 desktop:text-36px">
         Subscribe to <span className="text-white font-inter">The Sentinel</span>

@@ -13,13 +13,13 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
 
   return (
     <nav className="relative">
-      <ul className="flex gap-6 items-center">
+      <ul className="flex gap-3.5 items-center min-[1144px]:gap-5">
         {navData.map(({ title, url, children }, index) => {
           const hasChildren = children && children.length > 0;
           return (
             <li
               key={index}
-              className="text-white font-inter font-medium uppercase relative text-[15px]"
+              className="font-inter font-medium uppercase relative text-[14.5px]"
               onMouseEnter={() => hasChildren && setHoveredItem(index)}
               onMouseLeave={() => hasChildren && setHoveredItem(null)}
             >
@@ -29,7 +29,7 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
                     "text-white font-inter font-medium hover:text-light-brown cursor-default",
                     {
                       "pb-5 pr-5 -mr-5": hoveredItem === index,
-                    }
+                    },
                   )}
                 >
                   {title}
@@ -37,12 +37,12 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
               ) : (
                 <Link
                   href={url!}
-                  className={classNames(
-                    "text-white font-inter hover:text-light-brown ease-in-out duration-300",
-                    {
-                      "pb-5 pr-5 -mr-5": hoveredItem === index && hasChildren,
-                    }
-                  )}
+                  className={classNames("font-inter ease-in-out duration-300", {
+                    "pb-5 pr-5 -mr-5": hoveredItem === index && hasChildren,
+                    "text-teal py-1.5 px-3 rounded-full bg-light-brown hover:opacity-80":
+                      title === "Subscribe",
+                    "text-white hover:text-light-brown": title !== "Subscribe",
+                  })}
                 >
                   {title}
                 </Link>
@@ -56,7 +56,7 @@ const DesktopNavComponent = ({ navData }: NavDataProps) => {
                         hoveredItem !== index,
                       "opacity-100 visible max-h-96 scale-y-100":
                         hoveredItem === index,
-                    }
+                    },
                   )}
                 >
                   <ul className="px-3 py-4 grid gap-2">

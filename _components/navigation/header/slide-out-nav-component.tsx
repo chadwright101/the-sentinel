@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import classNames from "classnames";
 import { NavDataProps, HeaderProps } from "@/_types/menu-types";
+import ButtonLink from "@/_components/ui/buttons/button-link";
 
 const SlideOutNavComponent = ({
   isOpen,
@@ -14,7 +15,7 @@ const SlideOutNavComponent = ({
   isScrolled,
 }: HeaderProps & NavDataProps) => {
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>(
-    {}
+    {},
   );
   const [windowWidth, setWindowWidth] = useState(0);
   const navRef = useRef<HTMLDivElement>(null);
@@ -109,7 +110,7 @@ const SlideOutNavComponent = ({
           "-translate-x-full": !isOpen,
           "desktop:top-[250px]": !isScrolled,
           "desktop:top-[150px]": isScrolled,
-        }
+        },
       )}
     >
       <div className="bg-beige h-screen">
@@ -119,7 +120,7 @@ const SlideOutNavComponent = ({
             {
               "desktop:max-h-[calc(100vh-250px)]": !isScrolled,
               "desktop:max-h-[calc(100vh-150px)]": isScrolled,
-            }
+            },
           )}
         >
           <ul className="mobile-menu-spacing">
@@ -168,7 +169,7 @@ const SlideOutNavComponent = ({
                             "transform transition-transform duration-300",
                             {
                               "rotate-90": isExpanded,
-                            }
+                            },
                           )}
                         />
                       </button>
@@ -181,7 +182,7 @@ const SlideOutNavComponent = ({
                         {
                           "max-h-0 opacity-0 -mt-5": !isExpanded,
                           "max-h-96 opacity-100": isExpanded,
-                        }
+                        },
                       )}
                     >
                       <ul className="mobile-menu-spacing">
@@ -225,6 +226,17 @@ const SlideOutNavComponent = ({
                   className="-translate-y-0.5 desktop:hover:scale-105 ease-in-out duration-300 desktop:w-7 desktop:h-auto"
                 />
               </Link>
+            </li>
+            <li className="place-self-start mt-2">
+              <ButtonLink
+                href="/#newsletter"
+                onClick={() => {
+                  setIsOpen(false);
+                  setExpandedItems({});
+                }}
+              >
+                Subscribe
+              </ButtonLink>
             </li>
           </ul>
         </nav>
