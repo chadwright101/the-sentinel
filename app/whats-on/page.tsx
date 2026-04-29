@@ -57,6 +57,8 @@ function isValidTime(time: string): boolean {
   return time !== "" && time.trim() !== "";
 }
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "What's On | The Sentinel",
   description:

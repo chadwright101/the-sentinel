@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const revalidate = 1800;
 import { fetchPostsWithPagination } from "@/_components/fetch-posts-with-pagination";
 import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import PaginationComponent from "@/_lib/utils/pagination-component";

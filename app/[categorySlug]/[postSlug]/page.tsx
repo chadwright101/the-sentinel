@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const revalidate = 3600;
 import { fetchSinglePost } from "@/_components/fetch-single-post";
 import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import Image from "next/image";
