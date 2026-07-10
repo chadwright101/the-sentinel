@@ -12,7 +12,7 @@ import PageWrapper from "@/_lib/utils/page-wrapper";
 async function fetchEvents(): Promise<EventData[]> {
   const response = await fetch(
     "https://sentinelnewscomau.wpcomstaging.com/wp-json/wp/v2/event",
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 3600 } },
   );
 
   if (!response.ok) {
@@ -57,7 +57,7 @@ function isValidTime(time: string): boolean {
   return time !== "" && time.trim() !== "";
 }
 
-export const revalidate = 3600;
+export const revalidate = 1800;
 
 export const metadata: Metadata = {
   title: "What's On | The Sentinel",
@@ -135,7 +135,7 @@ export default async function CalendarPage() {
                       {
                         "border-b border-black/25 pb-5":
                           index !== sortedEvents.length - 1,
-                      }
+                      },
                     )}
                   >
                     <div className="flex flex-col gap-2">
@@ -164,7 +164,7 @@ export default async function CalendarPage() {
                                   className="text-16px font-inter"
                                   dateTime={toIsoDateTime(
                                     event.acf.event_date,
-                                    event.acf.event_start_time
+                                    event.acf.event_start_time,
                                   )}
                                 >
                                   {formatTime(event.acf.event_start_time)}
@@ -179,7 +179,7 @@ export default async function CalendarPage() {
                                   className="text-16px font-inter"
                                   dateTime={toIsoDateTime(
                                     event.acf.event_date,
-                                    event.acf.event_end_time
+                                    event.acf.event_end_time,
                                   )}
                                 >
                                   {formatTime(event.acf.event_end_time)}
@@ -193,7 +193,7 @@ export default async function CalendarPage() {
                                   className="text-16px font-inter"
                                   dateTime={toIsoDateTime(
                                     event.acf.event_date,
-                                    event.acf.event_start_time
+                                    event.acf.event_start_time,
                                   )}
                                 >
                                   {formatTime(event.acf.event_start_time)}
@@ -203,7 +203,7 @@ export default async function CalendarPage() {
                                   className="text-16px font-inter"
                                   dateTime={toIsoDateTime(
                                     event.acf.event_date,
-                                    event.acf.event_end_time
+                                    event.acf.event_end_time,
                                   )}
                                 >
                                   {formatTime(event.acf.event_end_time)}

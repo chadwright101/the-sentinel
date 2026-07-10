@@ -38,7 +38,7 @@ export async function fetchPostsWithPagination(
       } else {
         const categoriesResponse = await fetch(
           `${baseUrl}categories?slug=${categorySlug}&per_page=100`,
-          { next: { revalidate: 3600 } }
+          { next: { revalidate: 1800 } }
         );
 
         if (categoriesResponse.ok) {

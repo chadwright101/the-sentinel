@@ -6,7 +6,7 @@ export async function fetchAdData(): Promise<AdData | null> {
   try {
     if (!baseUrl) {
       throw new Error(
-        "NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL environment variable is not set"
+        "NEXT_PUBLIC_WORDPRESS_REST_API_BASE_URL environment variable is not set",
       );
     }
 

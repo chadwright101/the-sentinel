@@ -10,7 +10,7 @@ export async function fetchSinglePost(slug: string): Promise<PostProps | null> {
       );
     }
     const response = await fetch(`${baseUrl}posts?slug=${slug}&_embed=author,wp:featuredmedia`, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 1800 },
     });
 
     if (!response.ok) {

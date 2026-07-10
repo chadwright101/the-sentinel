@@ -26,7 +26,7 @@ export async function getCategorySlugFromPost(postSlug: string): Promise<string 
 
     const categoriesResponse = await fetch(
       `${baseUrl}posts/${post.id}?_embed=wp:term`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 1800 } }
     );
 
     if (!categoriesResponse.ok) {

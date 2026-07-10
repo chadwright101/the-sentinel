@@ -53,7 +53,7 @@ export async function fetchPosts(
       } else {
         const categoriesResponse = await fetch(
           `${baseUrl}categories?slug=${categorySlug}`,
-          { next: { revalidate: 3600 } }
+          { next: { revalidate: 1800 } }
         );
 
         if (categoriesResponse.ok) {
