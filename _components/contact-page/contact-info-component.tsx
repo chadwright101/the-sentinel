@@ -43,7 +43,7 @@ export default function ContactInfoComponent() {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         if (!executeRecaptcha) {
           setError(
-            "Security verification unavailable. Please refresh the page and try again."
+            "Security verification unavailable. Please refresh the page and try again.",
           );
           setLoading(false);
           return;

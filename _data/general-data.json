@@ -133,8 +133,12 @@
       ]
     },
     "advertising": {
-      "phone": "07 5438 7445",
+      "phone": "0491 655 129",
       "contactInfo": [
+        {
+          "name": "Karen Hardy",
+          "email": "karen@sentinelnews.com.au"
+        },
         {
           "name": "Lewis Kwarcianyi",
           "email": "lewis@gcnews.com.au"
