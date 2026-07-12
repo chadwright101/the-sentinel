@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const revalidate = 1800;
+export const revalidate = 900;
 import { fetchSinglePost } from "@/_components/fetch-single-post";
 import { getCategoryMapping } from "@/_lib/utils/category-mapping";
 import Image from "next/image";
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
   try {
     const response = await fetch(
       `${baseUrl}posts?per_page=200&_fields=slug,status,class_list&orderby=date&order=desc`,
-      { next: { revalidate: 1800 } }
+      { next: { revalidate: 900 } }
     );
 
     if (!response.ok) return [];

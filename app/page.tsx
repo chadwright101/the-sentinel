@@ -6,7 +6,7 @@ import NewsletterSubscriptionComponent from "@/_lib/utils/newsletter-subscriptio
 import PageWrapper from "@/_lib/utils/page-wrapper";
 import { fetchAdData } from "@/_components/fetch-ad-data";
 
-export const revalidate = 1800;
+export const revalidate = 900;
 
 export const metadata: Metadata = {
   title: "The Sentinel - Local News",

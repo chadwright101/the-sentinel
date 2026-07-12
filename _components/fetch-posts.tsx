@@ -53,7 +53,7 @@ export async function fetchPosts(
       } else {
         const categoriesResponse = await fetch(
           `${baseUrl}categories?slug=${categorySlug}`,
-          { next: { revalidate: 1800 } }
+          { next: { revalidate: 900 } }
         );
 
         if (categoriesResponse.ok) {
@@ -74,7 +74,7 @@ export async function fetchPosts(
     }
 
     const response = await fetch(url, {
-      next: { revalidate: 1800 },
+      next: { revalidate: 900 },
     });
 
     if (!response.ok) {
