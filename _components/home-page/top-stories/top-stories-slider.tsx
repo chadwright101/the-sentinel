@@ -12,6 +12,7 @@ import "swiper/css";
 import Link from "next/link";
 import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
 import getPhotonUrl from "@/_lib/utils/get-photon-url";
+import { extractCategorySlug } from "@/_lib/utils/category-mapping";
 
 interface Props {
   cssClasses?: string;
@@ -54,7 +55,7 @@ const HeroSlider = ({ cssClasses, data }: Props) => {
         <SwiperSlide key={slide.id} className="relative">
           <article className="w-full h-full">
             <Link
-              href={`/latest-news/${slide.slug}`}
+              href={`/${extractCategorySlug(slide)}/${slide.slug}`}
               className="desktop:hover:opacity-90 delay-75"
             >
               <div className="absolute bg-gradient-to-b from-45% to-80% to-black/50 w-full h-full" />

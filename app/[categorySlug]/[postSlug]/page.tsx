@@ -3,7 +3,12 @@ import { notFound } from "next/navigation";
 
 export const revalidate = 900;
 import { fetchSinglePost } from "@/_components/fetch-single-post";
-import { getCategoryMapping } from "@/_lib/utils/category-mapping";
+import {
+  getCategoryMapping,
+  extractCategorySlug,
+  postHasCategory,
+} from "@/_lib/utils/category-mapping";
+import { SITE_BASE_URL } from "@/_lib/utils/site-config";
 import Image from "next/image";
 import PostContent from "@/_components/post-page/post-content";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
@@ -36,18 +41,10 @@ export async function generateStaticParams() {
 
     return posts
       .filter((post: any) => post.status === "publish")
-      .map((post: any) => {
-        const categoryClass = post.class_list?.find((c: string) =>
-          c.startsWith("category-")
-        );
-        const categorySlug =
-          categoryClass?.replace("category-", "") || "latest-news";
-
-        return {
-          categorySlug,
-          postSlug: post.slug,
-        };
-      });
+      .map((post: any) => ({
+        categorySlug: extractCategorySlug(post),
+        postSlug: post.slug,
+      }));
   } catch (error) {
     console.error("Error in generateStaticParams:", error);
     return [];
@@ -108,6 +105,9 @@ export async function generateMetadata({
   return {
     title: `${title} | The Sentinel News`,
     description,
+    alternates: {
+      canonical: `${SITE_BASE_URL}/${extractCategorySlug(post)}/${postSlug}`,
+    },
     openGraph: {
       type: "article",
       title: `${title} - The Sentinel News`,
@@ -152,6 +152,10 @@ export default async function PostPage({ params }: PostPageProps) {
     ]);
 
   if (!post) {
+    notFound();
+  }
+
+  if (!postHasCategory(post, categorySlug)) {
     notFound();
   }
 

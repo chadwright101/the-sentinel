@@ -5,6 +5,7 @@ import PostGridImage from "@/_lib/utils/posts/post-grid-image";
 import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
 import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
 import AdSpaceSquare from "@/_components/ad-spaces/ad-space-square";
+import { extractCategorySlug } from "@/_lib/utils/category-mapping";
 
 const HomePageNewsGrid = ({
   posts,
@@ -35,7 +36,7 @@ const HomePageNewsGrid = ({
             })}
           >
             <Link
-              href={`/latest-news/${post.slug}`}
+              href={`/${extractCategorySlug(post)}/${post.slug}`}
               className={classNames("grid gap-5 mb-2", {
                 "grid-cols-[1fr_1.75fr] tablet:grid-cols-1": !isFirstPost,
                 "desktop:h-full": isFirstPost,

@@ -1,6 +1,9 @@
 import { MetadataRoute } from "next";
 import { fetchPosts } from "@/_components/fetch-posts";
-import { getAllCategorySlugs } from "@/_lib/utils/category-mapping";
+import {
+  getAllCategorySlugs,
+  extractCategorySlug,
+} from "@/_lib/utils/category-mapping";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.sentinelnews.com.au";
@@ -84,12 +87,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const posts = await fetchPosts(undefined, { perPage: 100 });
   const postPages = posts.map((post) => {
-    const categoryClass = post.class_list.find((cls) =>
-      cls.startsWith("category-")
-    );
-    const categorySlug = categoryClass
-      ? categoryClass.replace("category-", "")
-      : "uncategorized";
+    const categorySlug = extractCategorySlug(post);
 
     return {
       url: `${baseUrl}/${categorySlug}/${post.slug}`,

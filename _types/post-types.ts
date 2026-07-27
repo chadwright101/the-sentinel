@@ -30,6 +30,11 @@ export interface PostProps {
   content: {
     rendered: string;
   };
+  excerpt?: {
+    rendered: string;
+  };
+  modified?: string;
+  tags?: number[];
   acf?: {
     subheading?: string;
   };

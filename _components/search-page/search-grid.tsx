@@ -6,7 +6,7 @@ import PostGridDate from "@/_lib/utils/posts/post-grid-date";
 import PostGridImage from "@/_lib/utils/posts/post-grid-image";
 import PostGridTitle from "@/_lib/utils/posts/post-grid-title";
 import PostGridExcerpt from "@/_lib/utils/posts/post-grid-excerpt";
-import { getAllCategorySlugs } from "@/_lib/utils/category-mapping";
+import { extractCategorySlug } from "@/_lib/utils/category-mapping";
 
 interface Post {
   id: number;
@@ -19,22 +19,6 @@ interface Post {
 
 interface SearchGridProps {
   posts: Post[];
-}
-
-function extractCategorySlug(post: Post): string {
-  const allSlugs = getAllCategorySlugs();
-
-  for (const className of post.class_list) {
-    const match = className.match(/^category-(.+)$/);
-    if (match) {
-      const slug = match[1];
-      if (allSlugs.includes(slug)) {
-        return slug;
-      }
-    }
-  }
-
-  return "latest-news";
 }
 
 export default function SearchGrid({ posts }: SearchGridProps) {
