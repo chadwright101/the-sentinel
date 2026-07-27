@@ -9,6 +9,18 @@ export function getBrisbaneDayCode(): string {
   return weekday.toLowerCase().slice(0, 3);
 }
 
+export function getShowcasePeriod(): ShowcasePeriod {
+  const hour = Number(
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Australia/Brisbane",
+      hour: "2-digit",
+      hour12: false,
+    }).format(new Date())
+  );
+
+  return hour < 12 ? "am" : "pm";
+}
+
 export function getShowcaseSlug(period: ShowcasePeriod): string {
   return `${getBrisbaneDayCode()}-${period}`;
 }

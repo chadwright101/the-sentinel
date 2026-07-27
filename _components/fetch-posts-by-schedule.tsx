@@ -34,7 +34,7 @@ export async function fetchPostsBySchedule(
     }
 
     const response = await fetch(
-      `${baseUrl}posts?categories=${categories[0].id}&per_page=${perPage}&_fields=${POST_FIELDS}&orderby=date&order=desc`,
+      `${baseUrl}posts?categories=${categories[0].id}&per_page=${perPage}&_fields=${POST_FIELDS}&orderby=modified&order=desc`,
       { next: { revalidate: 300 } }
     );
 

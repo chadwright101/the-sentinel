@@ -1,24 +1,15 @@
 import { PostProps } from "@/_types/post-types";
-import { extractCategorySlug } from "@/_lib/utils/category-mapping";
+import {
+  extractCategorySlug,
+  getCategoryMapping,
+} from "@/_lib/utils/category-mapping";
 import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
 import { SITE_BASE_URL, SITE_DESCRIPTION } from "@/_lib/utils/site-config";
 
 const IMAGE_WIDTH = 1200;
-const IMAGE_HEIGHT = 675;
-
-function getFeedImageUrl(url: string): string {
-  try {
-    const parsed = new URL(url);
-    parsed.search = "";
-    parsed.searchParams.set("resize", `${IMAGE_WIDTH},${IMAGE_HEIGHT}`);
-    parsed.searchParams.set("quality", "80");
-    parsed.searchParams.set("strip", "info");
-    parsed.searchParams.set("ssl", "1");
-    return parsed.toString();
-  } catch {
-    return url;
-  }
-}
+const IMAGE_HEIGHT = 900;
+const OVERLINE_MAX = 30;
+const PANEL_GUID = "urn:uuid:9f2b7c14-5d3e-4a86-9c17-2e6b8d4f0a35";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTHS = [
@@ -43,10 +34,6 @@ function escapeXml(value: string): string {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
-}
-
-function cdata(value: string): string {
-  return `<![CDATA[${value.replace(/\]\]>/g, "]]&gt;")}]]>`;
 }
 
 function stripHtml(value: string): string {
@@ -98,48 +85,49 @@ function toRfc822(value: string): string {
   )}:${pad(shifted.getUTCSeconds())} ${offset}`;
 }
 
-function buildItem(post: PostProps): string {
-  const url = `${SITE_BASE_URL}/${extractCategorySlug(post)}/${post.slug}`;
-  const description = stripHtml(post.excerpt?.rendered ?? "");
-
-  const parts = [
-    "    <item>",
-    `      <title>${escapeXml(stripHtml(post.title.rendered))}</title>`,
-    `      <link>${escapeXml(url)}</link>`,
-    `      <guid isPermaLink="true">${escapeXml(url)}</guid>`,
-    `      <pubDate>${toRfc822(post.date)}</pubDate>`,
-  ];
-
-  if (description) {
-    parts.push(`      <description>${cdata(description)}</description>`);
+function getPanelImageUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.search = "";
+    parsed.searchParams.set("resize", `${IMAGE_WIDTH},${IMAGE_HEIGHT}`);
+    parsed.searchParams.set("quality", "80");
+    parsed.searchParams.set("strip", "info");
+    parsed.searchParams.set("ssl", "1");
+    return parsed.toString();
+  } catch {
+    return url;
   }
-
-  parts.push(
-    `      <content:encoded>${cdata(
-      post.content?.rendered ?? ""
-    )}</content:encoded>`
-  );
-
-  if (post.jetpack_featured_media_url) {
-    const imageUrl = escapeXml(
-      getFeedImageUrl(post.jetpack_featured_media_url)
-    );
-
-    parts.push(
-      `      <media:content url="${imageUrl}" type="image/jpeg" medium="image" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`,
-      `      <media:thumbnail url="${imageUrl}" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`
-    );
-  }
-
-  parts.push("    </item>");
-
-  return parts.join("\n");
 }
 
-export function buildShowcaseRss(
+function getOverline(post: PostProps): string {
+  const slug = extractCategorySlug(post);
+  const title = getCategoryMapping(slug)?.title ?? "News";
+  return title.slice(0, OVERLINE_MAX);
+}
+
+function buildArticle(post: PostProps): string {
+  const url = `${SITE_BASE_URL}/${extractCategorySlug(post)}/${post.slug}`;
+  const imageUrl = getPanelImageUrl(post.jetpack_featured_media_url);
+
+  return [
+    "        <g:item>",
+    `          <guid isPermaLink="true">${escapeXml(url)}</guid>`,
+    `          <title>${escapeXml(stripHtml(post.title.rendered))}</title>`,
+    `          <g:overline>${escapeXml(getOverline(post))}</g:overline>`,
+    `          <link>${escapeXml(url)}</link>`,
+    `          <media:content url="${escapeXml(
+      imageUrl
+    )}" type="image/jpeg" medium="image" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`,
+    "        </g:item>",
+  ].join("\n");
+}
+
+export function buildShowcasePanelFeed(
   posts: PostProps[],
   feedPath: string,
-  feedTitle: string
+  feedTitle: string,
+  panelName: string,
+  panelTitle: string
 ): string {
   const feedUrl = `${SITE_BASE_URL}${feedPath}`;
 
@@ -151,21 +139,35 @@ export function buildShowcaseRss(
       : newest;
   }, null);
 
-  const lastBuildDate = toRfc822(latest ?? new Date().toISOString());
+  const buildDate = toRfc822(latest ?? new Date().toISOString());
+
+  const panel =
+    posts.length === 3
+      ? `    <item>
+      <g:panel type="RUNDOWN">${escapeXml(panelName)}</g:panel>
+      <guid isPermaLink="false">${PANEL_GUID}</guid>
+      <pubDate>${buildDate}</pubDate>
+      <g:panel_title>${escapeXml(panelTitle)}</g:panel_title>
+      <title></title>
+      <g:article_group role="RUNDOWN">
+${posts.map(buildArticle).join("\n")}
+      </g:article_group>
+    </item>
+`
+      : "";
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:g="http://schemas.google.com/pcn/2020">
   <channel>
     <title>${escapeXml(feedTitle)}</title>
     <link>${escapeXml(SITE_BASE_URL)}</link>
     <description>${escapeXml(SITE_DESCRIPTION)}</description>
     <language>en-AU</language>
-    <lastBuildDate>${lastBuildDate}</lastBuildDate>
+    <lastBuildDate>${buildDate}</lastBuildDate>
     <atom:link href="${escapeXml(
       feedUrl
     )}" rel="self" type="application/rss+xml" />
-${posts.map(buildItem).join("\n")}
-  </channel>
+${panel}  </channel>
 </rss>
 `;
 }
