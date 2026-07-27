@@ -8,7 +8,7 @@ import {
   extractCategorySlug,
   postHasCategory,
 } from "@/_lib/utils/category-mapping";
-import { SITE_BASE_URL } from "@/_lib/utils/site-config";
+import { SITE_BASE_URL, SITE_NAME } from "@/_lib/utils/site-config";
 import Image from "next/image";
 import PostContent from "@/_components/post-page/post-content";
 import BreadcrumbComponent from "@/_lib/utils/breadcrumb-component";
@@ -70,6 +70,10 @@ function decodeHtmlEntities(text: string): string {
 function stripHtml(html: string): string {
   const withoutTags = html.replace(/<[^>]*>/g, "");
   return decodeHtmlEntities(withoutTags);
+}
+
+function toIsoWithOffset(value: string): string {
+  return /(Z|[+-]\d{2}:?\d{2})$/.test(value) ? value : `${value}+10:00`;
 }
 
 function generateDescription(content: string): string {
@@ -159,9 +163,45 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
+  const canonicalUrl = `${SITE_BASE_URL}/${extractCategorySlug(
+    post
+  )}/${postSlug}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: stripHtml(post.title.rendered),
+    description: generateDescription(post.content.rendered),
+    image: post.jetpack_featured_media_url
+      ? [getPhotonUrl(post.jetpack_featured_media_url, 1200)]
+      : undefined,
+    datePublished: toIsoWithOffset(post.date),
+    dateModified: toIsoWithOffset(
+      post.modified && post.modified > post.date ? post.modified : post.date
+    ),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_BASE_URL,
+    },
+    author: post._embedded?.author?.[0]?.name
+      ? { "@type": "Person", name: post._embedded.author[0].name }
+      : { "@type": "Organization", name: SITE_NAME },
+  };
+
   return (
     <PageWrapper cssClasses="my-10">
       <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <article className="grid gap-5">
           <BreadcrumbComponent
             items={[

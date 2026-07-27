@@ -1,6 +1,24 @@
 import { PostProps } from "@/_types/post-types";
 import { extractCategorySlug } from "@/_lib/utils/category-mapping";
+import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
 import { SITE_BASE_URL, SITE_DESCRIPTION } from "@/_lib/utils/site-config";
+
+const IMAGE_WIDTH = 1200;
+const IMAGE_HEIGHT = 675;
+
+function getFeedImageUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.search = "";
+    parsed.searchParams.set("resize", `${IMAGE_WIDTH},${IMAGE_HEIGHT}`);
+    parsed.searchParams.set("quality", "80");
+    parsed.searchParams.set("strip", "info");
+    parsed.searchParams.set("ssl", "1");
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTHS = [
@@ -32,9 +50,7 @@ function cdata(value: string): string {
 }
 
 function stripHtml(value: string): string {
-  return value
-    .replace(/<[^>]*>/g, "")
-    .replace(/&nbsp;/g, " ")
+  return decodeHtmlEntities(value.replace(/<[^>]*>/g, ""))
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -105,10 +121,13 @@ function buildItem(post: PostProps): string {
   );
 
   if (post.jetpack_featured_media_url) {
+    const imageUrl = escapeXml(
+      getFeedImageUrl(post.jetpack_featured_media_url)
+    );
+
     parts.push(
-      `      <media:content url="${escapeXml(
-        post.jetpack_featured_media_url
-      )}" medium="image" />`
+      `      <media:content url="${imageUrl}" type="image/jpeg" medium="image" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`,
+      `      <media:thumbnail url="${imageUrl}" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`
     );
   }
 
