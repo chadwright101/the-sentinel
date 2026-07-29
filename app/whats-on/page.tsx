@@ -62,7 +62,7 @@ export const revalidate = 1800;
 export const metadata: Metadata = {
   title: "What's On | The Sentinel",
   description:
-    "Discover upcoming events and activities in the Clarence Town area. Find dates, times, and details for community events.",
+    "Discover upcoming events and activities across the Somerset and Moreton Bay regions. Find dates, times, and details for community events.",
 };
 
 async function EventName({ event }: { event: EventData }) {

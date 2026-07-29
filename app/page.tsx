@@ -11,7 +11,7 @@ export const revalidate = 900;
 export const metadata: Metadata = {
   title: "The Sentinel - Local News",
   description:
-    "Read the latest local news from The Sentinel. We provide independent coverage of news and events across Clarence Town NSW and surrounding areas.",
+    "Read the latest local news from The Sentinel. Independent coverage of news, sport and events across the Somerset and Moreton Bay regions of Queensland.",
 };
 
 export default async function HomePage() {

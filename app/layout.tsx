@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.sentinelnews.com.au/"),
   title: "The Sentinel News Online",
   description:
-    "The Sentinel News is an independent news website that covers local and regional issues in Clarence Town NSW and surrounding areas.",
+    "The Sentinel is a free, independent newspaper serving the Somerset and Moreton Bay regions of Queensland, covering local news, sport and community events from Kilcoy and Esk to Caboolture and Bribie Island.",
   keywords:
-    "Clarence Town news, NSW local news, regional news, independent journalism, Clarence Town NSW, local community news, Hunter Valley news, Australian regional news, local government news, community issues",
+    "Somerset news, Moreton Bay news, Kilcoy news, Caboolture news, Woodford news, Esk news, Lowood news, Bribie Island news, Morayfield news, Burpengary news, Queensland regional news, independent local newspaper, community news, local sport",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     description:
-      "The Sentinel News is an independent news website that covers local and regional issues in Clarence Town NSW and surrounding areas.",
+      "The Sentinel is a free, independent newspaper serving the Somerset and Moreton Bay regions of Queensland, covering local news, sport and community events.",
     type: "website",
     locale: "en_AU",
     siteName: "The Sentinel",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Sentinel",
     description:
-      "The Sentinel News is an independent news website that covers local and regional issues in Clarence Town NSW and surrounding areas.",
+      "The Sentinel is a free, independent newspaper serving the Somerset and Moreton Bay regions of Queensland, covering local news, sport and community events.",
     images: ["/open-graph-image.webp"],
   },
 };
