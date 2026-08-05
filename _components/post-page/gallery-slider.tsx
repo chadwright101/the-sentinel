@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import classNames from "classnames";
 import { GallerySliderProps } from "@/_types/gallery-types";
@@ -15,7 +15,7 @@ export default function GallerySlider({
   galleryId,
   cssClasses,
 }: GallerySliderProps) {
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperRef>(null);
 
   if (!images || images.length === 0) {
     return null;
