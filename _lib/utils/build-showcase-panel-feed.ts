@@ -4,12 +4,14 @@ import {
   getCategoryMapping,
 } from "@/_lib/utils/category-mapping";
 import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
+import truncatePanelTitle from "@/_lib/utils/truncate-panel-title";
+import buildPanelGuid from "@/_lib/utils/build-panel-guid";
 import { SITE_BASE_URL, SITE_DESCRIPTION } from "@/_lib/utils/site-config";
 
 const IMAGE_WIDTH = 1200;
 const IMAGE_HEIGHT = 900;
 const OVERLINE_MAX = 30;
-const PANEL_GUID = "urn:uuid:9f2b7c14-5d3e-4a86-9c17-2e6b8d4f0a35";
+const PANEL_GUID_PREFIX = "sentinel";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTHS = [
@@ -105,14 +107,20 @@ function getOverline(post: PostProps): string {
   return title.slice(0, OVERLINE_MAX);
 }
 
+function getArticleUrl(post: PostProps): string {
+  return `${SITE_BASE_URL}/${extractCategorySlug(post)}/${post.slug}`;
+}
+
 function buildArticle(post: PostProps): string {
-  const url = `${SITE_BASE_URL}/${extractCategorySlug(post)}/${post.slug}`;
+  const url = getArticleUrl(post);
   const imageUrl = getPanelImageUrl(post.jetpack_featured_media_url);
 
   return [
     "        <g:item>",
     `          <guid isPermaLink="true">${escapeXml(url)}</guid>`,
-    `          <title>${escapeXml(stripHtml(post.title.rendered))}</title>`,
+    `          <title>${escapeXml(
+      truncatePanelTitle(stripHtml(post.title.rendered))
+    )}</title>`,
     `          <g:overline>${escapeXml(getOverline(post))}</g:overline>`,
     `          <link>${escapeXml(url)}</link>`,
     `          <media:content url="${escapeXml(
@@ -141,11 +149,13 @@ export function buildShowcasePanelFeed(
 
   const buildDate = toRfc822(latest ?? new Date().toISOString());
 
+  const panelGuid = buildPanelGuid(PANEL_GUID_PREFIX, posts.map(getArticleUrl));
+
   const panel =
     posts.length === 3
       ? `    <item>
       <g:panel type="RUNDOWN">${escapeXml(panelName)}</g:panel>
-      <guid isPermaLink="false">${PANEL_GUID}</guid>
+      <guid isPermaLink="false">${panelGuid}</guid>
       <pubDate>${buildDate}</pubDate>
       <g:panel_title>${escapeXml(panelTitle)}</g:panel_title>
       <title></title>

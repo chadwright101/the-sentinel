@@ -2,12 +2,15 @@ import { PostProps } from "@/_types/post-types";
 import { fetchPosts } from "@/_components/fetch-posts";
 import { fetchPostsBySchedule } from "@/_components/fetch-posts-by-schedule";
 import { buildShowcasePanelFeed } from "@/_lib/utils/build-showcase-panel-feed";
-import { getShowcasePeriod, getShowcaseSlug } from "@/_lib/utils/showcase-day";
+import {
+  getBriefingLabel,
+  getShowcasePeriod,
+  getShowcaseSlug,
+} from "@/_lib/utils/showcase-day";
 import { SITE_NAME } from "@/_lib/utils/site-config";
 
 const PANEL_SIZE = 3;
 const FEED_PATH = "/api/rss/showcase";
-const PANEL_TITLE = "The Sentinel Rundown";
 
 function respond(xml: string): Response {
   return new Response(xml, {
@@ -23,6 +26,7 @@ export async function buildShowcasePanelResponse(): Promise<Response> {
   const period = getShowcasePeriod();
   const feedTitle = `${SITE_NAME} — News Showcase`;
   const panelName = `Sentinel Rundown (${period.toUpperCase()})`;
+  const panelTitle = `${SITE_NAME} ${getBriefingLabel(period)}`;
 
   try {
     const scheduled = await fetchPostsBySchedule(
@@ -46,17 +50,17 @@ export async function buildShowcasePanelResponse(): Promise<Response> {
 
     if (posts.length < PANEL_SIZE) {
       return respond(
-        buildShowcasePanelFeed([], FEED_PATH, feedTitle, panelName, PANEL_TITLE)
+        buildShowcasePanelFeed([], FEED_PATH, feedTitle, panelName, panelTitle)
       );
     }
 
     return respond(
-      buildShowcasePanelFeed(posts, FEED_PATH, feedTitle, panelName, PANEL_TITLE)
+      buildShowcasePanelFeed(posts, FEED_PATH, feedTitle, panelName, panelTitle)
     );
   } catch (error) {
     console.error("Error building showcase panel feed:", error);
     return respond(
-      buildShowcasePanelFeed([], FEED_PATH, feedTitle, panelName, PANEL_TITLE)
+      buildShowcasePanelFeed([], FEED_PATH, feedTitle, panelName, panelTitle)
     );
   }
 }

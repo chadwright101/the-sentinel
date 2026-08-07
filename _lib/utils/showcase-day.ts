@@ -24,3 +24,7 @@ export function getShowcasePeriod(): ShowcasePeriod {
 export function getShowcaseSlug(period: ShowcasePeriod): string {
   return `${getBrisbaneDayCode()}-${period}`;
 }
+
+export function getBriefingLabel(period: ShowcasePeriod): string {
+  return period === "am" ? "Morning Briefing" : "Evening Briefing";
+}

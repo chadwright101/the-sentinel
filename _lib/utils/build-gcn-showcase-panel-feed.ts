@@ -1,5 +1,7 @@
 import { GcnPost } from "@/_components/fetch-gcn-posts";
 import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
+import truncatePanelTitle from "@/_lib/utils/truncate-panel-title";
+import buildPanelGuid from "@/_lib/utils/build-panel-guid";
 import { SITE_BASE_URL } from "@/_lib/utils/site-config";
 import {
   GCN_CATEGORY_NAMES,
@@ -11,7 +13,7 @@ import {
 const IMAGE_WIDTH = 1200;
 const IMAGE_HEIGHT = 900;
 const OVERLINE_MAX = 30;
-const PANEL_GUID = "urn:uuid:3c7d1f60-8a24-4e93-b5d1-6f0e29ab74c2";
+const PANEL_GUID_PREFIX = "gcn";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTHS = [
@@ -124,7 +126,9 @@ function buildArticle(post: GcnPost): string {
   return [
     "        <g:item>",
     `          <guid isPermaLink="true">${escapeXml(url)}</guid>`,
-    `          <title>${escapeXml(stripHtml(post.title.rendered))}</title>`,
+    `          <title>${escapeXml(
+      truncatePanelTitle(stripHtml(post.title.rendered))
+    )}</title>`,
     `          <g:overline>${escapeXml(getOverline(post))}</g:overline>`,
     `          <link>${escapeXml(url)}</link>`,
     `          <media:content url="${escapeXml(
@@ -153,11 +157,16 @@ export function buildGcnShowcasePanelFeed(
 
   const buildDate = toRfc822(latest ?? new Date().toISOString());
 
+  const panelGuid = buildPanelGuid(
+    PANEL_GUID_PREFIX,
+    posts.map((post) => post.link)
+  );
+
   const panel =
     posts.length === 3
       ? `    <item>
       <g:panel type="RUNDOWN">${escapeXml(panelName)}</g:panel>
-      <guid isPermaLink="false">${PANEL_GUID}</guid>
+      <guid isPermaLink="false">${panelGuid}</guid>
       <pubDate>${buildDate}</pubDate>
       <g:panel_title>${escapeXml(panelTitle)}</g:panel_title>
       <title></title>
