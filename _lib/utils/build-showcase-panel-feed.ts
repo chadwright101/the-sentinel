@@ -6,6 +6,7 @@ import {
 import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
 import truncatePanelTitle from "@/_lib/utils/truncate-panel-title";
 import buildPanelGuid from "@/_lib/utils/build-panel-guid";
+import getPanelImageUrl from "@/_lib/utils/get-panel-image-url";
 import { SITE_BASE_URL, SITE_DESCRIPTION } from "@/_lib/utils/site-config";
 
 const IMAGE_WIDTH = 1200;
@@ -87,20 +88,6 @@ function toRfc822(value: string): string {
   )}:${pad(shifted.getUTCSeconds())} ${offset}`;
 }
 
-function getPanelImageUrl(url: string): string {
-  try {
-    const parsed = new URL(url);
-    parsed.search = "";
-    parsed.searchParams.set("resize", `${IMAGE_WIDTH},${IMAGE_HEIGHT}`);
-    parsed.searchParams.set("quality", "80");
-    parsed.searchParams.set("strip", "info");
-    parsed.searchParams.set("ssl", "1");
-    return parsed.toString();
-  } catch {
-    return url;
-  }
-}
-
 function getOverline(post: PostProps): string {
   const slug = extractCategorySlug(post);
   const title = getCategoryMapping(slug)?.title ?? "News";
@@ -113,7 +100,11 @@ function getArticleUrl(post: PostProps): string {
 
 function buildArticle(post: PostProps): string {
   const url = getArticleUrl(post);
-  const imageUrl = getPanelImageUrl(post.jetpack_featured_media_url);
+  const image = getPanelImageUrl(
+    post.jetpack_featured_media_url,
+    IMAGE_WIDTH,
+    IMAGE_HEIGHT
+  );
 
   return [
     "        <g:item>",
@@ -123,9 +114,9 @@ function buildArticle(post: PostProps): string {
     )}</title>`,
     `          <g:overline>${escapeXml(getOverline(post))}</g:overline>`,
     `          <link>${escapeXml(url)}</link>`,
-    `          <media:content url="${escapeXml(
-      imageUrl
-    )}" type="image/jpeg" medium="image" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`,
+    `          <media:content url="${escapeXml(image.url)}" type="${
+      image.type
+    }" medium="image" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`,
     "        </g:item>",
   ].join("\n");
 }

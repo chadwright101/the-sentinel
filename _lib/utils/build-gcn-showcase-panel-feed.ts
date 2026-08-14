@@ -2,6 +2,7 @@ import { GcnPost } from "@/_components/fetch-gcn-posts";
 import decodeHtmlEntities from "@/_lib/utils/decode-html-entities";
 import truncatePanelTitle from "@/_lib/utils/truncate-panel-title";
 import buildPanelGuid from "@/_lib/utils/build-panel-guid";
+import getPanelImageUrl from "@/_lib/utils/get-panel-image-url";
 import { SITE_BASE_URL } from "@/_lib/utils/site-config";
 import {
   GCN_CATEGORY_NAMES,
@@ -89,22 +90,6 @@ function toRfc822(value: string): string {
   )}:${pad(shifted.getUTCSeconds())} ${offset}`;
 }
 
-function getPanelImageUrl(url: string): string {
-  try {
-    const parsed = new URL(url);
-    const photon = new URL(
-      `https://i0.wp.com/${parsed.hostname}${parsed.pathname}`
-    );
-    photon.searchParams.set("resize", `${IMAGE_WIDTH},${IMAGE_HEIGHT}`);
-    photon.searchParams.set("quality", "80");
-    photon.searchParams.set("strip", "info");
-    photon.searchParams.set("ssl", "1");
-    return photon.toString();
-  } catch {
-    return url;
-  }
-}
-
 function getOverline(post: GcnPost): string {
   const slugs = new Set(
     (post.class_list ?? []).reduce<string[]>((accumulator, className) => {
@@ -121,7 +106,11 @@ function getOverline(post: GcnPost): string {
 
 function buildArticle(post: GcnPost): string {
   const url = post.link;
-  const imageUrl = getPanelImageUrl(post.jetpack_featured_media_url);
+  const image = getPanelImageUrl(
+    post.jetpack_featured_media_url,
+    IMAGE_WIDTH,
+    IMAGE_HEIGHT
+  );
 
   return [
     "        <g:item>",
@@ -131,9 +120,9 @@ function buildArticle(post: GcnPost): string {
     )}</title>`,
     `          <g:overline>${escapeXml(getOverline(post))}</g:overline>`,
     `          <link>${escapeXml(url)}</link>`,
-    `          <media:content url="${escapeXml(
-      imageUrl
-    )}" type="image/jpeg" medium="image" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`,
+    `          <media:content url="${escapeXml(image.url)}" type="${
+      image.type
+    }" medium="image" width="${IMAGE_WIDTH}" height="${IMAGE_HEIGHT}" />`,
     "        </g:item>",
   ].join("\n");
 }
