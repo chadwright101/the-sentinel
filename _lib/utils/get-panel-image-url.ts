@@ -7,9 +7,10 @@ type PanelImage = {
 
 function buildPhotonUrl(url: string, width: number, height: number): string {
   const parsed = new URL(url);
-  const photon = new URL(
-    `https://i0.wp.com/${parsed.hostname}${parsed.pathname}`
-  );
+  const source = /^i\d\.wp\.com$/i.test(parsed.hostname)
+    ? parsed.pathname.replace(/^\//, "")
+    : `${parsed.hostname}${parsed.pathname}`;
+  const photon = new URL(`https://i0.wp.com/${source}`);
   photon.searchParams.set("resize", `${width},${height}`);
   photon.searchParams.set("quality", "80");
   photon.searchParams.set("strip", "info");
