@@ -14,7 +14,8 @@ interface PostContentProps {
 
 const listStyles =
   "[&_ul]:list-disc [&_ul]:list-inside [&_ol]:list-disc [&_ol]:list-inside";
-const linkStyles = "[&_a]:text-blue [&_a]:underline [&_a]:hover:text-blue/80 [&_a]:break-all";
+const linkStyles =
+  "[&_a]:text-blue [&_a]:underline [&_a]:hover:text-blue/80 [&_a]:wrap-anywhere";
 const headingStyles =
   "[&_h2]:text-24px [&_h2]:font-bold [&_h2]:mb-2 [&_h3]:text-20px [&_h3]:font-bold [&_h3]:mb-2 [&_h4]:text-18px [&_h4]:font-bold [&_h4]:mb-2 [h5_]:text-16px [&_h5]:font-bold [&_h5]:mb-2";
 const figureStyles =
@@ -31,7 +32,7 @@ const tableStyles =
   "[&_table]:w-full [&_table]:border-collapse [&_table]:my-5 [&_th]:border [&_th]:border-black [&_th]:p-2 [&_th]:bg-beige [&_th]:font-bold [&_td]:border [&_td]:border-black [&_td]:p-2";
 const horizontalRuleStyles = "[&_hr]:border-t [&_hr]:border-black [&_hr]:my-5";
 const imageStyles =
-  "[&_img:not(.gallery-placeholder_img)]:object-cover [&_img:not(.gallery-placeholder_img)]:mx-auto [&_img:not(.gallery-placeholder_img)]:max-w-[700px] [&_img:not(.gallery-placeholder_img)]:max-h-[600px] [&_img:not(.gallery-placeholder_img)]:w-full [&_img:not(.gallery-placeholder_img)]:h-full";
+  "[&_img:not(.gallery-placeholder_img)]:object-cover [&_img:not(.gallery-placeholder_img)]:mx-auto [&_img:not(.gallery-placeholder_img)]:max-w-[min(700px,100%)] [&_img:not(.gallery-placeholder_img)]:max-h-[600px] [&_img:not(.gallery-placeholder_img)]:w-full [&_img:not(.gallery-placeholder_img)]:h-auto";
 
 function extractImageSrc(img: HTMLImageElement): string {
   const dataOrigFile = img.getAttribute("data-orig-file");
@@ -66,7 +67,7 @@ function optimizeImageUrls(htmlContent: string): string {
     img.setAttribute("src", `${cleanUrl}?w=700&quality=80&strip=info&ssl=1`);
     img.setAttribute(
       "srcset",
-      `${cleanUrl}?w=425&quality=80&strip=info&ssl=1 425w, ${cleanUrl}?w=700&quality=80&strip=info&ssl=1 700w`
+      `${cleanUrl}?w=425&quality=80&strip=info&ssl=1 425w, ${cleanUrl}?w=700&quality=80&strip=info&ssl=1 700w`,
     );
     img.setAttribute("sizes", "(max-width: 425px) 425px, 700px");
   });
@@ -143,11 +144,11 @@ export default function PostContent({ content, adData }: PostContentProps) {
         if (lastParagraph) {
           lastParagraph.parentNode?.insertBefore(
             wideAdElement,
-            lastParagraph.nextSibling
+            lastParagraph.nextSibling,
           );
           lastParagraph.parentNode?.insertBefore(
             squareAdElement,
-            wideAdElement.nextSibling
+            wideAdElement.nextSibling,
           );
         }
       } else {
@@ -157,7 +158,7 @@ export default function PostContent({ content, adData }: PostContentProps) {
 
           thirdParagraph.parentNode?.insertBefore(
             wideAdElement,
-            thirdParagraph.nextSibling
+            thirdParagraph.nextSibling,
           );
         }
 
@@ -167,7 +168,7 @@ export default function PostContent({ content, adData }: PostContentProps) {
 
           eighthParagraph.parentNode?.insertBefore(
             squareAdElement,
-            eighthParagraph.nextSibling
+            eighthParagraph.nextSibling,
           );
         }
       }
@@ -204,7 +205,7 @@ export default function PostContent({ content, adData }: PostContentProps) {
                 preStyles,
                 tableStyles,
                 horizontalRuleStyles,
-                imageStyles
+                imageStyles,
               )}
             />
           );
