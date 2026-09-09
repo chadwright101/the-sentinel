@@ -6,6 +6,7 @@ import { AdData } from "@/_types/ad-types";
 import { type ContentBlock, type GalleryImage } from "@/_types/gallery-types";
 import GallerySlider from "./gallery-slider";
 import getCleanImageUrl from "@/_lib/utils/get-clean-image-url";
+import fixEmbedIframes from "@/_lib/utils/fix-embed-iframes";
 
 interface PostContentProps {
   content: string;
@@ -99,7 +100,10 @@ export default function PostContent({ content, adData }: PostContentProps) {
         child.classList.contains("wp-block-jetpack-slideshow")
       ) {
         if (htmlBuffer) {
-          blocks.push({ type: "html", content: optimizeImageUrls(htmlBuffer) });
+          blocks.push({
+            type: "html",
+            content: fixEmbedIframes(optimizeImageUrls(htmlBuffer)),
+          });
           htmlBuffer = "";
         }
 
@@ -126,7 +130,10 @@ export default function PostContent({ content, adData }: PostContentProps) {
     });
 
     if (htmlBuffer) {
-      blocks.push({ type: "html", content: optimizeImageUrls(htmlBuffer) });
+      blocks.push({
+        type: "html",
+        content: fixEmbedIframes(optimizeImageUrls(htmlBuffer)),
+      });
     }
 
     setContentBlocks(blocks);
@@ -173,6 +180,29 @@ export default function PostContent({ content, adData }: PostContentProps) {
         }
       }
     }
+  }, [contentBlocks]);
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (!event.origin.endsWith("dwcdn.net")) return;
+
+      const heights = event.data?.["datawrapper-height"];
+      if (!heights) return;
+
+      const iframes = document.querySelectorAll<HTMLIFrameElement>(
+        "iframe[data-embed-autoheight]",
+      );
+
+      Object.keys(heights).forEach((chartId) => {
+        iframes.forEach((iframe) => {
+          if (iframe.contentWindow !== event.source) return;
+          iframe.style.height = `${heights[chartId]}px`;
+        });
+      });
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
   }, [contentBlocks]);
 
   return (

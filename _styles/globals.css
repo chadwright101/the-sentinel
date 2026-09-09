@@ -243,3 +243,6 @@
 .has-text-align-justify {
   text-align: justify;
 }
+.wp-block-embed iframe {
+  width: 100%;
+}
